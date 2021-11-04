@@ -1,0 +1,178 @@
+@media all {
+  .patients-content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px 20px;
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  .patient-card {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0px 4px 32px rgba(218, 228, 255, 0.24);
+    border-radius: 12px;
+
+    &__info {
+      padding: 19px 0 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      border-bottom: 1px solid rgba(220, 224, 236, 0.5);
+    }
+
+    &__resolutions {
+      display: flex;
+      flex-direction: column;
+      padding-top: 16px;
+      padding-right: 24px;
+
+      &-icon {
+        display: flex;
+        justify-content: center;
+        align-items:flex-start;
+        min-width: 56px;
+
+      }
+
+      &_time {
+        display: flex;
+//         align-items: start;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 130%;
+        padding-bottom: 12px;
+      }
+
+      &_description {
+        box-sizing: border-box;
+        display: flex;
+//         justify-content: center;
+//         align-items: start;
+        font-size: 15px;
+        line-height: 140%;
+        padding-bottom: 24px;
+        padding-top: 12px;
+      }
+    }
+  }
+
+  .patient-info__name-and-status {
+    padding-left: 16px;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .patient-info {
+
+    &__avatar img{
+      padding-top: 5px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+    }
+
+    &__name-and-status {
+
+    }
+
+    &__name {
+      width: auto;
+      max-width: 100%;
+      box-sizing: border-box;
+      font-weight: 600;
+      font-size: 17px;
+      //line-height: 130%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-top: 0px;
+      padding-bottom: 3px;
+    }
+
+    &__status {
+      display: flex;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 130%;
+      color: #A1ABC9;
+
+      &_confirmed {
+        margin-top: 3px;
+        margin-right: 10px;
+        width: 9px;
+        height: 9px;
+        background-color: #34C197;
+        border-radius: 50%;
+        border: none;
+      }
+
+      &_canceled {
+        margin-top: 3px;
+        margin-right: 10px;
+        width: 9px;
+        height: 9px;
+        background-color: #FF2567;
+        border-radius: 50%;
+        border: none;
+      }
+
+      &_waiting {
+        margin-top: 3px;
+        margin-right: 10px;
+        width: 9px;
+        height: 9px;
+        background-color: #7297FF;
+        border-radius: 50%;
+        border: none;
+      }
+    }
+
+    &__manage-btn {
+      width: 52px;
+      border: none;
+      background: transparent;
+      margin-left: auto;
+      height: 24px;
+      background: url("../../../../static/img/edit_user.svg") no-repeat center;
+      margin-top: 17px;
+      margin-right: 10px;
+    }
+
+
+    &__edit-select {
+      display: none;
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+}
+
+//end @media all
+
+
+@media only screen and (min-width: 600px) {
+
+}
+
+//end //@media only screen and (min-width: 700px)
+
+@media only screen  and (min-width: 1023px) {
+  .patients-content {
+    justify-content: space-around;
+  }
+
+  .patient-card {
+    max-width: 406px;
+  }
+}

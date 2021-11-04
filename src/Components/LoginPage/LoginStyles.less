@@ -1,0 +1,231 @@
+@media all {
+  .sign-wrapper {
+    background: #E4EBFF;
+  }
+
+  .sign-container {
+    margin: 0 auto;
+    max-width: 1920px;
+  }
+  .signBody {
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    background: url(/src/static/img/bg-small.jpg) no-repeat 0 0;
+    background-size: contain;
+    padding-top: 72px;
+  }
+
+  .signBarContainer {
+    margin: 0 0 0 auto;
+    min-height: calc(100vh - 72px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sign-bar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 24px 24px 0 0;
+    background: #F9FAFF;
+
+    &__title {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      padding-bottom: 24px;
+    }
+
+    &__form-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &__form {
+      margin: 24px;
+    }
+
+    &__input {
+      border: 1px solid #DCE0EC;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 32px rgb(218 228 255 / 16%);
+      border-radius: 8px;
+      font-size: 15px;
+      line-height: 138%;
+      width: 100%;
+      padding: 9px 47px;
+      margin-bottom: 24px;
+
+      &:focus {
+        border-color: #7297FF;
+        filter: drop-shadow(0px 4px 32px rgba(218, 228, 255 / 16%));
+      }
+
+      &::placeholder {
+        color: #A1ABC9;
+      }
+
+      &_name-icon {
+        background: url("/src/static/img/user-icon.svg") no-repeat;
+        background-position-y: center;
+        background-position-x: 18px;
+      }
+
+      &_email-icon {
+        background: url("/src/static/img/email-icon.svg") no-repeat;
+        background-position-y: center;
+        background-position-x: 18px;
+      }
+
+      &_password-icon {
+        background: url("/src/static/img/lock-icon.svg") no-repeat;
+        background-position-y: center;
+        background-position-x: 18px;
+      }
+
+      &_confirm-password-icon {
+        background: url("/src/static/img/check-icon.svg") no-repeat;
+        background-position-y: center;
+        background-position-x: 18px;
+      }
+
+      &_icon-position {
+        background-position-y: center;
+        background-position-x: 18px;
+      }
+    }
+
+    &__have-account {
+      margin-top: auto;
+      margin-right: auto;
+      margin-left: 24px;
+      padding-bottom: 44px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    &__have-account {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 12px;
+      font-size: 15px;
+      line-height: 140%;
+      margin-top: auto;
+      color: #A1ABC9;
+    }
+
+    &__have-account_link {
+      text-decoration-line: underline;
+      color: #7297FF;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 140%;
+      color: #A1ABC9;
+      margin-bottom: 24px;
+    }
+    &__forgotPassword {
+      margin-top: 32px;
+    }
+  }
+
+  .password-block {
+    position: relative;
+
+    &__eye-button {
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      background: url("/src/static/img/eye-slash-icon.svg") no-repeat center;
+      right: 7.2%;
+      width: 20px;
+      height: 20px;
+      top: 10px;
+    }
+  }
+
+  .sign-button {
+    font-weight: 600;
+    color: #FFFFFF;
+    padding: 14.5px;
+
+    &_style {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 130%;
+      margin: 9px auto 0 0;
+      color: white;
+      background: url("/src/static/img/angle-right-b-icon.svg") no-repeat center right 22.29px #7297FF;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 48px 13px 16px;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .signBody {
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    background: url(/src/static/img/bg.jpg) no-repeat 0 0;
+    background-size: cover;
+    padding-top: 0;
+    right: auto;
+  }
+
+  .signBarContainer {
+    min-height: 100vh;
+    max-width: 560px;
+  }
+
+
+  .sign-bar {
+    border-radius: 0;
+
+    &__form-container {
+    margin: auto;
+    }
+
+    &__form {
+      margin: auto 96px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    &__input {
+      line-height: 140%;
+      font-size: 17px;
+      padding: 16px 63px;
+      margin-bottom: 40px;
+    }
+
+    &__have-account {
+      margin: 24px 96px;
+    }
+  }
+
+  .password-block {
+
+    &__eye-button {
+      top: 18px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+
+}
+
+@media (max-height: 1080px ) {
+
+}
