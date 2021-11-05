@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import "./LoginStyles.css"
 import {Link} from "react-router-dom";
 
@@ -8,24 +8,47 @@ const SIGN_UP_PATH = '/sign-up'
 const RESTORE_PASSWORD_PATH = '/restore-password'
 const RESTORE_PASSWORD_SENT_PATH = '/restore-password-sent'
 
-// const SignFormInput = ({id}, {errorMsgId}, {inputType}, {placeholder}, {iconClass}) => {
-const ShowPasswordButton = () => {
-    return <button onClick="toggleShowPassword('password')" className="password-block__eye-button"/>
+// const toggleShowPassword = (e) => {
+//     e.preventDefault()
+//     console.log(e.target.id)
+//     debugger
+//     if (e.target.id === "show_password_button") {
+//         // const passwordInput = document.getElementById('password')
+//         this.setState(state.signFormShowPassword=true)
+//         // passwordInput.type === "password" ? passwordInput.type = "text" : passwordInput.type = "password"
+//     }
+// }
+
+const ShowPasswordButton = (props) => {
+    document.addEventListener("click", (e) => {
+        e.preventDefault()
+    })
+    return <button id={"show_" + props.inputId + "_button"}
+                   onClick={(e) => props.toggleShowPassword(e.target.id)}
+                   className="password-block__eye-button"/>
 }
 
 const SignFormInput = (props) => {
-    const {id, errorMsgId, inputType, placeholder, iconClass} = props
+    const {id, errorMsgId, inputType, placeholder, iconClass, name} = props
     let divClass = ''
-    inputType === 'password' ? divClass = 'signForm_password password-block' : divClass = ''
+    name === 'password' ? divClass = 'signForm_password password-block' : divClass = ''
 
     return (
         <div className={divClass}>
             < input id={id}
                     className={"sign-bar__input " + iconClass}
-                    type={inputType} placeholder={placeholder}/>
+                    type={inputType}
+                    placeholder={placeholder}
+                    name={name}
+            />
             <p id={errorMsgId} className="sign-form__validation displayNone">Name must be
                 at least 2 characters</p>
-            {inputType === 'password' ? <ShowPasswordButton/> : ''}
+            {name === 'password'
+                ? <ShowPasswordButton inputId={id}
+                                      state={props.state}
+                                      toggleShowPassword={props.toggleShowPassword}
+                />
+                : ''}
         </div>
     )
 }
@@ -36,6 +59,7 @@ const SignButton = (props) => {
 
     return ''
 }
+
 const FooterBlock = (props) => {
     let footerText = ''
     let footerLink = ''
@@ -68,7 +92,7 @@ const SignBarForm = (props) => {
     switch (props.link) {
         case SIGN_IN_PATH:
             signBarTitle = `Sign In`
-            signBarButtonText = 'Sign Up'
+            signBarButtonText = 'Sign In'
             return (
                 <form action={MAIN_PAGE_PATH} className="sign-bar__form">
                     <div>
@@ -84,9 +108,12 @@ const SignBarForm = (props) => {
                     <SignFormInput
                         id={'password'}
                         errorMsgId={'passwordErrorMsg'}
-                        inputType={'password'}
+                        inputType={props.state.signFormShowPassword ? 'text' : 'password'}
+                        name={'password'}
                         placeholder={'Password'}
                         iconClass={'sign-bar__input_password-icon'}
+                        state={props.state}
+                        toggleShowPassword={props.toggleShowPassword}
                     />
 
                     <SignButton text={signBarButtonText} link={props.link}/>
@@ -95,6 +122,7 @@ const SignBarForm = (props) => {
                     </div>
                 </form>
             )
+
         case RESTORE_PASSWORD_PATH:
             signBarTitle = `Restore Password`
             signBarButtonText = 'Send Reset Link'
@@ -129,14 +157,6 @@ const SignBarForm = (props) => {
 
                     <p className={'sign-bar__text'}>An email has been sent to example@exam.com. Check your inbox, and
                         click the reset link provided</p>
-
-                    <SignFormInput
-                        id={'email'}
-                        errorMsgId={'emailErrorMsg'}
-                        inputType={'email'}
-                        placeholder={'Email'}
-                        iconClass={'sign-bar__input_email-icon'}
-                    />
 
                     <SignButton text={signBarButtonText} link={RESTORE_PASSWORD_SENT_PATH}/>
                 </form>
@@ -173,17 +193,25 @@ const SignBarForm = (props) => {
                     <SignFormInput
                         id={'password'}
                         errorMsgId={'passwordErrorMsg'}
-                        inputType={'password'}
+                        inputType={props.state.signFormShowPassword ? 'text' : 'password'}
+                        name={'password'}
                         placeholder={'Password'}
                         iconClass={'sign-bar__input_password-icon'}
+                        state={props.state}
+                        toggleShowPassword={props.toggleShowPassword}
                     />
                     <SignFormInput
-                        id={'password'}
+                        id={'confirm_password'}
                         errorMsgId={'confirmPasswordErrorMsg'}
-                        inputType={'password'}
+                        inputType={props.state.signFormShowConfirmPassword ? 'text' : 'password'}
+                        name={'password'}
                         placeholder={'Confirm Password'}
                         iconClass={'sign-bar__input_confirm-password-icon'}
+                        state={props.state}
+                        toggleShowPassword={props.toggleShowPassword}
+
                     />
+
                     <SignButton text={signBarButtonText} link={SIGN_UP_PATH}/>
                 </form>
             )
@@ -192,6 +220,22 @@ const SignBarForm = (props) => {
     return ''
 }
 export const SignPage = (props) => {
+    const initialState = {
+        signFormShowPassword: false,
+        signFormShowConfirmPassword: false
+    }
+
+    const [state, setState] = useState(initialState)
+
+    const toggleShowPassword = (buttonId) => {
+        if (buttonId === 'show_password_button') {
+            setState({...state, signFormShowPassword: !state.signFormShowPassword})
+        } else if (buttonId === 'show_confirm_password_button') {
+            setState({
+                ...state, signFormShowConfirmPassword: !state.signFormShowConfirmPassword
+            })
+        }
+    }
 
     return (
         <div className="sign-wrapper">
@@ -199,7 +243,10 @@ export const SignPage = (props) => {
                 <div className="signBody">
                     <div className="signBarContainer">
                         <div className="sign-bar">
-                            <SignBarForm link={props.link}/>
+                            <SignBarForm link={props.link}
+                                         state={state}
+                                         toggleShowPassword={toggleShowPassword}
+                            />
                             <FooterBlock link={props.link}/>
                         </div>
                     </div>

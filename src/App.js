@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css"
 import {
     BrowserRouter as Router,
@@ -9,14 +9,16 @@ import {
 import {patientsFake} from "./patientsFake";
 import PatientsPage from "./Components/PatientsPage/PatientsPage";
 import SignPage from "./Components/LoginPage/SignPage";
+import SignPageTest from "./Components/Test/SignPageTest";
 
 function App() {
     const initialState = [
-        {isAuth: true}
+        {isAuth: true},
+        {signFormShowPassword:false},
+        {signFormShowConfirmPassword:false}
     ]
 
-    const state = initialState
-    console.log(state[0].isAuth)
+    const [state, setState] = useState(initialState)
 
     return (
         <Router>
@@ -26,7 +28,7 @@ function App() {
                             <SignPage link={'/sign-up'}/>
                         </Route>
                         <Route path="/sign-in">
-                            <SignPage link={'/sign-in'}/>
+                            <SignPage link={'/sign-in'} state={state} setState={setState}/>
                         </Route>
                         <Route path="/restore-password">
                             <SignPage link={'/restore-password'}/>
@@ -36,7 +38,11 @@ function App() {
                         </Route>
 
                         <Route path="/">
-                            {state[0].isAuth ? <PatientsPage patients={patientsFake}/> : 'Login Page'}
+                            {/*{state.isAuth ? <PatientsPage patients={patientsFake}/> : 'Login Page'}*/}
+                            {true ? <PatientsPage patients={patientsFake}/> : 'Login Page'}
+                        </Route>
+                        <Route path="/formik">
+                            <SignPageTest link={'/sign-up'}/>
                         </Route>
                     </Switch>
             {/*</div>*/}

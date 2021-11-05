@@ -11,6 +11,8 @@
 # production
 /build
 /.netlify
+/.idea
+/src/Components/Test
 
 # misc
 .DS_Store
