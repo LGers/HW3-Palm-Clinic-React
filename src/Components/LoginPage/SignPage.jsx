@@ -8,24 +8,30 @@ const SIGN_UP_PATH = '/sign-up'
 const RESTORE_PASSWORD_PATH = '/restore-password'
 const RESTORE_PASSWORD_SENT_PATH = '/restore-password-sent'
 
-// const toggleShowPassword = (e) => {
-//     e.preventDefault()
-//     console.log(e.target.id)
-//     debugger
-//     if (e.target.id === "show_password_button") {
-//         // const passwordInput = document.getElementById('password')
-//         this.setState(state.signFormShowPassword=true)
-//         // passwordInput.type === "password" ? passwordInput.type = "text" : passwordInput.type = "password"
-//     }
-// }
-
 const ShowPasswordButton = (props) => {
     document.addEventListener("click", (e) => {
         e.preventDefault()
     })
+
+    let eyeButtonClassName = 'password-block__eye-button'
+
+    if (props.inputId === "password")
+        if (props.state.signFormShowPassword) {
+            eyeButtonClassName += " password-block__eye-button_show"
+        } else {
+            eyeButtonClassName += " password-block__eye-button_hide"
+        }
+
+    if (props.inputId === "confirm_password")
+        if (props.state.signFormShowConfirmPassword) {
+            eyeButtonClassName += " password-block__eye-button_show"
+        } else {
+            eyeButtonClassName += " password-block__eye-button_hide"
+        }
+
     return <button id={"show_" + props.inputId + "_button"}
                    onClick={(e) => props.toggleShowPassword(e.target.id)}
-                   className="password-block__eye-button"/>
+                   className={eyeButtonClassName}/>
 }
 
 const SignFormInput = (props) => {

@@ -144,12 +144,21 @@
       border: none;
       cursor: pointer;
       position: absolute;
-      background: url("/src/static/img/eye-slash-icon.svg") no-repeat center;
       right: 7.2%;
       width: 20px;
       height: 20px;
       top: 10px;
+      &_show {
+        background: url("/src/static/img/eye-icon.svg") no-repeat center;
+        background-size: 20px;
+      }
+      &_hide {
+        background: url("/src/static/img/eye-slash-icon.svg") no-repeat center;
+        background-size: 20px;
+      }
+
     }
+
   }
 
   .sign-button {
