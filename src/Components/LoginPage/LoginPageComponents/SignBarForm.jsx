@@ -21,8 +21,10 @@ export const SignBarForm = (props) => {
                         id={'email'}
                         errorMsgId={'emailErrorMsg'}
                         inputType={'email'}
+                        name={'email'}
                         placeholder={'Email'}
                         iconClass={'sign-bar__input_email-icon'}
+
                     />
                     <SignFormInput
                         id={'password'}
@@ -33,6 +35,7 @@ export const SignBarForm = (props) => {
                         iconClass={'sign-bar__input_password-icon'}
                         state={props.state}
                         toggleShowPassword={props.toggleShowPassword}
+                        isInputTypePassword={true}
                     />
 
                     <SignButton text={signBarButtonText} link={props.link}/>
@@ -47,8 +50,9 @@ export const SignBarForm = (props) => {
             signBarButtonText = 'Send Reset Link'
             return (
                 <form action={RESTORE_PASSWORD_SENT_PATH} className="sign-bar__form">
-                    <div>
-                        <div className="sign-bar__title">{signBarTitle}</div>
+                    <div className="sign-bar__title">
+                        <Link to={SIGN_IN_PATH} className="sign-bar__backArrow"> </Link>
+                        <div>{signBarTitle}</div>
                     </div>
 
                     <p className={'sign-bar__text'}>Please use your email address, and we'll send you the link to reset
@@ -58,6 +62,7 @@ export const SignBarForm = (props) => {
                         id={'email'}
                         errorMsgId={'emailErrorMsg'}
                         inputType={'email'}
+                        name={'email'}
                         placeholder={'Email'}
                         iconClass={'sign-bar__input_email-icon'}
                     />
@@ -70,8 +75,9 @@ export const SignBarForm = (props) => {
             signBarTitle = `Restore Password`
             return (
                 <form className="sign-bar__form">
-                    <div>
-                        <div className="sign-bar__title">{signBarTitle}</div>
+                    <div className="sign-bar__title">
+                        <Link to={SIGN_IN_PATH} className="sign-bar__backArrow"> </Link>
+                        <div>{signBarTitle}</div>
                     </div>
 
                     <p className={'sign-bar__text'}>An email has been sent to example@exam.com. Check your inbox, and
@@ -92,6 +98,7 @@ export const SignBarForm = (props) => {
                         id={'firstName'}
                         errorMsgId={'firstNameErrorMsg'}
                         inputType={'input'}
+                        name={'first_name'}
                         placeholder={'First Name'}
                         iconClass={'sign-bar__input_name-icon'}
                     />
@@ -99,6 +106,7 @@ export const SignBarForm = (props) => {
                         id={'lastName'}
                         errorMsgId={'lastNameErrorMsg'}
                         inputType={'input'}
+                        name={'last_name'}
                         placeholder={'Last Name'}
                         iconClass={'sign-bar__input_name-icon'}
                     />
@@ -106,6 +114,7 @@ export const SignBarForm = (props) => {
                         id={'email'}
                         errorMsgId={'emailErrorMsg'}
                         inputType={'email'}
+                        name={'email'}
                         placeholder={'Email'}
                         iconClass={'sign-bar__input_email-icon'}
                     />
@@ -118,16 +127,18 @@ export const SignBarForm = (props) => {
                         iconClass={'sign-bar__input_password-icon'}
                         state={props.state}
                         toggleShowPassword={props.toggleShowPassword}
+                        isInputTypePassword={true}
                     />
                     <SignFormInput
                         id={'confirm_password'}
                         errorMsgId={'confirmPasswordErrorMsg'}
                         inputType={props.state.signFormShowConfirmPassword ? 'text' : 'password'}
-                        name={'password'}
+                        name={'confirm_password'}
                         placeholder={'Confirm Password'}
                         iconClass={'sign-bar__input_confirm-password-icon'}
                         state={props.state}
                         toggleShowPassword={props.toggleShowPassword}
+                        isInputTypePassword={true}
 
                     />
 

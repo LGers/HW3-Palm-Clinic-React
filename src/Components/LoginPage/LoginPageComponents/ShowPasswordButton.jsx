@@ -1,9 +1,6 @@
 import React from "react";
 
 export const ShowPasswordButton = (props) => {
-    document.addEventListener("click", (e) => {
-        e.preventDefault()
-    })
 
     let eyeButtonClassName = 'password-block__eye-button'
 
@@ -21,7 +18,7 @@ export const ShowPasswordButton = (props) => {
             eyeButtonClassName += " password-block__eye-button_hide"
         }
 
-    return <button id={"show_" + props.inputId + "_button"}
+    return <div id={"show_" + props.inputId + "_button"}
                    onClick={(e) => props.toggleShowPassword(e.target.id)}
                    className={eyeButtonClassName}/>
 }

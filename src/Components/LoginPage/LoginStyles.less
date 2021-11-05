@@ -35,10 +35,19 @@
     background: #F9FAFF;
 
     &__title {
+      display: flex;
+      flex-direction: row;
       font-weight: 600;
       font-size: 20px;
       line-height: 24px;
       padding-bottom: 24px;
+    }
+
+    &__backArrow {
+      width: 40px;
+      background: url("/src/static/img/back-arrow.svg") no-repeat;
+      background-position-y: center;
+      background-position-x: center;
     }
 
     &__form-container {

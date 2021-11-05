@@ -4,8 +4,7 @@ import React from "react";
 export const SignFormInput = (props) => {
     const {id, errorMsgId, inputType, placeholder, iconClass, name} = props
     let divClass = ''
-    name === 'password' ? divClass = 'signForm_password password-block' : divClass = ''
-
+    props.isInputTypePassword ? divClass = 'signForm_password password-block' : divClass = ''
     return (
         <div className={divClass}>
             < input id={id}
@@ -16,7 +15,7 @@ export const SignFormInput = (props) => {
             />
             <p id={errorMsgId} className="sign-form__validation displayNone">Name must be
                 at least 2 characters</p>
-            {name === 'password'
+            {props.isInputTypePassword
                 ? <ShowPasswordButton inputId={id}
                                       state={props.state}
                                       toggleShowPassword={props.toggleShowPassword}

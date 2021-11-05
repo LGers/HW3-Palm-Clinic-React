@@ -32,10 +32,18 @@
     background: #F9FAFF;
   }
   .sign-bar__title {
+    display: flex;
+    flex-direction: row;
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
     padding-bottom: 24px;
+  }
+  .sign-bar__backArrow {
+    width: 40px;
+    background: url("/src/static/img/back-arrow.svg") no-repeat;
+    background-position-y: center;
+    background-position-x: center;
   }
   .sign-bar__form-container {
     width: 100%;
