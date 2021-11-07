@@ -4,13 +4,10 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
 import {patientsFake} from "./patientsFake";
 import PatientsPage from "./Components/PatientsPage/PatientsPage";
 import SignPage from "./Components/LoginPage/SignPage";
-import SignPageTest from "./Components/Test/SignPageTest";
-import {FormikTest} from "./Components/Test/FormikTest";
 
 function App() {
     const initialState = [
@@ -23,7 +20,6 @@ function App() {
 
     return (
         <Router>
-            {/*<div className="wrapper">*/}
                     <Switch>
                         <Route path="/sign-up">
                             <SignPage link={'/sign-up'}/>
@@ -42,19 +38,7 @@ function App() {
                             {/*{state.isAuth ? <PatientsPage patients={patientsFake}/> : 'Login Page'}*/}
                             {true ? <PatientsPage patients={patientsFake}/> : 'Login Page'}
                         </Route>
-
-                        <Route path="/formik">
-                            <FormikTest link={'/formik'}/>
-                        </Route>
-
-
-
                     </Switch>
-            {/*</div>*/}
-
-            <>
-                {/*{state[0].isAuth ? <PatientsPage patients={patientsFake}/> : 'Login Page'}*/}
-            </>
         </Router>
     );
 }

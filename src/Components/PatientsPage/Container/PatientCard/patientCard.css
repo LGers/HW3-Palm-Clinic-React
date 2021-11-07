@@ -1,17 +1,5 @@
 @media all {
-  .patients-content {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 24px 20px;
-    height: 100%;
-    overflow-y: auto;
-    margin-bottom: 20px;
-  }
   .patient-card {
-    width: 100%;
-    max-width: 640px;
     display: flex;
     flex-direction: column;
     background: #fff;
@@ -20,10 +8,10 @@
   }
   .patient-card__info {
     padding: 19px 0 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
     border-bottom: 1px solid rgba(220, 224, 236, 0.5);
+    display: grid;
+    grid-area: auto;
+    grid-template-columns: 40px 1fr 30px;
   }
   .patient-card__resolutions {
     display: flex;
@@ -116,11 +104,10 @@
     width: 52px;
     border: none;
     background: transparent;
-    margin-left: auto;
     height: 24px;
     background: url("../../../../static/img/edit_user.svg") no-repeat center;
-    margin-top: 17px;
-    margin-right: 10px;
+    align-self: center;
+    justify-self: center;
   }
   .patient-info__edit-select {
     display: none;
@@ -129,11 +116,9 @@
   }
 }
 @media only screen and (min-width: 1023px) {
-  .patients-content {
-    justify-content: space-around;
-  }
   .patient-card {
     max-width: 406px;
+    max-width: 100%;
   }
 }
 /*# sourceMappingURL=patientCard.css.map */

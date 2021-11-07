@@ -243,6 +243,24 @@
     }
   }
 
+  .patients-content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px 20px;
+    height: 100%;
+    overflow-y: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px 20px;
+
+    width: 100%;
+  }
 
 }
 //end @media all
@@ -261,6 +279,7 @@
     &__content {
       border-radius: 16px;
       margin: 0 64px 48px 64px;
+      padding-right: 60px;
     }
   }
 
@@ -285,12 +304,22 @@
     font-size: 24px;
     line-height: 110%;
   }
+
+  .patients-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
 }
+
 
 
 @media only screen and (min-width: 1023px) {
   ::-webkit-scrollbar {
     width: 12px;
+  }
+
+  .patients-content {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .input-search {
@@ -322,3 +351,8 @@
   }
 }
 
+@media only screen and (min-width: 1250px) {
+  .patients-content {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
