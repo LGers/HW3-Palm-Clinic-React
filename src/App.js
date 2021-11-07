@@ -10,6 +10,7 @@ import {patientsFake} from "./patientsFake";
 import PatientsPage from "./Components/PatientsPage/PatientsPage";
 import SignPage from "./Components/LoginPage/SignPage";
 import SignPageTest from "./Components/Test/SignPageTest";
+import {FormikTest} from "./Components/Test/FormikTest";
 
 function App() {
     const initialState = [
@@ -37,13 +38,17 @@ function App() {
                             <SignPage link={'/restore-password-sent'}/>
                         </Route>
 
-                        <Route path="/">
+                        <Route exact path="/">
                             {/*{state.isAuth ? <PatientsPage patients={patientsFake}/> : 'Login Page'}*/}
                             {true ? <PatientsPage patients={patientsFake}/> : 'Login Page'}
                         </Route>
+
                         <Route path="/formik">
-                            <SignPageTest link={'/sign-up'}/>
+                            <FormikTest link={'/formik'}/>
                         </Route>
+
+
+
                     </Switch>
             {/*</div>*/}
 

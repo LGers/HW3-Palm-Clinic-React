@@ -15,7 +15,7 @@ export const SignPage = (props) => {
     const toggleShowPassword = (buttonId) => {
         if (buttonId === 'show_password_button') {
             setState({...state, signFormShowPassword: !state.signFormShowPassword})
-        } else if (buttonId === 'show_confirm_password_button') {
+        } else if (buttonId === 'show_confirmPassword_button') {
             setState({
                 ...state, signFormShowConfirmPassword: !state.signFormShowConfirmPassword
             })
