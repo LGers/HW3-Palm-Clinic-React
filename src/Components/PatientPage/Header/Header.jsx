@@ -71,12 +71,14 @@ export const Header = (props) => {
 
             <div className="doctor">
                 <div className="doctor-name-pos">
-                    <p className="doctor__name">Miranda Nelson</p>
-                    <p className="doctor__position">Doctor</p>
+                    <p className="doctor__name">Lary Prinston</p>
+                    <p className="doctor__position">Patient</p>
                 </div>
 
-                <div className='doctor__status'><img className="doctor__avatar" src="static/img/avatar.jpg" alt="avatar"/></div>
-                {/*<img className="doctor__avatar" src="static/img/avatar.jpg" alt="avatar"/>*/}
+                <div className='doctor__status'>
+                    <img className="doctor__avatar" src="static/img/patient-avatar.jpg" alt="avatar"/>
+                    <div className="doctor__status-icon"></div>
+                </div>
             </div>
         </header>
     );

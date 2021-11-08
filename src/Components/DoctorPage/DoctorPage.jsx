@@ -1,9 +1,9 @@
-import './PatientsPage.css'
+import './DoctorPage.css'
 import {Header} from "./Header/Header";
 import PatientsContainer from "./Container/PatientsContainer";
 import React from "react";
 
-const PatientsPage = (props) => {
+const DoctorPage = (props) => {
 
     return (
         <div className="wrapper">
@@ -15,4 +15,4 @@ const PatientsPage = (props) => {
     );
 }
 
-export default PatientsPage;
+export default DoctorPage;

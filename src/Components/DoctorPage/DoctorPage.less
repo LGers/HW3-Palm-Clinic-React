@@ -1,5 +1,10 @@
 
 @media all {
+
+  .hiddenOnMobileAndTablet {
+    display: none;
+  }
+
   ::-webkit-scrollbar {
     width: 0;
   }
@@ -54,13 +59,6 @@
     position: relative;
     display: flex;
 
-    &__doctor-status {
-      //position: absolute;
-      //top: 0;
-      //right: 0;
-      //border-radius: 50%;
-      //border: 20px solid #E4EBFF;
-    }
 
     &_online {
       background-color: #34C197;
@@ -98,6 +96,17 @@
 
     &__status {
       position: relative;
+
+      &-icon {
+        width: 8px;
+        height: 8px;
+        background-color: #34C197;
+        border-radius: 50%;
+        position: absolute;
+        top: -3px;
+        right: 0;
+        border: 3px solid #E4EBFF;
+      }
     }
 
     &__content {
@@ -144,6 +153,8 @@
     font-size: 15px;
     border-radius: 8px;
     border: none;
+    padding-left: 16px;
+    padding-right: 16px;
 
     &__size {
       min-width: 120px;
@@ -152,7 +163,6 @@
 
     &_primary {
       font-weight: 600;
-
       line-height: 130%;
       color: #fff;
       background: #7297FF;
@@ -165,6 +175,14 @@
       color: #7297FF;
       background: #fff;
       box-shadow: 0px 4px 32px rgba(218, 228, 255, 0.16);
+    }
+
+    &_leftPlus {
+      padding-left: 48px;
+      background: url("/src/static/img/plus-icon.svg") no-repeat center left 20px #7297FF;
+    }
+    &_hideOnMobiles {
+      display: none;
     }
   }
 
@@ -181,6 +199,12 @@
 
     &__sort-by-label {
       display: none;
+      font-weight: normal;
+      font-size: 15px;
+      line-height: 140%;
+      color: #A1ABC9;
+      justify-self: center;
+      align-self: center;
     }
 
     &__sort-select {
@@ -244,27 +268,26 @@
   }
 
   .patients-content {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 24px 20px;
-    height: 100%;
     overflow-y: auto;
     padding-left: 15px;
     padding-right: 15px;
-
-
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 24px 20px;
-
     width: 100%;
   }
 
 }
 //end @media all
 
+@media only screen and (min-width: 450px) {
+  .button {
+
+    &_hideOnMobiles {
+      display: block;
+    }
+  }
+}
 
 @media only screen and (min-width: 600px) {
   ::-webkit-scrollbar {
@@ -312,8 +335,10 @@
 }
 
 
-
 @media only screen and (min-width: 1023px) {
+  .hiddenOnMobileAndTablet {
+    display: block;
+  }
   ::-webkit-scrollbar {
     width: 12px;
   }
@@ -331,6 +356,7 @@
 
     &__sort-by-label {
       display: block;
+
     }
 
     &__sort-select {

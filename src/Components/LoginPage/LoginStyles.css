@@ -163,7 +163,8 @@
     right: 7.2%;
     width: 20px;
     height: 20px;
-    top: 20px;
+    top: 29px;
+    transform: translate(0, -50%);
   }
   .password-block__eye-button_show {
     background: url("/src/static/img/eye-icon.svg") no-repeat center;
@@ -227,7 +228,7 @@
     flex-direction: row;
   }
   .password-block__eye-button {
-    top: 18px;
+    top: 37px;
   }
 }
 /*# sourceMappingURL=LoginStyles.css.map */
