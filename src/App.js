@@ -5,10 +5,12 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import styled from "styled-components"
 import {patientsFake} from "./patientsFake";
 import DoctorPage from "./Components/DoctorPage/DoctorPage";
 import SignPage from "./Components/LoginPage/SignPage";
 import PatientPage from "./Components/PatientPage/PatientPage";
+import {TestButtonPage} from "./Components/Test/TestButtonPage";
 
 const doctorsFake = [
     {
@@ -39,32 +41,38 @@ function App() {
     }
 
     const [state, setState] = useState(initialState)
-    console.log(state)
+
     return (
         <Router>
-                    <Switch>
-                        <Route path="/sign-up">
-                            <SignPage link={'/sign-up'}/>
-                        </Route>
-                        <Route path="/sign-in">
-                            <SignPage link={'/sign-in'} state={state} setState={setState}/>
-                        </Route>
-                        <Route path="/restore-password">
-                            <SignPage link={'/restore-password'}/>
-                        </Route>
-                        <Route path="/restore-password-sent">
-                            <SignPage link={'/restore-password-sent'}/>
-                        </Route>
+            <Switch>
+                <Route path="/sign-up">
+                    <SignPage link={'/sign-up'}/>
+                </Route>
 
-                        <Route exact path="/">
-                            {state.isAuth ? <DoctorPage patients={patientsFake}/> : <SignPage link={'/sign-up'}/>}
-                        </Route>
+                <Route path="/sign-in">
+                    <SignPage link={'/sign-in'} state={state} setState={setState}/>
+                </Route>
 
-                        <Route path="/patient-page">
-                            <PatientPage doctors={doctorsFake}/>
-                        </Route>
+                <Route path="/restore-password">
+                    <SignPage link={'/restore-password'}/>
+                </Route>
 
-                    </Switch>
+                <Route path="/restore-password-sent">
+                    <SignPage link={'/restore-password-sent'}/>
+                </Route>
+
+                <Route exact path="/">
+                    {state.isAuth ? <DoctorPage patients={patientsFake}/> : <SignPage link={'/sign-up'}/>}
+                </Route>
+
+                <Route path="/patient-page">
+                    <PatientPage doctors={doctorsFake}/>
+                </Route>
+
+                <Route path="/button">
+                    <TestButtonPage/>
+                </Route>
+            </Switch>
         </Router>
     );
 }
