@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from "styled-components";
 
-const StyledFlex = styled.div`
+export const StyledFlex = styled.div`
 display:flex;
   flex-direction: ${props => props.direction || 'row'};
   align-items: ${props => props.align || 'stretch'};
@@ -10,7 +9,3 @@ display:flex;
   gap: ${props => props.gap || 'auto'};
   padding: ${props => props.padding || '0'};
 `
-
-export const Flex = (props) => {
-    return <StyledFlex {...props}/>
-};

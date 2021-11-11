@@ -12,8 +12,8 @@
 /build
 /.netlify
 /.idea
-/src/Components/Test
-/src/Components/LoginPage/LoginPageComponents/StyledButton.jsx
+/src/pages/Test
+/src/pages/LoginPage/LoginPageComponents/StyledButton.jsx
 
 # misc
 .DS_Store

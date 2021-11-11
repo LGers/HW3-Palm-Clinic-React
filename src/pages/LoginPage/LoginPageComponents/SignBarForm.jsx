@@ -17,7 +17,7 @@ export const SignBarForm = (props) => {
         case RESTORE_PASSWORD_SENT_PATH:
             return <RestorePasswordSentForm/>
 
-        default : //SIGN_UP_PATH
+        default :
             return <SignUpForm state={props.state} toggleShowPassword={props.toggleShowPassword}/>
     }
 }

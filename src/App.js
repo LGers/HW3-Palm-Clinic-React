@@ -5,33 +5,14 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import styled from "styled-components"
-import {patientsFake} from "./patientsFake";
-import DoctorPage from "./Components/DoctorPage/DoctorPage";
-import SignPage from "./Components/LoginPage/SignPage";
-import PatientPage from "./Components/PatientPage/PatientPage";
-import {TestButtonPage} from "./Components/Test/TestButtonPage";
+import {patientsFake} from "./constants/patientsFake";
+import DoctorPage from "./pages/DoctorPage/DoctorPage";
+import SignPage from "./pages/LoginPage/SignPage";
+import PatientPage from "./pages/PatientPage/PatientPage";
+import {TestButtonPage} from "./pages/Test/TestButtonPage";
+import {doctorsFake} from "./constants/doctorsFake";
 
-const doctorsFake = [
-    {
-        "avatar": "http://placeimg.com/640/480/abstract",
-        "firstName": "Bridgette",
-        "lastName": "Wisoky",
-        "profession": "Therapist",
-        "description": "Mollitia ex qui qui deleniti.\nEt accusamus doloribus laboriosam vitae.\nMaxime placeat repudiandae.",
-        "time": 1637840844,
-        "id": "4"
-    },
-    {
-        "avatar": "http://placeimg.com/640/480/abstract",
-        "firstName": "Will",
-        "lastName": "Hilll",
-        "profession": "Therapist",
-        "description": "Nulla debitis quia dignissimos veritatis facere. Minus iure aut aut facere incidunt quod minus. Excepturi est quo mollitia consequatur sequi corrupti magnam incidunt nesciunt. Et nesciunt est sed laudantium sed enim. Corrupti vel ullam qui saepe sit perspiciatis commodi ipsum. Est culpa nesciunt occaecati at id ut incidunt.\n \rAmet recusandae in eveniet quia in quas aut atque quia. Necessitatibus voluptas eum et pariatur quas nihil quod et voluptas. Qui voluptas nulla voluptates quos at.\n \rEt eius deserunt similique sit est iure. Et rerum modi quia consequatur voluptatem aspernatur. Necessitatibus adipisci et facilis molestias error sapiente minima. Tempora et aliquam id libero.",
-        "time": 1635840784,
-        "id": "5"
-    },
-]
+
 
 function App() {
     const initialState = {

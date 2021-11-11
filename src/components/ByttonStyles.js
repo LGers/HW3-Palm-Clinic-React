@@ -1,7 +1,6 @@
-import React from 'react';
 import styled, {css} from "styled-components";
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   font-weight: 600;
   font-size: 15px;
   line-height: 130%;
@@ -66,7 +65,3 @@ const StyledButton = styled.button`
     padding-bottom: 16px;
   }
 `
-
-export const Button = (props) => {
-    return <StyledButton {...props}/>
-};

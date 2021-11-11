@@ -4,12 +4,12 @@ import * as Yup from 'yup';
 import {SignFormInput} from "../SignFormInput";
 import {SIGN_IN_PATH} from "../../path";
 import {useHistory} from "react-router-dom";
+import {SignUpButtonText, SignUpTitle} from "../../../../constants/dictionary";
+import {signUpValidationSchema} from "./validations";
 
 
 
 export const SignUpForm = (props) => {
-    const signBarTitle = `Sign Up`
-    const signBarButtonText = 'Sign Up'
 
     const history = useHistory();
 
@@ -26,29 +26,10 @@ export const SignUpForm = (props) => {
                     password: '',
                     confirmPassword: '',
                 }}
-                validationSchema={Yup.object({
-                    firstName: Yup.string()
-                        .max(15, 'Must be 15 characters or less')
-                        .required('Required')
-                        .min(2, 'Must be 2 characters or more'),
-                    lastName: Yup.string()
-                        .max(20, 'Must be 20 characters or less')
-                        .required('Required')
-                        .min(2, 'Must be 2 characters or more'),
-                    email: Yup.string()
-                        .email('Invalid email address')
-                        .required('Required'),
-                    password: Yup.string()
-                        .required('Required')
-                        .min(6, 'Must be 6 characters or more'),
-                    confirmPassword: Yup.string()
-                        .required('Required')
-                        .min(6, 'Must be 6 characters or more'),
+                validationSchema={signUpValidationSchema}
 
-                })}
                 onSubmit={(values, {setSubmitting}) => {
                     setTimeout(() => {
-                        // alert(JSON.stringify(values, null, 2));
                         setSubmitting(false);
                         handleClick()
                     }, 400);
@@ -58,7 +39,7 @@ export const SignUpForm = (props) => {
 
                 <Form className="sign-bar__form">
                     <div>
-                        <div className="sign-bar__title">{signBarTitle}</div>
+                        <div className="sign-bar__title">{SignUpTitle}</div>
                     </div>
                     <SignFormInput
                         name="firstName"
@@ -87,7 +68,6 @@ export const SignUpForm = (props) => {
                     />
 
                     <SignFormInput
-
                         name="confirmPassword"
                         type={props.state.signFormShowConfirmPassword ? 'text' : 'password'}
                         placeholder="Confirm Password"
@@ -95,8 +75,7 @@ export const SignUpForm = (props) => {
                         toggleShowPassword={props.toggleShowPassword}
                     />
 
-
-                    <button type="submit" className="sign-button sign-button_style">{signBarButtonText}</button>
+                    <button type="submit" className="sign-button sign-button_style">{SignUpButtonText}</button>
                 </Form>
             </Formik>
         </>

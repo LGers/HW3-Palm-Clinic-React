@@ -17,8 +17,7 @@ export const SignPage = (props) => {
             setState({...state, signFormShowPassword: !state.signFormShowPassword})
         } else if (buttonId === 'show_confirmPassword_button') {
             setState({
-                ...state, signFormShowConfirmPassword: !state.signFormShowConfirmPassword
-            })
+                ...state, signFormShowConfirmPassword: !state.signFormShowConfirmPassword})
         }
     }
 
