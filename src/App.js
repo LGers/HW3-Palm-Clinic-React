@@ -1,53 +1,92 @@
 import React, {useState} from "react";
-import "./App.css"
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
+import DoctorPage from "./pages/doctorPage/DoctorPage";
+import SignPage from "./pages/loginPage/SignPage";
+import PatientPage from "./pages/patientPage/PatientPage";
+import {TestButtonPage} from "./pages/test/TestButtonPage";
 import {patientsFake} from "./constants/patientsFake";
-import DoctorPage from "./pages/DoctorPage/DoctorPage";
-import SignPage from "./pages/LoginPage/SignPage";
-import PatientPage from "./pages/PatientPage/PatientPage";
-import {TestButtonPage} from "./pages/Test/TestButtonPage";
 import {doctorsFake} from "./constants/doctorsFake";
-
+import {
+    PROPS_HEADER_DOCTOR_PROFESSION,
+    PROPS_HEADER_DOCTOR_NAME,
+    PROPS_HEADER_DOCTOR_AVATAR,
+    PROPS_HEADER_PATIENT_PROFESSION,
+    PROPS_HEADER_PATIENT_AVATAR,
+    PROPS_HEADER_PATIENT_NAME
+} from "./constants/constants";
+import {GlobalStyles} from "./components/GlobalStyles";
+import {
+    MAIN_PAGE_PATH,
+    PATIENT_PAGE_PATH,
+    RESTORE_PASSWORD_PATH,
+    RESTORE_PASSWORD_SENT_PATH,
+    SIGN_IN_PATH,
+    SIGN_UP_PATH
+} from "./constants/path";
+import MakeAppointmentFormik from "./pages/userAppointments/MakeAppointmentFormik";
 
 
 function App() {
     const initialState = {
         isAuth: true,
-        signFormShowPassword:false,
-        signFormShowConfirmPassword:false
+        signFormShowPassword: false,
+        signFormShowConfirmPassword: false
     }
 
     const [state, setState] = useState(initialState)
 
     return (
         <Router>
+
+            <GlobalStyles/>
+
             <Switch>
-                <Route path="/sign-up">
-                    <SignPage link={'/sign-up'}/>
+                <Route path={SIGN_UP_PATH}>
+                    <SignPage link={SIGN_UP_PATH}/>
                 </Route>
 
-                <Route path="/sign-in">
-                    <SignPage link={'/sign-in'} state={state} setState={setState}/>
+                <Route path={SIGN_IN_PATH}>
+                    <SignPage link={SIGN_IN_PATH} state={state} setState={setState}/>
                 </Route>
 
-                <Route path="/restore-password">
-                    <SignPage link={'/restore-password'}/>
+                <Route path={RESTORE_PASSWORD_PATH}>
+                    <SignPage link={RESTORE_PASSWORD_PATH}/>
                 </Route>
 
-                <Route path="/restore-password-sent">
-                    <SignPage link={'/restore-password-sent'}/>
+                <Route path={RESTORE_PASSWORD_SENT_PATH}>
+                    <SignPage link={RESTORE_PASSWORD_SENT_PATH}/>
                 </Route>
 
-                <Route exact path="/">
-                    {state.isAuth ? <DoctorPage patients={patientsFake}/> : <SignPage link={'/sign-up'}/>}
+                <Route exact path={MAIN_PAGE_PATH}>
+                    {state.isAuth
+                        ? <DoctorPage
+                            patients={patientsFake}
+                            name={PROPS_HEADER_DOCTOR_NAME}
+                            profession={PROPS_HEADER_DOCTOR_PROFESSION}
+                            avatar={PROPS_HEADER_DOCTOR_AVATAR}
+                        />
+                        : <SignPage link={SIGN_UP_PATH}/>}
                 </Route>
 
-                <Route path="/patient-page">
-                    <PatientPage doctors={doctorsFake}/>
+                <Route path={PATIENT_PAGE_PATH}>
+                    <PatientPage
+                        doctors={doctorsFake}
+                        name={PROPS_HEADER_PATIENT_NAME}
+                        profession={PROPS_HEADER_PATIENT_PROFESSION}
+                        avatar={PROPS_HEADER_PATIENT_AVATAR}
+                    />
+                </Route>
+
+                <Route path="/make-appointment">
+                    <MakeAppointmentFormik
+                        name={PROPS_HEADER_PATIENT_NAME}
+                        profession={PROPS_HEADER_PATIENT_PROFESSION}
+                        avatar={PROPS_HEADER_PATIENT_AVATAR}
+                    />
                 </Route>
 
                 <Route path="/button">
