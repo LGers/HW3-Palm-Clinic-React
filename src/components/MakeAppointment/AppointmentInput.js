@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-const StyledAppointmentInput = styled.div`
+export const StyledAppointmentInput = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 40px;

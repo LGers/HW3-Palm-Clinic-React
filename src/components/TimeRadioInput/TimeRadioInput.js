@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import {Field} from "formik";
 
 const StyledTimeRadioInput = styled.div`
   
@@ -54,11 +55,13 @@ export const TimeRadioInput = (props) => {
     return (
         <StyledTimeRadioInput {...props}>
             <Label>
-                <input type="radio"
-                       id={props.checkboxId}
-                       disabled={props.disabled}
-                       name={props.name}/>
-                <label htmlFor={props.checkboxId}>{props.time} </label>
+                <Field type="radio"
+                       id={props.radioId}
+                       disabled={props.isStepOneFull ? props.disabled : true}
+                       name={props.name}
+                       value={props.radioId}
+                />
+                <label htmlFor={props.radioId}>{props.time} </label>
             </Label>
         </StyledTimeRadioInput>
     )

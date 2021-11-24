@@ -6,7 +6,6 @@ const StyledMakeAppointmentStep = styled.p`
   align-items: center;
   color: #A1ABC9;
   margin-bottom: 40px;
-  //margin-right: 60px;
   width: 100%;
 
   & span {

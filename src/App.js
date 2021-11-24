@@ -7,7 +7,6 @@ import {
 import DoctorPage from "./pages/doctorPage/DoctorPage";
 import SignPage from "./pages/loginPage/SignPage";
 import PatientPage from "./pages/patientPage/PatientPage";
-import {TestButtonPage} from "./pages/test/TestButtonPage";
 import {patientsFake} from "./constants/patientsFake";
 import {doctorsFake} from "./constants/doctorsFake";
 import {
@@ -27,7 +26,7 @@ import {
     SIGN_IN_PATH,
     SIGN_UP_PATH
 } from "./constants/path";
-import MakeAppointmentFormik from "./pages/userAppointments/MakeAppointmentFormik";
+import MakeAppointment from "./pages/userAppointments/MakeAppointment";
 
 
 function App() {
@@ -82,15 +81,11 @@ function App() {
                 </Route>
 
                 <Route path="/make-appointment">
-                    <MakeAppointmentFormik
+                    <MakeAppointment
                         name={PROPS_HEADER_PATIENT_NAME}
                         profession={PROPS_HEADER_PATIENT_PROFESSION}
                         avatar={PROPS_HEADER_PATIENT_AVATAR}
                     />
-                </Route>
-
-                <Route path="/button">
-                    <TestButtonPage/>
                 </Route>
             </Switch>
         </Router>
