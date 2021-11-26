@@ -14,7 +14,6 @@ import {Breadcrumbs} from "../../components/Breadcrumbs";
 import {PATIENT_PAGE_PATH} from "../../constants/path";
 import {Link, useHistory} from "react-router-dom";
 import {ChevronRight} from "react-feather";
-import * as Yup from "yup";
 import {Flex} from "../../components/Flex";
 import {Calendar} from "../../components/Calendar/Calendar";
 import moment from "moment";
@@ -24,18 +23,13 @@ import {
     StyledAppointmentField,
     StyledAppointmentLabel
 } from "./MakeAppointmentSelectsStyles";
+import {appointmentValidationSchema} from "../../validations/appointmentValidation";
 
-
-export const appointmentValidationSchema = Yup.object({
-    occupation: Yup.string()
-        .required('Required'),
-    doctor: Yup.string()
-        .required('Required'),
-})
 
 const MakeAppointment = (props) => {
 
-    const [date, setDate] = useState(moment().add(1, 'month')) //del add next month
+    const [date, setDate] = useState(moment())
+    const today = moment()
 
     const history = useHistory();
 
@@ -107,7 +101,6 @@ const MakeAppointment = (props) => {
                                         selectId="occupation"
                                         state={state}
                                         setState={setState}
-
                                     />
 
                                     <StyledAppointmentLabel htmlFor={'doctor'}>Doctor's name</StyledAppointmentLabel>
@@ -136,14 +129,16 @@ const MakeAppointment = (props) => {
                                         placeholder={'Leave a note if needed'}
                                         type={'text'}
                                     />
-
-
                                 </Flex>
 
                                 <div>
                                     <AppointmentStep><span>2</span>Chose a day for an appointment</AppointmentStep>
-                                    <Calendar value={date} onChange={setDate}/>
-
+                                    <Calendar
+                                        value={date}
+                                        onChange={setDate}
+                                        isStepOneCompleted={state.isStepOneCompleted}
+                                        today={today}
+                                    />
                                 </div>
 
                                 <div>

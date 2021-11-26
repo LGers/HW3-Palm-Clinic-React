@@ -31,6 +31,7 @@ export const AppointmentSelect = ({onChange, options, state, setState, ...props}
                         isStepOneCompleted: state.isStepOneCompleted = true
                     })
                 }}
+                isDisabled={(field.name === 'doctor' && !state.occupation) ? true : false}
                 styles={AppointmentSelectStyles}
                 options={options}
                 id={props.selectId}

@@ -10,16 +10,15 @@ import {
     StyledWeek
 } from "./calendarStyles";
 
-export const Calendar = ({value, onChange}, ...props) => {
+export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props) => {
     const [calendar, setCalendar] = useState([])
     const startDay = value.clone().startOf('month').startOf("week").add(1, 'days')
     const endDay = value.clone().endOf('month').endOf("week").add(1, 'days')
     const month = value.clone().format('MMMM')
     const year = value.clone().format('YYYY')
 
-
     useEffect(() => {
-        const day = startDay.clone().subtract(1, "day")//.add(1, 'days')
+        const day = startDay.clone().subtract(1, "day")
         const tempDay = []
         while (day.isBefore(endDay, 'day')) {
             tempDay.push(
@@ -62,10 +61,12 @@ export const Calendar = ({value, onChange}, ...props) => {
             {calendar.map((week) =>
                 <StyledWeek>
                     {week.map((day) => (
-                            <StyledDay>
+                            <StyledDay
+                            isToday={day.format('DDMMYY') === today.format('DDMMYY')}
+                            >
                                 <Field
                                     onClick={() => {!beforeToday(day) && onChange(day)}}
-                                    disabled={beforeToday(day)}
+                                    disabled={(!isStepOneCompleted || beforeToday(day))}
 
                                     id={day.format('DDDDMMMMYYYY').toString()}
                                     type={'radio'}

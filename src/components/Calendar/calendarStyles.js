@@ -6,7 +6,6 @@ export const StyledWeek = styled.div`
 `
 export const StyledDay = styled.div`
   text-align: center;
-
   cursor: pointer;
   caret-color: transparent;
 
@@ -21,6 +20,7 @@ export const StyledDay = styled.div`
     background: #FFFFFF;
     box-shadow: 0px 4px 32px rgba(218, 228, 255, 0.24);
     border-radius: 8px;
+    border: ${props => props.isToday ? '1px solid #7297FF': 'none'};
     width: 48px;
     height: 48px;
     caret-color: transparent;
@@ -31,6 +31,7 @@ export const StyledDay = styled.div`
     }
   }
 
+  
   & input:disabled + label {
     background: #DCE0EC;
     color: #fff;
