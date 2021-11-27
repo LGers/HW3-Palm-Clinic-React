@@ -9,7 +9,10 @@ export const SignBarForm = (props) => {
 
     switch (props.link) {
         case SIGN_IN_PATH:
-            return <SignInForm state={props.state} toggleShowPassword={props.toggleShowPassword}/>
+            return <SignInForm
+                showPassword={props.showPassword}
+                toggleShowPassword={props.toggleShowPassword}
+            />
 
         case RESTORE_PASSWORD_PATH:
             return <RestorePasswordForm/>
@@ -18,6 +21,9 @@ export const SignBarForm = (props) => {
             return <RestorePasswordSentForm/>
 
         default :
-            return <SignUpForm state={props.state} toggleShowPassword={props.toggleShowPassword}/>
+            return <SignUpForm
+                showPassword={props.showPassword}
+                toggleShowPassword={props.toggleShowPassword}
+            />
     }
 }

@@ -60,17 +60,17 @@ export const SignUpForm = (props) => {
 
                     <SignFormInput
                         name="password"
-                        type={props.state.signFormShowPassword ? 'text' : 'password'}
+                        type={props.showPassword.signFormShowPassword ? 'text' : 'password'}
                         placeholder="Password"
-                        state={props.state}
+                        showPassword={props.showPassword}
                         toggleShowPassword={props.toggleShowPassword}
                     />
 
                     <SignFormInput
                         name="confirmPassword"
-                        type={props.state.signFormShowConfirmPassword ? 'text' : 'password'}
+                        type={props.showPassword.signFormShowConfirmPassword ? 'text' : 'password'}
                         placeholder="Confirm Password"
-                        state={props.state}
+                        showPassword={props.showPassword}
                         toggleShowPassword={props.toggleShowPassword}
                     />
 

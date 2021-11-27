@@ -3,19 +3,20 @@ import {Flex} from "../Flex";
 import {HeaderUserAvatar, HeaderUserName, HeaderUserProfession, StyledHeader, UserStatusIcon} from "./headerStyles";
 
 
-export const Header = (props) => {
+export const Header = ({userProfile}) => {
+
     return (
         <StyledHeader>
             <Flex justify={'space-between'}>
                 <img height={32} width={132} src="static/img/logo.png" alt="Palm Clinic Logo"/>
                 <Flex>
                     <div>
-                        <HeaderUserName>{props.name}</HeaderUserName>
-                        <HeaderUserProfession>{props.profession}</HeaderUserProfession>
+                        <HeaderUserName>{userProfile.first_name} {userProfile.last_name}</HeaderUserName>
+                        <HeaderUserProfession>{userProfile.role_name}</HeaderUserProfession>
                     </div>
 
                     <HeaderUserAvatar>
-                        <img src={props.avatar} alt="avatar"/>
+                        <img src={userProfile.photo} alt="avatar"/>
                         <UserStatusIcon/>
                     </HeaderUserAvatar>
                 </Flex>

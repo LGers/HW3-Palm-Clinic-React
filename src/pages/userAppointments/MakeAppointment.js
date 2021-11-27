@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Container} from "../../components/Container";
 import {Header} from "../../components/Header/Header";
 import {Wrapper} from "../../components/Wrapper";
@@ -24,9 +24,36 @@ import {
     StyledAppointmentLabel
 } from "./MakeAppointmentSelectsStyles";
 import {appointmentValidationSchema} from "../../validations/appointmentValidation";
+import axios from "axios";
 
 
 const MakeAppointment = (props) => {
+
+    const initialUserProfile ={
+        first_name: '',
+        last_name:'',
+        photo: '',
+        role_name: 'Patient'
+    }
+
+    const [userProfile, setUserProfile] = useState(initialUserProfile)
+
+    useEffect(() => {
+        axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            })
+            .then(response => {
+                setUserProfile(response.data)
+                console.log(response.data)
+            })
+            .catch(error =>
+                console.log(error)
+            )
+    }, [setUserProfile])
+
 
     const [date, setDate] = useState(moment())
     const today = moment()
@@ -42,9 +69,9 @@ const MakeAppointment = (props) => {
         occupation: false,
         doctor: false,
         reasonForVisit: '',
-        note: '',
-        date: '',
-        time: ''
+        // note: '',
+        // date: '',
+        // time: ''
     }
     const [state, setState] = useState(initialState)
 
@@ -52,11 +79,7 @@ const MakeAppointment = (props) => {
         <Wrapper>
             <Container>
 
-                <Header
-                    name={props.name}
-                    profession={props.profession}
-                    avatar={props.avatar}
-                />
+                <Header userProfile={userProfile}/>
 
                 <UsersContainer>
                     <Formik

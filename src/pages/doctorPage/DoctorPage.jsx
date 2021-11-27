@@ -27,7 +27,7 @@ const DoctorPage = (props) => {
                     </Flex>
 
                     <PatientSearch/>
-                    {props.patients.length ? <Patients state={props.patients}/> : <PatientsEmptyPage/>}
+                    {props.patients.length ? <Patients state={props.patients}/> : <PatientsEmptyPage/>}//проверку на верх вынести
                 </UsersContainer>
             </Container>
         </Wrapper>

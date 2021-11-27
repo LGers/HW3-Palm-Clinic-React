@@ -2,19 +2,33 @@ import React from 'react';
 import {Formik, Form} from 'formik';
 import {SignFormInput} from "../SignFormInput";
 import {Link} from "react-router-dom";
-import {RESTORE_PASSWORD_PATH} from "../../../../constants/path";
+import {PATIENT_PAGE_PATH, RESTORE_PASSWORD_PATH} from "../../../../constants/path";
 import {useHistory} from "react-router-dom";
 import {SignInButtonText, SignInTitle} from "../../../../constants/dictionary";
 import {signInValidationSchema} from "./validations";
-
+import axios from 'axios'
 
 
 export const SignInForm = (props) => {
 
     const history = useHistory();
 
-    function handleClick() {
-        history.push("/");
+    function handleClick(values) {
+
+        axios.post(
+            'https://reactlabapi.herokuapp.com/api/auth/login',
+            {
+                "userName": values.email,
+                "password": values.password
+            })
+            .then((response) => {
+                localStorage.setItem('access_token', response.data.access_token);
+                localStorage.setItem('refresh_token', response.data.refresh_token);
+                history.push(PATIENT_PAGE_PATH);
+            })
+            .catch((error) => {
+                console.log('error.message ', error.message)
+            })
     }
 
     return (
@@ -28,7 +42,7 @@ export const SignInForm = (props) => {
                 onSubmit={(values, {setSubmitting}) => {
                     setTimeout(() => {
                         setSubmitting(false);
-                        handleClick()
+                        handleClick(values)
                     }, 400);
 
                 }}
@@ -47,9 +61,9 @@ export const SignInForm = (props) => {
 
                     <SignFormInput
                         name="password"
-                        type={props.state.signFormShowPassword ? 'text' : 'password'}
+                        type={props.showPassword.signFormShowPassword ? 'text' : 'password'}
                         placeholder="Password"
-                        state={props.state}
+                        showPassword={props.showPassword}
                         toggleShowPassword={props.toggleShowPassword}
                     />
 

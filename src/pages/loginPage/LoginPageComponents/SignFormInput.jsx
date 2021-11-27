@@ -32,7 +32,7 @@ export const SignFormInput = ({label, ...props}) => {
                 ) : null}
                 {passwordInputClassName
                     ? <ShowPasswordButton inputId={props.name}
-                                          state={props.state}
+                                          showPassword={props.showPassword}
                                           toggleShowPassword={props.toggleShowPassword}
                     />
                     : ''}

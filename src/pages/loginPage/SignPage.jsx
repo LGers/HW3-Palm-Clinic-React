@@ -4,20 +4,21 @@ import {SignBarForm} from "./LoginPageComponents/SignBarForm";
 import {FooterBlock} from "./LoginPageComponents/FooterBlock";
 
 
-export const SignPage = (props) => {
-    const initialState = {
+export const SignPage = ({link}) => {
+    const showPasswordInitialState = {
         signFormShowPassword: false,
         signFormShowConfirmPassword: false
     }
 
-    const [state, setState] = useState(initialState)
+    const [showPassword, setShowPassword] = useState(showPasswordInitialState)
 
     const toggleShowPassword = (buttonId) => {
         if (buttonId === 'show_password_button') {
-            setState({...state, signFormShowPassword: !state.signFormShowPassword})
+            setShowPassword({...showPassword, signFormShowPassword: !showPassword.signFormShowPassword})
         } else if (buttonId === 'show_confirmPassword_button') {
-            setState({
-                ...state, signFormShowConfirmPassword: !state.signFormShowConfirmPassword})
+            setShowPassword({
+                ...showPassword, signFormShowConfirmPassword: !showPassword.signFormShowConfirmPassword
+            })
         }
     }
 
@@ -27,11 +28,11 @@ export const SignPage = (props) => {
                 <div className="signBody">
                     <div className="signBarContainer">
                         <div className="sign-bar">
-                            <SignBarForm link={props.link}
-                                         state={state}
+                            <SignBarForm link={link}
+                                         showPassword={showPassword}
                                          toggleShowPassword={toggleShowPassword}
                             />
-                            <FooterBlock link={props.link}/>
+                            <FooterBlock link={link}/>
                         </div>
                     </div>
                 </div>
