@@ -13,13 +13,11 @@ export const SignPage = ({link}) => {
     const [showPassword, setShowPassword] = useState(showPasswordInitialState)
 
     const toggleShowPassword = (buttonId) => {
-        if (buttonId === 'show_password_button') {
-            setShowPassword({...showPassword, signFormShowPassword: !showPassword.signFormShowPassword})
-        } else if (buttonId === 'show_confirmPassword_button') {
-            setShowPassword({
+        buttonId === 'show_password_button'
+            ? setShowPassword({...showPassword, signFormShowPassword: !showPassword.signFormShowPassword})
+            : setShowPassword({
                 ...showPassword, signFormShowConfirmPassword: !showPassword.signFormShowConfirmPassword
             })
-        }
     }
 
     return (

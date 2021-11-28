@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Container} from "../../components/Container";
+import {Container} from "../../components/Container/Container";
 import {Header} from "../../components/Header/Header";
-import {Wrapper} from "../../components/Wrapper";
-import {Flex} from "../../components/Flex";
-import {Tab} from "../../components/Tab";
-import PatientSearch from "../doctorPage/container/PatientsSearch";
-import Patients from "../doctorPage/container/Patients";
-import PatientsEmptyPage from "../doctorPage/container/PatientsEmptyPage";
-import {UsersContainer} from "../../components/UsersContainer";
+import {Wrapper} from "../../components/Wrapper/Wrapper";
+import {Flex} from "../../components/Flex/Flex";
+import {Tab} from "../../components/Tab/Tab";
+import PatientSearch from "../DoctorPage/container/PatientsSearch";
+import Patients from "../DoctorPage/container/Patients";
+import PatientsEmptyPage from "../DoctorPage/container/PatientsEmptyPage";
+import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
 import axios from "axios";
 
 // let  userProfile={}

@@ -4,9 +4,9 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import DoctorPage from "./pages/doctorPage/DoctorPage";
-import SignPage from "./pages/loginPage/SignPage";
-import PatientPage from "./pages/patientPage/PatientPage";
+import DoctorPage from "./pages/DoctorPage/DoctorPage";
+import SignPage from "./pages/LoginPage/SignPage";
+import PatientPage from "./pages/PatientPage/PatientPage";
 import {patientsFake} from "./constants/patientsFake";
 import {doctorsFake} from "./constants/doctorsFake";
 import {
@@ -24,7 +24,7 @@ import {
     SIGN_IN_PATH,
     SIGN_UP_PATH
 } from "./constants/path";
-import MakeAppointment from "./pages/userAppointments/MakeAppointment";
+import MakeAppointment from "./pages/UserAppointments/MakeAppointment";
 
 
 function App() {

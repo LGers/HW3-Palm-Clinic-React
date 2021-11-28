@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
-import {Container} from "../../components/Container";
+import {Container} from "../../components/Container/Container";
 import {Header} from "../../components/Header/Header";
-import {Wrapper} from "../../components/Wrapper";
-import {UsersContainer} from "../../components/UsersContainer";
+import {Wrapper} from "../../components/Wrapper/Wrapper";
+import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
 import {TimeRadioInput} from "../../components/TimeRadioInput/TimeRadioInput";
 import {TimeSlots} from "../../components/TimeSlots/TimeSlots";
-import {Title} from "../../components/Title";
+import {Title} from "../../components/Title/Title";
 import {AppointmentStep} from "../../components/MakeAppointment/AppointmentStep";
 import {AppointmentContainer} from "../../components/MakeAppointment/AppointmentContainer";
 import {Formik, Form} from "formik";
 import {AppointmentSelect} from "./MakeAppointmentSelects";
-import {Breadcrumbs} from "../../components/Breadcrumbs";
+import {Breadcrumbs} from "../test/Components/Breadcrumbs";
 import {PATIENT_PAGE_PATH} from "../../constants/path";
 import {Link, useHistory} from "react-router-dom";
 import {ChevronRight} from "react-feather";
-import {Flex} from "../../components/Flex";
+import {Flex} from "../../components/Flex/Flex";
 import {Calendar} from "../../components/Calendar/Calendar";
 import moment from "moment";
 import {

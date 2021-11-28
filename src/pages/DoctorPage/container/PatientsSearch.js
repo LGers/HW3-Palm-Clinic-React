@@ -1,5 +1,5 @@
 import '../DoctorPage.css'
-import {Button} from "../../../components/Button";
+import {Button} from "../../../components/Button/Button";
 import {Plus} from "react-feather";
 import {useHistory} from "react-router-dom";
 import {APPOINTMENT_PAGE_PATH} from "../../../constants/path";

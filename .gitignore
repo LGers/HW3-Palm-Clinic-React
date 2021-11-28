@@ -13,7 +13,7 @@
 /.netlify
 /.idea
 /src/pages/test
-/src/pages/loginPage/LoginPageComponents/StyledButton.jsx
+/src/pages/LoginPage/LoginPageComponents/StyledButton.jsx
 
 # misc
 .DS_Store

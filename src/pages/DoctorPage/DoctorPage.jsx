@@ -1,13 +1,13 @@
 import React from "react";
-import {Wrapper} from "../../components/Wrapper";
-import {Container} from "../../components/Container";
+import {Wrapper} from "../../components/Wrapper/Wrapper";
+import {Container} from "../../components/Container/Container";
 import {Header} from "../../components/Header/Header";
-import {UsersContainer} from "../../components/UsersContainer";
+import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
 import PatientSearch from "./container/PatientsSearch";
 import Patients from "./container/Patients";
 import PatientsEmptyPage from "./container/PatientsEmptyPage";
-import {Flex} from "../../components/Flex";
-import {Tab} from "../../components/Tab";
+import {Flex} from "../../components/Flex/Flex";
+import {Tab} from "../../components/Tab/Tab";
 
 const DoctorPage = (props) => {
 
