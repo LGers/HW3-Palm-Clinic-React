@@ -2,11 +2,11 @@ import React from 'react';
 import {Formik, Form} from 'formik';
 import {SignFormInput} from "../SignFormInput";
 import {Link} from "react-router-dom";
-import {PATIENT_PAGE_PATH, RESTORE_PASSWORD_PATH} from "../../../../constants/path";
 import {useHistory} from "react-router-dom";
+import axios from 'axios'
+import {PATIENT_PAGE_PATH, RESTORE_PASSWORD_PATH} from "../../../../constants/path";
 import {SignInButtonText, SignInTitle} from "../../../../constants/dictionary";
 import {signInValidationSchema} from "./validations";
-import axios from 'axios'
 
 
 export const SignInForm = (props) => {

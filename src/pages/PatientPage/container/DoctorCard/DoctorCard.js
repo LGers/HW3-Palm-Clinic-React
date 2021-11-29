@@ -1,18 +1,22 @@
 import React from "react";
 import './doctorCard.css'
+import moment from "moment";
 
-export const DoctorCard = ({doctorData}) => {
-
+export const DoctorCard = ({appointment}) => {
+    const momentDate = moment(appointment.visit_date)
+    const appointmentDate = momentDate.format('ddd DD MMM, YYYY')
+    const appointmentTime = momentDate.format('h a') + ' - ' + momentDate.add(1, 'hour').format('h a')
     return (
         <div className="patient-card">
             <div className="patient-card__info">
                 <div className="patient-info__avatar">
-                    <img src={doctorData.avatar} alt="avatar"/>
+                    <img src={appointment.doctor.photo} alt="avatar"/>
                 </div>
                 <div className="patient-info__name-and-status">
-                    <div className="patient-info__name">{doctorData.firstName} {doctorData.lastName}</div>
+                    <div
+                        className="patient-info__name">{appointment.doctor.first_name} {appointment.doctor.last_name}</div>
                     <div className="patient-info__status">
-                        <p>{doctorData.profession}</p>
+                        <p>{appointment.doctor.specialization_name}</p>
                     </div>
                 </div>
                 <button className="patient-info__manage-btn"/>
@@ -29,13 +33,14 @@ export const DoctorCard = ({doctorData}) => {
                     <div className="patient-card__resolutions-icon">
                         <img src="../../../../static/img/time.svg" alt="time"/>
                     </div>
-                    <p>{(new Date(doctorData.time*1000)).toDateString()} 4 pm - 5 pm</p>
+                    {/*<p>{appointment.visit_date.toDateString()} 4 pm - 5 pm</p>*/}
+                    <p>{appointmentDate} {appointmentTime}</p>
                 </div>
                 <div className="patient-card__resolutions_description">
                     <div className="patient-card__resolutions-icon">
                         <img src="../../../../static/img/heart-icon.svg" alt="heart"/>
                     </div>
-                    <div><p>{doctorData.description}</p></div>
+                    <div><p>{appointment.reason}</p></div>
                 </div>
             </div>
         </div>
