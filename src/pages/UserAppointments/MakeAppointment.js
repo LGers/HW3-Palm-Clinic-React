@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
-import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
+import {UsersContent} from "../../components/UsersContent/UsersContent";
 import {TimeRadioInput} from "../../components/TimeRadioInput/TimeRadioInput";
 import {TimeSlots} from "../../components/TimeSlots/TimeSlots";
 import {Title} from "../../components/Title/Title";
@@ -77,7 +77,7 @@ const MakeAppointment = (props) => {
             <Content>
                 <Header/>
 
-                <UsersContainer>
+                <UsersContent>
                     <Formik
                         initialValues={
                             {
@@ -193,7 +193,7 @@ const MakeAppointment = (props) => {
                             </AppointmentContainer>
                         </Form>
                     </Formik>
-                </UsersContainer>
+                </UsersContent>
             </Content>
         </Wrapper>
     )

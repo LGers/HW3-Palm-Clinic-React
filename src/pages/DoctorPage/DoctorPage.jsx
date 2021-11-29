@@ -2,7 +2,7 @@ import React from "react";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
 import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
-import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
+import {UsersContent} from "../../components/UsersContent/UsersContent";
 import PatientSearch from "./container/PatientsSearch";
 import Patients from "./container/Patients";
 import PatientsEmptyPage from "./container/PatientsEmptyPage";
@@ -20,7 +20,7 @@ const DoctorPage = (props) => {
                     avatar={props.avatar}
                 />
 
-                <UsersContainer patients={props.patients}>
+                <UsersContent patients={props.patients}>
                     <Flex gap={'0 24px'} padding={'40px 0'}>
                         <Tab primary>Patients</Tab>
                         <Tab secondary>Resolutions</Tab>
@@ -28,7 +28,7 @@ const DoctorPage = (props) => {
 
                     <PatientSearch/>
                     {props.patients.length ? <Patients state={props.patients}/> : <PatientsEmptyPage/>}//проверку на верх вынести
-                </UsersContainer>
+                </UsersContent>
             </Content>
         </Wrapper>
     );

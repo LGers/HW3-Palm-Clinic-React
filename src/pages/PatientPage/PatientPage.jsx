@@ -7,7 +7,7 @@ import {Tab} from "../../components/Tab/Tab";
 import PatientSearch from "../DoctorPage/container/PatientsSearch";
 import Patients from "../DoctorPage/container/Patients";
 import PatientsEmptyPage from "../DoctorPage/container/PatientsEmptyPage";
-import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
+import {UsersContent} from "../../components/UsersContent/UsersContent";
 
 
 const PatientPage = (props) => {
@@ -18,7 +18,7 @@ const PatientPage = (props) => {
 
                 <Header/>
 
-                <UsersContainer patients={props.doctors}>
+                <UsersContent patients={props.doctors}>
                     <Flex gap={'0 24px'} padding={'40px 0'}>
                         <Tab secondary>Profile</Tab>
                         <Tab primary>Appointments</Tab>
@@ -27,7 +27,7 @@ const PatientPage = (props) => {
 
                     <PatientSearch/>
                     {props.doctors.length ? <Patients state={props.doctors}/> : <PatientsEmptyPage/>}
-                </UsersContainer>
+                </UsersContent>
 
             </Content>
         </Wrapper>

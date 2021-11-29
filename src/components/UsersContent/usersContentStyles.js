@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
 
-export const StyledUsersContainer = styled.div`
+export const StyledUsersContent = styled.div`
 
   @media all {
     padding-left: 24px;
