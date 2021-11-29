@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Container} from "../../components/Container/Container";
+import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
 import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
@@ -36,7 +36,7 @@ const MakeAppointment = (props) => {
         role_name: 'Patient'
     }
 
-    const [userProfile, setUserProfile] = useState(initialUserProfile)
+    /*const [userProfile, setUserProfile] = useState(initialUserProfile)
 
     useEffect(() => {
         axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
@@ -52,7 +52,7 @@ const MakeAppointment = (props) => {
             .catch(error =>
                 console.log(error)
             )
-    }, [setUserProfile])
+    }, [setUserProfile])*/
 
 
     const [date, setDate] = useState(moment())
@@ -69,17 +69,13 @@ const MakeAppointment = (props) => {
         occupation: false,
         doctor: false,
         reasonForVisit: '',
-        // note: '',
-        // date: '',
-        // time: ''
     }
     const [state, setState] = useState(initialState)
 
     return (
         <Wrapper>
-            <Container>
-
-                <Header userProfile={userProfile}/>
+            <Content>
+                <Header/>
 
                 <UsersContainer>
                     <Formik
@@ -198,7 +194,7 @@ const MakeAppointment = (props) => {
                         </Form>
                     </Formik>
                 </UsersContainer>
-            </Container>
+            </Content>
         </Wrapper>
     )
 }

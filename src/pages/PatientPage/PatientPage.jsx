@@ -1,5 +1,5 @@
 import React from "react";
-import {Container} from "../../components/Container/Container";
+import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
 import {Flex} from "../../components/Flex/Flex";
@@ -14,7 +14,7 @@ const PatientPage = (props) => {
 
     return (
         <Wrapper>
-            <Container>
+            <Content>
 
                 <Header/>
 
@@ -29,7 +29,7 @@ const PatientPage = (props) => {
                     {props.doctors.length ? <Patients state={props.doctors}/> : <PatientsEmptyPage/>}
                 </UsersContainer>
 
-            </Container>
+            </Content>
         </Wrapper>
     );
 }

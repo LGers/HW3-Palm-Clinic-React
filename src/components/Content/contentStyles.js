@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
 
-export const StyledContainer = styled.div`
+export const StyledContent = styled.div`
   @media all {
     height: 100%;
     margin-left: auto;

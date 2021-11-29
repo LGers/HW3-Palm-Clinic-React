@@ -1,6 +1,6 @@
 import React from "react";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
-import {Container} from "../../components/Container/Container";
+import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
 import {UsersContainer} from "../../components/UsersContainer/UsersContainer";
 import PatientSearch from "./container/PatientsSearch";
@@ -13,7 +13,7 @@ const DoctorPage = (props) => {
 
     return (
         <Wrapper>
-            <Container>
+            <Content>
                 <Header
                     name={props.name}
                     profession={props.profession}
@@ -29,7 +29,7 @@ const DoctorPage = (props) => {
                     <PatientSearch/>
                     {props.patients.length ? <Patients state={props.patients}/> : <PatientsEmptyPage/>}//проверку на верх вынести
                 </UsersContainer>
-            </Container>
+            </Content>
         </Wrapper>
     );
 }
