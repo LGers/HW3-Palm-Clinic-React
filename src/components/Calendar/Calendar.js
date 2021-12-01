@@ -9,6 +9,9 @@ import {
     StyledMothNavigate,
     StyledWeek
 } from "./calendarStyles";
+import axios from "axios";
+import {selectDate, setTimes} from "../../store/userSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props) => {
     const [calendar, setCalendar] = useState([])
@@ -38,6 +41,30 @@ export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props)
         return value.clone().add(1, 'month')
     }
 
+    const dispatch = useDispatch()
+    const makeAppointment = useSelector(state => state.user.make_appointment)
+    const apiUrl = 'https://reactlabapi.herokuapp.com/api/'
+    const setDay = (day) => {
+        axios.get(`${apiUrl}appointments/time/free?date=${day.toISOString()}&doctorID=${makeAppointment.selected_doctor_id}`,
+
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            })
+            .then(response => {
+                const times = response.data
+                // console.log(times)
+                dispatch(setTimes({times}))
+                const date = day.toISOString()
+                dispatch(selectDate({date}))
+
+            })
+            .catch(error =>
+                console.log(error)
+            )
+        return !beforeToday(day) && onChange(day)
+    }
     return (
         <div {...props}>
             <StyledCalendarHeader>
@@ -65,15 +92,15 @@ export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props)
                             isToday={day.format('DDMMYY') === today.format('DDMMYY')}
                             >
                                 <Field
-                                    onClick={() => {!beforeToday(day) && onChange(day)}}
+                                    onClick={() => {setDay(day)}}
                                     disabled={(!isStepOneCompleted || beforeToday(day))}
 
-                                    id={day.format('DDDDMMMMYYYY').toString()}
+                                    id={day.format('DDMMMMYYYY').toString()}
                                     type={'radio'}
                                     name={'date'}
-                                    value={day.format('DDDDMMMMYYYY').toString()}
+                                    value={day.toISOString()}
                                 />
-                                <label htmlFor={day.format('DDDDMMMMYYYY').toString()}>{day.format('D').toString()}</label>
+                                <label htmlFor={day.format('DDMMMMYYYY').toString()}>{day.format('D').toString()}</label>
                             </StyledDay>
                         )
                     )}

@@ -10,8 +10,7 @@ export const Header = () => {
 
     const dispatch = useDispatch()
 
-    /*const getProfile = () => {
-        // return axiosGet(`${apiURL}/auth/profile`)
+    const getProfile = () => {
         return axios.get(`https://reactlabapi.herokuapp.com/api/auth/profile`,
             {
                 headers: {
@@ -24,7 +23,6 @@ export const Header = () => {
             )
 
     }
-console.log('getProfile',getProfile)*/
 
     useEffect(() => {
         axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
@@ -35,6 +33,7 @@ console.log('getProfile',getProfile)*/
             })
             .then(response => {
                 const userData = response.data
+                console.log('userData', userData)
                 dispatch(setLogonUser({userData}))
             })
             .catch(error =>
@@ -42,7 +41,7 @@ console.log('getProfile',getProfile)*/
             )
     }, [])
 
-    const userProfile = useSelector(state => state.user.currentUser)
+    const userProfile = useSelector(state => state.user.current_user)
 
 
     return (

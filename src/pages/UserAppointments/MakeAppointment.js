@@ -11,59 +11,24 @@ import {AppointmentContainer} from "../../components/MakeAppointment/Appointment
 import {Formik, Form} from "formik";
 import {AppointmentSelect} from "./MakeAppointmentSelects";
 import {Breadcrumbs} from "../test/Components/Breadcrumbs";
-import {PATIENT_PAGE_PATH} from "../../constants/path";
+import {APPOINTMENT_PAGE_PATH, PATIENT_PAGE_PATH} from "../../constants/path";
 import {Link, useHistory} from "react-router-dom";
 import {ChevronRight} from "react-feather";
 import {Flex} from "../../components/Flex/Flex";
 import {Calendar} from "../../components/Calendar/Calendar";
 import moment from "moment";
 import {
-    doctorsOptions,
-    occupationOptions,
     StyledAppointmentField,
     StyledAppointmentLabel
 } from "./MakeAppointmentSelectsStyles";
 import {appointmentValidationSchema} from "../../validations/appointmentValidation";
 import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {selectDate, setOccupations, showErrorMessage, showSuccessMessage} from "../../store/userSlice";
+import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
 
 
 const MakeAppointment = (props) => {
-
-    const initialUserProfile ={
-        first_name: '',
-        last_name:'',
-        photo: '',
-        role_name: 'Patient'
-    }
-
-    /*const [userProfile, setUserProfile] = useState(initialUserProfile)
-
-    useEffect(() => {
-        axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            })
-            .then(response => {
-                setUserProfile(response.data)
-                console.log(response.data)
-            })
-            .catch(error =>
-                console.log(error)
-            )
-    }, [setUserProfile])*/
-
-
-    const [date, setDate] = useState(moment())
-    const today = moment()
-
-    const history = useHistory();
-
-    function handleClick() {
-        // history.push("/");
-    }
-
     const initialState = {
         isStepOneCompleted: false,
         occupation: false,
@@ -71,6 +36,120 @@ const MakeAppointment = (props) => {
         reasonForVisit: '',
     }
     const [state, setState] = useState(initialState)
+    const dispatch = useDispatch()
+    const make_appointment = useSelector(state => state.user.make_appointment)
+    const occupationOptions = make_appointment.occupations
+
+    const doctorOptions = make_appointment.doctors.map(doctor => {
+        return {value: doctor.id, label: doctor.first_name + ' ' + doctor.last_name}
+    })
+
+    useEffect(() => {
+        axios.get('https://reactlabapi.herokuapp.com/api/specializations',
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            })
+            .then(response => {
+                // console.log(response.data)
+                const specializations = response.data
+                const occupations = specializations.map(occupation => {
+                    return {value: occupation.id, label: occupation.specialization_name}
+                })
+                // setOccupationOptions(occupations)
+                dispatch(setOccupations({occupations}))
+            })
+            .catch(error =>
+                console.log(error)
+            )
+    }, [])
+
+    const [date, setDate] = useState(moment())
+    const today = moment()
+
+    const history = useHistory();
+
+    function handleClick(values) {
+        // console.log(JSON.stringify(values, null, 2))
+
+        axios.post('https://reactlabapi.herokuapp.com/api/appointments',
+            {
+                date: values.time,
+                reason: values.reasonForVisit,
+                note: values.note,
+                doctorID: values.doctor
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            }
+            )
+            .then(response => {
+                console.log(response.data)
+                // const specializations = response.data
+                dispatch(showSuccessMessage())
+                history.push(PATIENT_PAGE_PATH);
+                setTimeout(() =>  dispatch(showSuccessMessage()), 2000)
+            })
+            .catch(error => {
+                    // console.log('MakeAppointmentError: ', error.response.data)
+                    console.log('MakeAppointmentError: ', error)
+                // const errorMessage = error.response.data ? error.response.data : error.response.data.message
+                    dispatch(showErrorMessage({errorMessage:'Some Error'}))
+                setTimeout(() => dispatch(showErrorMessage({errorMessage:''})), 2000)
+                }
+            )
+        // dispatch(showErrorMessage({errorMessage:''}))
+        // alert(JSON.stringify(values, null, 2));
+
+        // history.push("/");
+    }
+
+    const handleSetDate = () => {
+        alert('setDay')
+    }
+    const handleChangeTime = (date) => {
+        dispatch(selectDate({date}))
+    }
+    const Times = () => {
+        const tempArray = []
+        make_appointment.times.map(time => {
+            tempArray.push(moment(time).format('HH'))
+        })
+
+        const timesArray = []
+        for (let i = 8; i < 21; i++) {
+            const obj = Object()
+            obj.id = 'hour' + i
+            const formatHour = i < 10 ? '0' + i : i
+            obj.time = moment(make_appointment.date).startOf('day').add(i, 'hours').format()
+
+            tempArray.includes(formatHour.toString())
+                ? obj.isAvailable = false
+                : obj.isAvailable = true
+            timesArray.push(obj)
+        }
+
+        const times = timesArray.map(time =>
+            <TimeRadioInput
+                key={time.id}
+                radioId={moment(time.time).toISOString()}
+                time={moment(time.time).format('HH:OO a')}
+                name={'time'}
+                disabled={time.isAvailable}
+                isStepOneFull={state.isStepOneCompleted}
+                onChange={() => handleChangeTime(time.time)}
+            />
+        )
+
+        return (
+            <>
+                {times}
+            </>
+        )
+    }
 
     return (
         <Wrapper>
@@ -92,12 +171,8 @@ const MakeAppointment = (props) => {
 
                         validationSchema={appointmentValidationSchema}
                         onSubmit={(values, {setSubmitting}) => {
-
-                            setTimeout(() => {
-                                setSubmitting(false);
-                                handleClick()
-                            }, 400);
-                            alert(JSON.stringify(values, null, 2));
+                            setSubmitting(false);
+                            handleClick(values)
                         }}
                     >
                         <Form>
@@ -124,7 +199,7 @@ const MakeAppointment = (props) => {
 
                                     <StyledAppointmentLabel htmlFor={'doctor'}>Doctor's name</StyledAppointmentLabel>
                                     <AppointmentSelect
-                                        options={doctorsOptions}
+                                        options={doctorOptions}
                                         name="doctor"
                                         selectId="doctor"
                                         state={state}
@@ -154,6 +229,9 @@ const MakeAppointment = (props) => {
                                     <AppointmentStep><span>2</span>Chose a day for an appointment</AppointmentStep>
                                     <Calendar
                                         value={date}
+                                        onClick={() => {
+                                            handleSetDate()
+                                        }}
                                         onChange={setDate}
                                         isStepOneCompleted={state.isStepOneCompleted}
                                         today={today}
@@ -164,35 +242,19 @@ const MakeAppointment = (props) => {
                                     <AppointmentStep><span>3</span>Select an available timeslot</AppointmentStep>
 
                                     <TimeSlots>
-                                        <TimeRadioInput radioId={"12am"} time={'12:00 am'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"1pm"} time={'1:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput id={"2pm"} time={'2:00 pm'} name={'time'}
-                                                        disabled={true} isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"3pm"} time={'3:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"4pm"} time={'4:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"5pm"} time={'5:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"6pm"} time={'6:00 pm'} name={'time'}
-                                                        disabled={true} isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"7pm"} time={'7:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"8pm"} time={'8:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
-                                        <TimeRadioInput radioId={"9pm"} time={'9:00 pm'} name={'time'}
-                                                        isStepOneFull={state.isStepOneCompleted}/>
+                                        <Times/>
                                     </TimeSlots>
                                 </div>
 
                                 <button type="submit"
                                         className="sign-button sign-button_style">Submit
                                 </button>
+
+
                             </AppointmentContainer>
                         </Form>
                     </Formik>
+                    {make_appointment.errorMessage ? <PopupMessage isError={make_appointment.errorMessage} /> : null}
                 </UsersContent>
             </Content>
         </Wrapper>
