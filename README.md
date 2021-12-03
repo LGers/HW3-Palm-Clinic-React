@@ -1,1 +1,1 @@
-# HW3-Palm-Clinic-React
+# IT-Rex-Palm-Clinic-React
