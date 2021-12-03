@@ -11,7 +11,7 @@ import {AppointmentContainer} from "../../components/MakeAppointment/Appointment
 import {Formik, Form} from "formik";
 import {AppointmentSelect} from "./MakeAppointmentSelects";
 import {Breadcrumbs} from "../test/Components/Breadcrumbs";
-import {APPOINTMENT_PAGE_PATH, PATIENT_PAGE_PATH} from "../../constants/path";
+import {PATIENT_PAGE_PATH} from "../../constants/path";
 import {Link, useHistory} from "react-router-dom";
 import {ChevronRight} from "react-feather";
 import {Flex} from "../../components/Flex/Flex";
@@ -71,7 +71,6 @@ const MakeAppointment = (props) => {
     const history = useHistory();
 
     function handleClick(values) {
-        // console.log(JSON.stringify(values, null, 2))
 
         axios.post('https://reactlabapi.herokuapp.com/api/appointments',
             {
@@ -88,7 +87,6 @@ const MakeAppointment = (props) => {
             )
             .then(response => {
                 console.log(response.data)
-                // const specializations = response.data
                 dispatch(showSuccessMessage())
                 history.push(PATIENT_PAGE_PATH);
                 setTimeout(() =>  dispatch(showSuccessMessage()), 2000)
@@ -101,9 +99,6 @@ const MakeAppointment = (props) => {
                 setTimeout(() => dispatch(showErrorMessage({errorMessage:''})), 2000)
                 }
             )
-        // dispatch(showErrorMessage({errorMessage:''}))
-        // alert(JSON.stringify(values, null, 2));
-
         // history.push("/");
     }
 

@@ -1,4 +1,4 @@
-const PatientSearch = () => {
+const UserCabinetSearch = () => {
 
     return <div className="search">
         <p className="content-title">My Appointments</p>
@@ -13,4 +13,4 @@ const PatientSearch = () => {
     </div>
 }
 
-export default PatientSearch
+export default UserCabinetSearch

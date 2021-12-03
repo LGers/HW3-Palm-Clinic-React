@@ -1,45 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Flex} from "../Flex/Flex";
 import {HeaderUserAvatar, HeaderUserName, HeaderUserProfession, StyledHeader, UserStatusIcon} from "./headerStyles";
-import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
-import {setLogonUser} from "../../store/userSlice";
+import {useSelector} from "react-redux";
+
 
 
 export const Header = () => {
-
-    const dispatch = useDispatch()
-
-    const getProfile = () => {
-        return axios.get(`https://reactlabapi.herokuapp.com/api/auth/profile`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            })
-            .then(response => ({response}))
-            .catch(error =>
-                console.log('error', error)
-            )
-
-    }
-
-    useEffect(() => {
-        axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            })
-            .then(response => {
-                const userData = response.data
-                console.log('userData', userData)
-                dispatch(setLogonUser({userData}))
-            })
-            .catch(error =>
-                console.log('error', error)
-            )
-    }, [])
 
     const userProfile = useSelector(state => state.user.current_user)
 

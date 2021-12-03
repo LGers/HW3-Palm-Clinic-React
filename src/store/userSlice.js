@@ -8,7 +8,7 @@ const userSlice = createSlice({
             first_name: '',
             last_name: '',
             photo: '',
-            role_name: 'Patient'
+            role_name: ''
         },
         user_appointments: [
             {

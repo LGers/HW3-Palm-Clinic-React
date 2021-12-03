@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PatientsEmptyPage = (props) => {
+const UserCabinetEmptyPage = (props) => {
     return (
         <div className="patients-content">
             <div className="content__empty-state-text">
@@ -13,4 +13,4 @@ const PatientsEmptyPage = (props) => {
         </div>
     );
 };
-export default PatientsEmptyPage
+export default UserCabinetEmptyPage
