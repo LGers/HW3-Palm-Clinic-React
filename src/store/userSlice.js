@@ -40,7 +40,8 @@ const userSlice = createSlice({
             times: [],
             errorMessage: '',
             showSuccessMessage: false
-        }
+        },
+        sort: {sortBy:'', order: 'Asc', status: 'upcoming'}
 
     },
     reducers: {
