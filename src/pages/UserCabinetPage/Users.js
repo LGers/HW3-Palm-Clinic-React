@@ -11,12 +11,14 @@ const Users = () => {
     const appointments = useSelector(state => state.user.user_appointments)
     const totalAppointments = useSelector(state => state.user.total)
     const make_appointment = useSelector(state => state.user.make_appointment)
-    const doctors = appointments.map(appointment => <UserCard key={appointment.id} appointment={appointment}/>)
+    const users = appointments.map(appointment =>
+        <UserCard key={appointment.id} appointment={appointment}/>
+    )
 
     return (
         <>
             {totalAppointments
-                ? <UsersGrid> {doctors}</UsersGrid>
+                ? <UsersGrid> {users}</UsersGrid>
                 : <UserCabinetEmptyPage/>}
             {make_appointment.showSuccessMessage ? <PopupMessage/> : null}
         </>

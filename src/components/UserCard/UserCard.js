@@ -13,6 +13,7 @@ import {
     UserInfo
 } from "./userCard.styles";
 import {UserCardSelect} from "../UserCardSelect/UserCardSelect";
+import {logRoles} from "@testing-library/react";
 
 const appointmentStatus =(status) => {
     let appointmentStatus = ''
@@ -26,7 +27,6 @@ const appointmentStatus =(status) => {
 }
 
 export const UserCard = ({appointment, ...props}) => {
-
     const currentUser = useSelector(state => state.user.current_user)
 
     let appointmentCardRole = ''
@@ -63,8 +63,8 @@ export const UserCard = ({appointment, ...props}) => {
                             {appointment[appointmentCardRole].specialization_name}
                         </Specialization>
                         :
-                        <Status status={appointment.status}>
-                            <StatusIcon/> <p>{appointmentStatus(appointment.status)}</p>
+                        <Status>
+                            <StatusIcon status={appointment.status}/> <p>{appointmentStatus(appointment.status)}</p>
                         </Status>
                     }
                 </NameAndStatus>

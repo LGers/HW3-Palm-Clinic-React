@@ -5,19 +5,18 @@ import {MoreVertical} from "react-feather";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {setUserAppointments, showErrorMessage, showSuccessMessage} from "../../store/userSlice";
+import {API_URL} from "../../constants/constants";
 
 const StyledUserCardSelect = styled.div`
 `
 
 const resolutionsOptions = [
-    {value: 'create', label: 'Create a resolution', isDisabled: true},
+    {value: 'create', label: 'Create a resolution'},
     {value: 'edit', label: 'Edit an appointment', isDisabled: true},
     {value: 'delete', label: 'Delete', color: 'red'},
 ]
 
-const DropdownIndicator = (
-    props
-) => {
+const DropdownIndicator = (props) => {
     return (
         <components.DropdownIndicator {...props}>
             <MoreVertical/>
@@ -64,16 +63,95 @@ const defaultValue = (options, value) => {
 }
 
 
+
 export const UserCardSelect = ({appointmentId, ...props}) => {
     const value = ''
     const dispatch = useDispatch()
     const token = localStorage.getItem('access_token')
     const apiUrl = `https://reactlabapi.herokuapp.com/api/appointments/`
     const userRole = useSelector(state => state.user.current_user).role_name.toLowerCase()
-    const handleChange = (option, appointmentId) => {
 
-        // Delete appointment
+    const deleteAppointment = () => {
         axios.delete(`${apiUrl}${appointmentId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            }
+        )
+            .then(response => {
+                console.log('DeleteAppointment response.data', response.data)
+                axios.get(`${API_URL}appointments/${userRole}/me?offset=0&limit=100`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        const userAppointments = response.data
+                        dispatch(setUserAppointments({userAppointments}))
+                    })
+                    .catch(error =>
+                        console.log('error', error)
+                    )
+                dispatch(showSuccessMessage())
+                setTimeout(() => dispatch(showSuccessMessage()), 2000)
+            })
+            .catch(error => {
+                    console.log('DeleteAppointmentError: ', error)
+                    dispatch(showErrorMessage({errorMessage: 'Some Error'}))
+                    setTimeout(() => dispatch(showErrorMessage({errorMessage: ''})), 2000)
+                }
+            )
+    }
+
+    const createResolution = () => {
+        axios.delete(`${apiUrl}${appointmentId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+            }
+        )
+            .then(response => {
+                console.log('DeleteAppointment response.data', response.data)
+                axios.get(`${API_URL}appointments/${userRole}/me?offset=0&limit=100`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                    .then(response => {
+                        const userAppointments = response.data
+                        dispatch(setUserAppointments({userAppointments}))
+                    })
+                    .catch(error =>
+                        console.log('error', error)
+                    )
+                dispatch(showSuccessMessage())
+                setTimeout(() => dispatch(showSuccessMessage()), 2000)
+            })
+            .catch(error => {
+                    console.log('DeleteAppointmentError: ', error)
+                    dispatch(showErrorMessage({errorMessage: 'Some Error'}))
+                    setTimeout(() => dispatch(showErrorMessage({errorMessage: ''})), 2000)
+                }
+            )
+    }
+
+    const handleChange = (option, appointmentId) => {
+        console.log(option)
+        switch (option.value) {
+            case 'delete': deleteAppointment()
+                break
+            case 'create': createResolution()
+                break
+            default :
+        }
+        debugger
+        // Delete appointment
+        deleteAppointment()
+        /*axios.delete(`${apiUrl}${appointmentId}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -103,7 +181,7 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
                     dispatch(showErrorMessage({errorMessage: 'Some Error'}))
                     setTimeout(() => dispatch(showErrorMessage({errorMessage: ''})), 2000)
                 }
-            )
+            )*/
     }
 
     return (
