@@ -80,7 +80,6 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
             }
         )
             .then(response => {
-                console.log('DeleteAppointment response.data', response.data)
                 axios.get(`${API_URL}appointments/${userRole}/me?offset=0&limit=100`,
                     {
                         headers: {
@@ -106,7 +105,7 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
     }
 
     const createResolution = () => {
-        axios.delete(`${apiUrl}${appointmentId}`,
+        /*axios.delete(`${apiUrl}${appointmentId}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -114,7 +113,7 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
             }
         )
             .then(response => {
-                console.log('DeleteAppointment response.data', response.data)
+
                 axios.get(`${API_URL}appointments/${userRole}/me?offset=0&limit=100`,
                     {
                         headers: {
@@ -136,11 +135,11 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
                     dispatch(showErrorMessage({errorMessage: 'Some Error'}))
                     setTimeout(() => dispatch(showErrorMessage({errorMessage: ''})), 2000)
                 }
-            )
+            )*/
     }
 
     const handleChange = (option, appointmentId) => {
-        console.log(option)
+
         switch (option.value) {
             case 'delete': deleteAppointment()
                 break
@@ -148,40 +147,7 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
                 break
             default :
         }
-        debugger
-        // Delete appointment
         deleteAppointment()
-        /*axios.delete(`${apiUrl}${appointmentId}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            }
-        )
-            .then(response => {
-                console.log('DeleteAppointment response.data', response.data)
-                axios.get(`${apiUrl}${userRole}/me?offset=0&limit=100`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    })
-                    .then(response => {
-                        const userAppointments = response.data
-                        dispatch(setUserAppointments({userAppointments}))
-                    })
-                    .catch(error =>
-                        console.log('error', error)
-                    )
-                dispatch(showSuccessMessage())
-                setTimeout(() => dispatch(showSuccessMessage()), 2000)
-            })
-            .catch(error => {
-                    console.log('DeleteAppointmentError: ', error)
-                    dispatch(showErrorMessage({errorMessage: 'Some Error'}))
-                    setTimeout(() => dispatch(showErrorMessage({errorMessage: ''})), 2000)
-                }
-            )*/
     }
 
     return (
