@@ -8,13 +8,10 @@ import SignPage from "./pages/LoginPage/SignPage";
 import UserCabinetPage from "./pages/UserCabinetPage/UserCabinetPage";
 import {GlobalStyles} from "./components/GlobalStyles";
 import {
-    APPOINTMENT_PAGE_PATH, DOCTOR_PAGE_PATH,
     MAIN_PAGE_PATH,
-    PATIENT_PAGE_PATH,
-    RESTORE_PASSWORD_PATH,
-    RESTORE_PASSWORD_SENT_PATH,
-    SIGN_IN_PATH,
-    SIGN_UP_PATH
+    SIGN_IN_PATH, SIGN_UP_PATH,
+    RESTORE_PASSWORD_PATH, RESTORE_PASSWORD_SENT_PATH,
+    APPOINTMENT_PAGE_PATH, CABINET_PAGE_PATH
 } from "./constants/path";
 import MakeAppointment from "./pages/UserAppointments/MakeAppointment";
 
@@ -49,11 +46,7 @@ function App() {
                         : <SignPage link={SIGN_UP_PATH}/>}
                 </Route>
 
-                <Route path={PATIENT_PAGE_PATH}>
-                    <UserCabinetPage/>
-                </Route>
-
-                <Route path={DOCTOR_PAGE_PATH}>
+                <Route path={CABINET_PAGE_PATH}>
                     <UserCabinetPage/>
                 </Route>
 

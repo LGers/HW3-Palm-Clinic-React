@@ -4,7 +4,7 @@ import {SignFormInput} from "../SignFormInput";
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import axios from 'axios'
-import {PATIENT_PAGE_PATH, RESTORE_PASSWORD_PATH} from "../../../../constants/path";
+import {CABINET_PAGE_PATH, RESTORE_PASSWORD_PATH} from "../../../../constants/path";
 import {SignInButtonText, SignInTitle} from "../../../../constants/dictionary";
 import {signInValidationSchema} from "./validations";
 
@@ -24,7 +24,7 @@ export const SignInForm = (props) => {
             .then((response) => {
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('refresh_token', response.data.refresh_token);
-                history.push(PATIENT_PAGE_PATH);
+                history.push(CABINET_PAGE_PATH);
             })
             .catch((error) => {
                 console.log('error.message ', error.message)

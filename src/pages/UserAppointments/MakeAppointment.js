@@ -11,7 +11,7 @@ import {AppointmentContainer} from "../../components/MakeAppointment/Appointment
 import {Formik, Form} from "formik";
 import {AppointmentSelect} from "./MakeAppointmentSelects";
 import {Breadcrumbs} from "../test/Components/Breadcrumbs";
-import {PATIENT_PAGE_PATH} from "../../constants/path";
+import {CABINET_PAGE_PATH} from "../../constants/path";
 import {Link, useHistory} from "react-router-dom";
 import {ChevronRight} from "react-feather";
 import {Flex} from "../../components/Flex/Flex";
@@ -87,7 +87,7 @@ const MakeAppointment = (props) => {
             .then(response => {
                 console.log(response.data)
                 dispatch(showSuccessMessage())
-                history.push(PATIENT_PAGE_PATH);
+                history.push(CABINET_PAGE_PATH);
                 setTimeout(() =>  dispatch(showSuccessMessage()), 2000)
             })
             .catch(error => {
@@ -171,7 +171,7 @@ const MakeAppointment = (props) => {
                     >
                         <Form>
                             <Breadcrumbs>
-                                <Link to={PATIENT_PAGE_PATH}>Doctors</Link><ChevronRight/>Make an appointment
+                                <Link to={CABINET_PAGE_PATH}>Doctors</Link><ChevronRight/>Make an appointment
                             </Breadcrumbs>
 
                             <Title>Make an appointment</Title>

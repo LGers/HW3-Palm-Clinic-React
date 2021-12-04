@@ -65,8 +65,6 @@ export const AppointmentSelect = ({onChange, options, state, setState, ...props}
                 options={options}
                 id={props.selectId}
                 instanceId={props.selectId}
-
-
             />
             {meta.touched && meta.error ? (
                 <ErrorValidation>{meta.error}</ErrorValidation>
