@@ -19,7 +19,7 @@ export const StyledTab = styled.button`
     height: 20px;
   }
   
-  ${props => props.primary && css`
+  ${props => (props.primary || props.type === 'primary') && css`
     
     color: white;
     background-color:#7297FF;
@@ -30,7 +30,7 @@ export const StyledTab = styled.button`
     }
   `}
 
-  ${props => props.secondary && css`
+  ${props => (props.secondary || props.type === 'secondary') && css`
     font-weight: normal;
     line-height: 140%;
     color: #A1ABC9;
@@ -42,7 +42,7 @@ export const StyledTab = styled.button`
     }
   `}
 
-  ${props => props.disabled && css`
+  ${props => (props.disabled || props.type === 'secondary') && css`
     color: white;
     background-color: #DCE0EC;
   `}

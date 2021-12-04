@@ -2,20 +2,18 @@ import React, {useEffect} from "react";
 import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
-import {Flex} from "../../components/Flex/Flex";
-import {Tab} from "../../components/Tab/Tab";
-import PatientSearch from "../test/DoctorPage/container/PatientsSearch";
 import Users from "./Users";
 import {UsersContent} from "../../components/UsersContent/UsersContent";
 import axios from "axios";
 import {setLogonUser, setUserAppointments} from "../../store/userSlice";
 import {useDispatch} from "react-redux";
+import {UserCabinetHeader} from "./UserCabinetSearch/UserCabinetHeader";
+import {NavigationTabs} from "./NavigationTabs";
 
 
 const UserCabinetPage = (props) => {
     const dispatch = useDispatch()
     const token=localStorage.getItem('access_token')
-
     useEffect(() => {
         axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
             {
@@ -52,12 +50,8 @@ const UserCabinetPage = (props) => {
             <Content>
                 <Header/>
                 <UsersContent>
-                    <Flex gap={'0 24px'} padding={'40px 0'}>
-                        <Tab secondary>Profile</Tab>
-                        <Tab primary>Appointments</Tab>
-                        <Tab secondary>Resolutions</Tab>
-                    </Flex>
-                    <PatientSearch/>
+                    <NavigationTabs/>
+                    <UserCabinetHeader/>
                     <Users/>
                 </UsersContent>
             </Content>
