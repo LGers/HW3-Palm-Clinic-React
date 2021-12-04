@@ -57,7 +57,6 @@ const MakeAppointment = (props) => {
                 const occupations = specializations.map(occupation => {
                     return {value: occupation.id, label: occupation.specialization_name}
                 })
-                // setOccupationOptions(occupations)
                 dispatch(setOccupations({occupations}))
             })
             .catch(error =>

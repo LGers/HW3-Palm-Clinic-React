@@ -68,6 +68,7 @@ export const AppointmentSelectStyles = {
             background: '#F9FAFF',
             borderRadius: '6px'
         },
+        cursor: state.isDisabled ? 'not-allowed' : 'pointer',
     }),
     control: (provided, state) => ({
         ...provided,

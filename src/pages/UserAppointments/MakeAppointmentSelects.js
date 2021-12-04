@@ -4,7 +4,8 @@ import {useField} from "formik";
 import {AppointmentSelectStyles} from "./MakeAppointmentSelectsStyles";
 import axios from "axios";
 import {selectDoctor, selectOccupation, setDoctors} from "../../store/userSlice";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {ErrorValidation} from "../../components/ErrorValidation/ErrorValidation";
 
 export const AppointmentSelect = ({onChange, options, state, setState, ...props}) => {
     const dispatch = useDispatch()
@@ -16,17 +17,13 @@ export const AppointmentSelect = ({onChange, options, state, setState, ...props}
         return options ? options.find(option => option.value === value) : ""
     }
 
-
-    const makeAppointment = useSelector(state => state.user.make_appointment)
-
     return (
         <>
             <Select
                 value={defaultValue(options, value)}
 
                 onChange={(option) => {
-                    const occupationId = makeAppointment.occupation_id
-                    console.log('occupationId', occupationId)
+
                     if (option.value && field.name === 'occupation') {
                         axios.get(`https://reactlabapi.herokuapp.com/api/doctors/specialization/${option.value}`,
                             {
@@ -63,7 +60,7 @@ export const AppointmentSelect = ({onChange, options, state, setState, ...props}
                     })
 
                 }}
-                isDisabled={(field.name === 'doctor' && !state.occupation) ? true : false}
+                isDisabled={(field.name === 'doctor' && !state.occupation)}
                 styles={AppointmentSelectStyles}
                 options={options}
                 id={props.selectId}
@@ -72,7 +69,7 @@ export const AppointmentSelect = ({onChange, options, state, setState, ...props}
 
             />
             {meta.touched && meta.error ? (
-                <div className=" sign-bar__validationError">{meta.error}</div>
+                <ErrorValidation>{meta.error}</ErrorValidation>
             ) : null}
         </>
     )

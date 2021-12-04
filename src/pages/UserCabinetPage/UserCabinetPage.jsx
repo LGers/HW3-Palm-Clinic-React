@@ -14,8 +14,10 @@ import {NavigationTabs} from "./NavigationTabs";
 const UserCabinetPage = (props) => {
     const dispatch = useDispatch()
     const token=localStorage.getItem('access_token')
+    const apiUrl = 'https://reactlabapi.herokuapp.com/api/'
+
     useEffect(() => {
-        axios.get('https://reactlabapi.herokuapp.com/api/auth/profile',
+        axios.get(`${apiUrl}auth/profile`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -26,7 +28,7 @@ const UserCabinetPage = (props) => {
                 dispatch(setLogonUser({userData}))
 
                 const userRole = userData.role_name.toLowerCase()
-                axios.get(`https://reactlabapi.herokuapp.com/api/appointments/${userRole}/me?offset=0&limit=100`,
+                axios.get(`${apiUrl}appointments/${userRole}/me?offset=0&limit=100`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`

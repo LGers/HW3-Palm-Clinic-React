@@ -7,14 +7,19 @@ import Select from "react-select";
 import {useHistory} from "react-router-dom";
 import {APPOINTMENT_PAGE_PATH} from "../../../constants/path";
 import {SearchBlock, SearchInput, SearchLabel, StyledUserCabinetSearch} from "./userCabinetSearchStyles";
+import {CabinetSelectStyles} from "./CabinetSelectStyles";
+
 
 export const UserCabinetHeader = (props) => {
     const doctorOptions =[
-        {value: 'byDate', label: 'byDate'},
-        {value: 'byName', label: 'byName'}
+        {value: 'Date', label: 'Date'},
+        {value: 'Name', label: 'Name'}
     ]
     const patientOptions =[
-        {value: 'upcoming', label: 'Upcoming'}
+        {value: 'upcoming', label: 'Upcoming'},
+        {value: 'upcoming1', label: 'Upcoming'},
+        {value: 'upcoming2', label: 'Upcoming'},
+        {value: 'upcoming3', label: 'Upcoming'}
     ]
     const userRole = useSelector(state => state.user.current_user).role_name.toLowerCase()
     const titleText = userRole === 'patient' ? 'My Appointments' : 'My Patients'
@@ -33,7 +38,15 @@ export const UserCabinetHeader = (props) => {
                 <SearchInput type="text" placeholder="Search"/>
                 <SearchLabel>{labelText}</SearchLabel>
 
-                <Select options={options}/>
+                <Select
+                    styles={CabinetSelectStyles}
+                    components={{
+                        // DropdownIndicator,
+                        IndicatorSeparator: null
+                    }}
+                    options={options}
+                    isSearchable={false}
+                />
                 {userRole === 'patient'
                     ? <Button primary leftIcon onClick={handleClick}><Plus/> Create an appointment</Button>
                     : null
