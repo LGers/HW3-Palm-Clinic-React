@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 export const Header = () => {
 
     const userProfile = useSelector(state => state.user.current_user)
-
+    console.log('userProfile', userProfile)
 
     return (
         <StyledHeader>

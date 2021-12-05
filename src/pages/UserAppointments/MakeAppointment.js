@@ -22,13 +22,15 @@ import {
     StyledAppointmentLabel
 } from "./MakeAppointmentSelectsStyles";
 import {appointmentValidationSchema} from "../../validations/appointmentValidation";
-import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {selectDate, setOccupations, showErrorMessage, showSuccessMessage} from "../../store/userSlice";
+import {selectDate} from "../../store/userSlice";
 import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
+import {createAppointment, getOccupations} from "../../api/api";
 
 
 const MakeAppointment = (props) => {
+    const token = localStorage.getItem('access_token')
+
     const initialState = {
         isStepOneCompleted: false,
         occupation: false,
@@ -45,23 +47,7 @@ const MakeAppointment = (props) => {
     })
 
     useEffect(() => {
-        axios.get('https://reactlabapi.herokuapp.com/api/specializations',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            })
-            .then(response => {
-                // console.log(response.data)
-                const specializations = response.data
-                const occupations = specializations.map(occupation => {
-                    return {value: occupation.id, label: occupation.specialization_name}
-                })
-                dispatch(setOccupations({occupations}))
-            })
-            .catch(error =>
-                console.log(error)
-            )
+        getOccupations(token, dispatch)
     }, [])
 
     const [date, setDate] = useState(moment())
@@ -70,34 +56,7 @@ const MakeAppointment = (props) => {
     const history = useHistory();
 
     function handleClick(values) {
-
-        axios.post('https://reactlabapi.herokuapp.com/api/appointments',
-            {
-                date: values.time,
-                reason: values.reasonForVisit,
-                note: values.note,
-                doctorID: values.doctor
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            }
-            )
-            .then(response => {
-                console.log(response.data)
-                dispatch(showSuccessMessage())
-                history.push(CABINET_PAGE_PATH);
-                setTimeout(() =>  dispatch(showSuccessMessage()), 2000)
-            })
-            .catch(error => {
-                    // console.log('MakeAppointmentError: ', error.response.data)
-                    console.log('MakeAppointmentError: ', error)
-                // const errorMessage = error.response.data ? error.response.data : error.response.data.message
-                    dispatch(showErrorMessage({errorMessage:'Some Error'}))
-                setTimeout(() => dispatch(showErrorMessage({errorMessage:''})), 2000)
-                }
-            )
+        createAppointment(values, token, dispatch, history)
         // history.push("/");
     }
 
