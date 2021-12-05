@@ -4,4 +4,4 @@ Run:
 npm -i
 npm start
 
-Deploy: https://itrex-palm-clinic-by-lm.netlify.app/sign-in
+See Deploy **IT-Rex Palm Clinic React App**: https://itrex-palm-clinic-by-lm.netlify.app/sign-in
