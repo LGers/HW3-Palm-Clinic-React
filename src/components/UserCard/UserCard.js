@@ -20,7 +20,7 @@ const appointmentStatus =(status) => {
     switch (status) {
         case 'confirmed' :
             return appointmentStatus = 'Appointment is confirmed'
-        case 'cancelled' :
+        case 'canceled' :
             return appointmentStatus = 'Appointment is cancelled'
         default : return appointmentStatus ='Waiting for confirmation'
     }

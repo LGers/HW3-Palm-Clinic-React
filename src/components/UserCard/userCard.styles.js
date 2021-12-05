@@ -79,7 +79,7 @@ export const StatusIcon = styled.div`
     background-color: #34C197;
   `}
 
-  ${props => props.status === 'cancelled' && css`
+  ${props => props.status === 'canceled' && css`
     background-color: #FF2567;
   `}
 `
