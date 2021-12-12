@@ -4,6 +4,7 @@ import {MEDIA_QUERY} from "../../constants/mediaQuery";
 export const StyledUsersContent = styled.div`
 
   @media all {
+    position: relative;
     padding-left: 24px;
     padding-right: 24px;
     overflow: hidden;

@@ -10,10 +10,16 @@ import {
     StyledWeek
 } from "./calendarStyles";
 import axios from "axios";
-import {selectDate, setTimes} from "../../store/userSlice";
+// import {selectDate, setTimes} from "../../store/userSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {selectDate, setTimes} from "../../store/makeAppointmentSlice";
+import {fetchTimesAppointment} from "../../api";
+import moment from "moment";
 
-export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props) => {
+
+export const Calendar = ({onChange, isStepOneCompleted, today}, ...props) => {
+    const [date, setDate] = useState(moment())
+    let value = date
     const [calendar, setCalendar] = useState([])
     const startDay = value.clone().startOf('month').startOf("week").add(1, 'days')
     const endDay = value.clone().endOf('month').endOf("week").add(1, 'days')
@@ -42,39 +48,46 @@ export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props)
     }
 
     const dispatch = useDispatch()
-    const makeAppointment = useSelector(state => state.user.make_appointment)
+    const selectedDoctorId = useSelector(state => state.makeAppointment.appointment).selected_doctor_id
     const apiUrl = 'https://reactlabapi.herokuapp.com/api/'
     const setDay = (day) => {
-        axios.get(`${apiUrl}appointments/time/free?date=${day.toISOString()}&doctorID=${makeAppointment.selected_doctor_id}`,
+        const isoDate = day.toISOString()
+        onChange(isoDate)
+        /*    fetchTimesAppointment(isoDate, selectedDoctorId)
+            axios.get(`${apiUrl}appointments/time/free?date=${isoDate}&doctorID=${selectedDoctorId}`,
 
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                }
-            })
-            .then(response => {
-                const times = response.data
-                // console.log(times)
-                dispatch(setTimes({times}))
-                const date = day.toISOString()
-                dispatch(selectDate({date}))
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                })
+                .then(response => {
+                    debugger
+                    const times = response.data
+                    // console.log(times)
+                    dispatch(setTimes({times}))
+                    const date = day.toISOString()
+                    dispatch(selectDate({date}))
 
-            })
-            .catch(error =>
-                console.log(error)
-            )
-        return !beforeToday(day) && onChange(day)
+                })
+                .catch(error =>
+                    console.log(error)
+                )
+
+            */
+        return !beforeToday(day) && setDate(day)
     }
+
     return (
         <div {...props}>
             <StyledCalendarHeader>
-                <StyledMothNavigate onClick={() => onChange(prevMonth)}>
+                <StyledMothNavigate onClick={() => setDate(prevMonth)}>
                     <ChevronLeft/>
                 </StyledMothNavigate>
                 <StyledMonthYear>
                     {month} {' '}
                     {year}</StyledMonthYear>
-                <StyledMothNavigate onClick={() => onChange(nextMonth)}>
+                <StyledMothNavigate onClick={() => setDate(nextMonth)}>
                     <ChevronRight/>
                 </StyledMothNavigate>
 
@@ -92,7 +105,9 @@ export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props)
                             isToday={day.format('DDMMYY') === today.format('DDMMYY')}
                             >
                                 <Field
-                                    onClick={() => {setDay(day)}}
+                                    onClick={() => {
+                                        setDay(day)
+                                    }}
                                     disabled={(!isStepOneCompleted || beforeToday(day))}
 
                                     id={day.format('DDMMMMYYYY').toString()}
@@ -100,7 +115,8 @@ export const Calendar = ({value, onChange, isStepOneCompleted, today}, ...props)
                                     name={'date'}
                                     value={day.toISOString()}
                                 />
-                                <label htmlFor={day.format('DDMMMMYYYY').toString()}>{day.format('D').toString()}</label>
+                                <label
+                                    htmlFor={day.format('DDMMMMYYYY').toString()}>{day.format('D').toString()}</label>
                             </StyledDay>
                         )
                     )}

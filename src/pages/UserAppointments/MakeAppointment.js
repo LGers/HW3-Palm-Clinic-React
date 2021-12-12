@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Content} from "../../components/Content/Content";
 import {Header} from "../../components/Header/Header";
 import {Wrapper} from "../../components/Wrapper/Wrapper";
 import {UsersContent} from "../../components/UsersContent/UsersContent";
-import {TimeRadioInput} from "../../components/TimeRadioInput/TimeRadioInput";
 import {TimeSlots} from "../../components/TimeSlots/TimeSlots";
 import {Title} from "../../components/Title/Title";
 import {AppointmentStep} from "../../components/MakeAppointment/AppointmentStep";
-import {AppointmentContainer} from "../../components/MakeAppointment/AppointmentContainer";
+import {AppointmentContent} from "../../components/MakeAppointment/AppointmentContent";
 import {Formik, Form} from "formik";
 import {AppointmentSelect} from "./MakeAppointmentSelects";
 import {Breadcrumbs} from "../test/Components/Breadcrumbs";
 import {CABINET_PAGE_PATH} from "../../constants/path";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {ChevronRight} from "react-feather";
 import {Flex} from "../../components/Flex/Flex";
 import {Calendar} from "../../components/Calendar/Calendar";
@@ -23,14 +22,12 @@ import {
 } from "./MakeAppointmentSelectsStyles";
 import {appointmentValidationSchema} from "../../validations/appointmentValidation";
 import {useDispatch, useSelector} from "react-redux";
-import {selectDate} from "../../store/userSlice";
 import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
-import {createAppointment, getOccupations} from "../../api/api";
+import {createAppointment, selectDate} from "../../store/makeAppointmentSlice";
+import {AppointmentTimes} from "./AppointmentTimes";
 
 
-const MakeAppointment = (props) => {
-    const token = localStorage.getItem('access_token')
-
+const MakeAppointment = () => {
     const initialState = {
         isStepOneCompleted: false,
         occupation: false,
@@ -39,69 +36,23 @@ const MakeAppointment = (props) => {
     }
     const [state, setState] = useState(initialState)
     const dispatch = useDispatch()
-    const make_appointment = useSelector(state => state.user.make_appointment)
-    const occupationOptions = make_appointment.occupations
+    const make_appointment = useSelector(state => state.makeAppointment.appointment)
+    const occupationOptions = make_appointment.occupations.map(occupation => {
+        return {value: occupation.id, label: occupation.specialization_name}
+    })
 
     const doctorOptions = make_appointment.doctors.map(doctor => {
         return {value: doctor.id, label: doctor.first_name + ' ' + doctor.last_name}
     })
 
-    useEffect(() => {
-        getOccupations(token, dispatch)
-    }, [])
-
-    const [date, setDate] = useState(moment())
     const today = moment()
 
-    const history = useHistory();
+    const handleDateChange =(day) => {
+        dispatch(selectDate({day, make_appointment}))
+    }
 
     function handleClick(values) {
-        createAppointment(values, token, dispatch, history)
-        // history.push("/");
-    }
-
-    const handleSetDate = () => {
-        alert('setDay')
-    }
-    const handleChangeTime = (date) => {
-        dispatch(selectDate({date}))
-    }
-    const Times = () => {
-        const tempArray = []
-        make_appointment.times.map(time => {
-            tempArray.push(moment(time).format('HH'))
-        })
-
-        const timesArray = []
-        for (let i = 8; i < 21; i++) {
-            const obj = Object()
-            obj.id = 'hour' + i
-            const formatHour = i < 10 ? '0' + i : i
-            obj.time = moment(make_appointment.date).startOf('day').add(i, 'hours').format()
-
-            tempArray.includes(formatHour.toString())
-                ? obj.isAvailable = false
-                : obj.isAvailable = true
-            timesArray.push(obj)
-        }
-
-        const times = timesArray.map(time =>
-            <TimeRadioInput
-                key={time.id}
-                radioId={moment(time.time).toISOString()}
-                time={moment(time.time).format('HH:OO a')}
-                name={'time'}
-                disabled={time.isAvailable}
-                isStepOneFull={state.isStepOneCompleted}
-                onChange={() => handleChangeTime(time.time)}
-            />
-        )
-
-        return (
-            <>
-                {times}
-            </>
-        )
+        dispatch(createAppointment(values))
     }
 
     return (
@@ -135,7 +86,7 @@ const MakeAppointment = (props) => {
 
                             <Title>Make an appointment</Title>
 
-                            <AppointmentContainer>
+                            <AppointmentContent>
                                 <Flex direction={'column'}>
                                     <AppointmentStep>
                                         <span>1</span>Select a doctor and define the reason of your visit
@@ -181,11 +132,7 @@ const MakeAppointment = (props) => {
                                 <div>
                                     <AppointmentStep><span>2</span>Chose a day for an appointment</AppointmentStep>
                                     <Calendar
-                                        value={date}
-                                        onClick={() => {
-                                            handleSetDate()
-                                        }}
-                                        onChange={setDate}
+                                        onChange={(day)=>handleDateChange(day)}
                                         isStepOneCompleted={state.isStepOneCompleted}
                                         today={today}
                                     />
@@ -195,7 +142,7 @@ const MakeAppointment = (props) => {
                                     <AppointmentStep><span>3</span>Select an available timeslot</AppointmentStep>
 
                                     <TimeSlots>
-                                        <Times/>
+                                        <AppointmentTimes isStepOneCompleted={state.isStepOneCompleted}/>
                                     </TimeSlots>
                                 </div>
 
@@ -204,7 +151,7 @@ const MakeAppointment = (props) => {
                                 </button>
 
 
-                            </AppointmentContainer>
+                            </AppointmentContent>
                         </Form>
                     </Formik>
                     {make_appointment.errorMessage ? <PopupMessage isError={make_appointment.errorMessage} /> : null}

@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 export const NavigationTabs = () => {
 
-    const userRole = useSelector(state=> state.user.current_user).role_name.toLowerCase()
+    const userRole = useSelector(state=> state.currentLogonUser.user).role_name.toLowerCase()
 
     const tabs = userRole === 'patient'
         ? [

@@ -2,33 +2,18 @@ import React from 'react';
 import {Formik, Form} from 'formik';
 import {SignFormInput} from "../SignFormInput";
 import {Link} from "react-router-dom";
-import {useHistory} from "react-router-dom";
-import axios from 'axios'
-import {CABINET_PAGE_PATH, RESTORE_PASSWORD_PATH} from "../../../../constants/path";
+import {RESTORE_PASSWORD_PATH} from "../../../../constants/path";
 import {SignInButtonText, SignInTitle} from "../../../../constants/dictionary";
 import {signInValidationSchema} from "./validations";
+import {useDispatch} from "react-redux";
+import {fetchLogonUser} from "../../../../store/currentUserSlice";
 
 
 export const SignInForm = (props) => {
-
-    const history = useHistory();
+    const dispatch = useDispatch()
 
     function handleClick(values) {
-
-        axios.post(
-            'https://reactlabapi.herokuapp.com/api/auth/login',
-            {
-                "userName": values.email,
-                "password": values.password
-            })
-            .then((response) => {
-                localStorage.setItem('access_token', response.data.access_token);
-                localStorage.setItem('refresh_token', response.data.refresh_token);
-                history.push(CABINET_PAGE_PATH);
-            })
-            .catch((error) => {
-                console.log('error.message ', error.message)
-            })
+        dispatch(fetchLogonUser(values))
     }
 
     return (

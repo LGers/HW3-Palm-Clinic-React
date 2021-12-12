@@ -5,12 +5,13 @@ import {Plus} from "react-feather";
 import {useDispatch, useSelector} from "react-redux";
 import Select from "react-select";
 import {useHistory} from "react-router-dom";
-import {APPOINTMENT_PAGE_PATH} from "../../../constants/path";
+import {MAKE_APPOINTMENT_PAGE_PATH} from "../../../constants/path";
 import {SearchBlock, SearchInput, SearchLabel, StyledUserCabinetSearch} from "./userCabinetSearchStyles";
 import {CabinetSelectStyles} from "./CabinetSelectStyles";
 import axios from "axios";
-import {setUserAppointments} from "../../../store/userSlice";
+// import {setUserAppointments} from "../../../store/userSlice";
 import {API_URL} from "../../../constants/constants";
+import {setUserAppointments} from "../../../store/appointmentsSlice";
 
 
 export const UserCabinetHeader = (props) => {
@@ -26,7 +27,7 @@ export const UserCabinetHeader = (props) => {
         {value: 'upcoming2', label: 'Upcoming2'},
         {value: 'upcoming3', label: 'Upcoming3'}
     ]
-    const userRole = useSelector(state => state.user.current_user).role_name.toLowerCase()
+    const userRole = useSelector(state => state.currentLogonUser.user).role_name.toLowerCase()
     const titleText = userRole === 'patient' ? 'My Appointments' : 'My Patients'
     const labelText = userRole === 'patient' ? 'Show:' : 'Sort by:'
     const options = userRole === 'patient' ? patientOptions : doctorOptions
@@ -35,7 +36,7 @@ export const UserCabinetHeader = (props) => {
 
     const history = useHistory();
     const handleClick = () => {
-        history.push(APPOINTMENT_PAGE_PATH);
+        history.push(MAKE_APPOINTMENT_PAGE_PATH);
     }
 
     const handleChange=(option)=> {

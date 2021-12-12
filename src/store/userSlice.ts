@@ -147,17 +147,17 @@ const userSlice = createSlice({
 
 export const {
     setLogonUser,
-    setUserAppointments,
+    // setUserAppointments,
     setOccupations,
-    selectOccupation,
-    setDoctors,
-    selectDoctor,
-    setReason,
-    setNote,
-    selectDate,
-    setTimes,
-    showErrorMessage,
-    showSuccessMessage
+    // selectOccupation,
+    // setDoctors,
+    // selectDoctor,
+    // setReason,
+    // setNote,
+    // selectDate,
+    // setTimes,
+    // showErrorMessage,
+    // showSuccessMessage
 } = userSlice.actions
 
 export default userSlice.reducer

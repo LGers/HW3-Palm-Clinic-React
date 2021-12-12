@@ -13,7 +13,6 @@ import {
     UserInfo
 } from "./userCard.styles";
 import {UserCardSelect} from "../UserCardSelect/UserCardSelect";
-import {logRoles} from "@testing-library/react";
 
 const appointmentStatus =(status) => {
     let appointmentStatus = ''
@@ -26,8 +25,9 @@ const appointmentStatus =(status) => {
     }
 }
 
+
 export const UserCard = ({appointment, ...props}) => {
-    const currentUser = useSelector(state => state.user.current_user)
+    const currentUser = useSelector(state => state.currentLogonUser.user)
 
     let appointmentCardRole = ''
     switch (currentUser.role_name.toLowerCase()) {
@@ -68,7 +68,11 @@ export const UserCard = ({appointment, ...props}) => {
                         </Status>
                     }
                 </NameAndStatus>
-                <UserCardSelect appointmentId={appointment.id}/>
+                {currentUser.role_name.toLowerCase() === 'doctor'
+                    ? <UserCardSelect appointmentId={appointment.id}/>
+                    : null
+                }
+
             </UserInfo>
             <Resolutions>
                 <Time>
