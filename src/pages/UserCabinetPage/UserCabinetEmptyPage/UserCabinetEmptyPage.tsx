@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyledEmptyPage} from "./userCabinetEmptyPageStyles";
+import {StyledEmptyPage} from "./userCabinetEmptyPage.styles";
 
-const UserCabinetEmptyPage = () => {
+const UserCabinetEmptyPage: React.FC = () => {
     return (
         <StyledEmptyPage>
             <img src="/static/img/empty_state.svg" alt="You don't have patients"/>

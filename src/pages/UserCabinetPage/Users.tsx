@@ -5,6 +5,7 @@ import UserCabinetEmptyPage from "./UserCabinetEmptyPage/UserCabinetEmptyPage";
 import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
 import {UserCard} from "../../components/UserCard/UserCard";
 import {UserCardPreloaded} from "../../components/UserCardPreloaded/UserCardPreloaded";
+import {RootState} from "../../store";
 
 const PreloadedCards = () => {
     const cardsArray = []
@@ -14,10 +15,10 @@ const PreloadedCards = () => {
     return cardsArray
 }
 
-const Users = () => {
-    const appointments = useSelector(state => state.appointments.appointments)
-    const totalAppointments = useSelector(state => state.appointments.total)
-    const make_appointment = useSelector(state => state.makeAppointment.appointment)
+const Users: React.FC = () => {
+    const appointments = useSelector((state: RootState) => state.appointments.appointments)
+    const totalAppointments = useSelector((state: RootState) => state.appointments.total)
+    const make_appointment = useSelector((state: RootState) => state.makeAppointment.appointment)
     const emptyCards = PreloadedCards()
     const users = totalAppointments !== '0'
         ? appointments.map(appointment =>
@@ -32,7 +33,9 @@ const Users = () => {
             {totalAppointments === '0'
                 ? <UserCabinetEmptyPage/>
                 : <UsersGrid> {users}</UsersGrid>}
-            {make_appointment.showSuccessMessage ? <PopupMessage/> : null}
+
+            {/*Replace from store data*/}
+            {make_appointment.showSuccessMessage ? <PopupMessage message={'Message Here'} isSuccess={true}/> : null}
         </>
     );
 };
