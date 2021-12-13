@@ -14,8 +14,6 @@ import {
     MAKE_APPOINTMENT_PAGE_PATH, CABINET_PAGE_PATH
 } from "./constants/path";
 import MakeAppointment from "./pages/UserAppointments/MakeAppointment";
-import {SagaPage} from "./pages/test/SagaPage/SagaPage";
-import {Counter} from "./pages/test/Counter/Counter";
 import {ConnectedRouter} from "connected-react-router";
 
 
@@ -44,9 +42,10 @@ const App: React.FC  = () => {
                 </Route>
 
                 <Route exact path={MAIN_PAGE_PATH}>
-                    {0
-                        ? <UserCabinetPage/>
-                        : <SignPage link={SIGN_IN_PATH}/>}
+                    {/*{isAuth*/}
+                    {/*    ? <UserCabinetPage/>*/}
+                    {/*    : <SignPage link={SIGN_IN_PATH}/>}*/}
+                         <SignPage link={SIGN_IN_PATH}/>
                 </Route>
 
                 <Route path={CABINET_PAGE_PATH}>
@@ -55,22 +54,6 @@ const App: React.FC  = () => {
 
                 <Route path={MAKE_APPOINTMENT_PAGE_PATH}>
                     <MakeAppointment
-                    />
-                </Route>
-
-                <Route path={'/saga-page'}>
-                    <SagaPage/>
-                </Route>
-
-                <Route path={'/counter'}>
-                    <Counter/>
-                </Route>
-
-                <Route path={'/saga-counter-test'}>
-                    <Counter
-                        onIncrement={'INCREMENT'}
-                        onDecrement={'DECREMENT'}
-                        onIncrementAsync={'INCREMENT_ASYNC'}
                     />
                 </Route>
             </Switch>
