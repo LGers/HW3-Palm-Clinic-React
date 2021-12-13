@@ -1,14 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export type MakeAppointmentType = {
-    occupations: []
+    occupations: any[]
     occupation_id: string
-    doctors: []
+    doctors: any[]
     selected_doctor_id: string
     reason: string
     note: string
     date: string
-    times: []
+    times: any[]
     selected_time: string
     errorMessage: string
     showSuccessMessage: boolean
@@ -73,7 +73,7 @@ const makeAppointmentSlice = createSlice({
             showSuccessMessage(state, action) {
                 state.appointment.showSuccessMessage = !state.appointment.showSuccessMessage
             },
-            createAppointment() {
+            createAppointment(state, action: any) {
             }
 
         }

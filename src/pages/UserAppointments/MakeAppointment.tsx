@@ -7,7 +7,7 @@ import {TimeSlots} from "../../components/TimeSlots/TimeSlots";
 import {Title} from "../../components/Title/Title";
 import {AppointmentStep} from "../../components/MakeAppointment/AppointmentStep";
 import {AppointmentContent} from "../../components/MakeAppointment/AppointmentContent";
-import {Formik, Form} from "formik";
+import {Formik, Form, FormikValues} from "formik";
 import {AppointmentSelect} from "./MakeAppointmentSelects";
 import {Breadcrumbs} from "../test/Components/Breadcrumbs";
 import {CABINET_PAGE_PATH} from "../../constants/path";
@@ -19,15 +19,15 @@ import moment from "moment";
 import {
     StyledAppointmentField,
     StyledAppointmentLabel
-} from "./MakeAppointmentSelectsStyles";
+} from "./MakeAppointmentSelects.styles";
 import {appointmentValidationSchema} from "../../_backup/validations/appointmentValidation";
 import {useDispatch, useSelector} from "react-redux";
 import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
 import {createAppointment, selectDate} from "../../store/makeAppointmentSlice";
 import {AppointmentTimes} from "./AppointmentTimes";
+import { RootState } from "../../store";
 
-
-const MakeAppointment = () => {
+const MakeAppointment: React.FC = () => {
     const initialState = {
         isStepOneCompleted: false,
         occupation: false,
@@ -36,7 +36,8 @@ const MakeAppointment = () => {
     }
     const [state, setState] = useState(initialState)
     const dispatch = useDispatch()
-    const make_appointment = useSelector(state => state.makeAppointment.appointment)
+    const make_appointment = useSelector((state: RootState) => state.makeAppointment.appointment)
+
     const occupationOptions = make_appointment.occupations.map(occupation => {
         return {value: occupation.id, label: occupation.specialization_name}
     })
@@ -47,11 +48,11 @@ const MakeAppointment = () => {
 
     const today = moment()
 
-    const handleDateChange =(day) => {
+    const handleDateChange =(day:any) => {
         dispatch(selectDate({day, make_appointment}))
     }
 
-    function handleClick(values) {
+    function handleClick(values: FormikValues) {
         dispatch(createAppointment(values))
     }
 
@@ -132,7 +133,7 @@ const MakeAppointment = () => {
                                 <div>
                                     <AppointmentStep><span>2</span>Chose a day for an appointment</AppointmentStep>
                                     <Calendar
-                                        onChange={(day)=>handleDateChange(day)}
+                                        onChange={(day:any)=>handleDateChange(day)}
                                         isStepOneCompleted={state.isStepOneCompleted}
                                         today={today}
                                     />
@@ -154,7 +155,7 @@ const MakeAppointment = () => {
                             </AppointmentContent>
                         </Form>
                     </Formik>
-                    {make_appointment.errorMessage ? <PopupMessage isError={make_appointment.errorMessage} /> : null}
+                    {make_appointment.errorMessage ? <PopupMessage isSuccess={Boolean(make_appointment.errorMessage)} message={make_appointment.errorMessage} /> : null}
                 </UsersContent>
             </Content>
         </Wrapper>

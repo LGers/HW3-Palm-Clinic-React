@@ -2,10 +2,14 @@ import moment from "moment";
 import {TimeRadioInput} from "../../components/TimeRadioInput/TimeRadioInput";
 import React from "react";
 import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 
-export const AppointmentTimes = ({isStepOneCompleted}) => {
-    const make_appointment = useSelector(state => state.makeAppointment.appointment)
-    const tempArray = []
+type Props = {
+    isStepOneCompleted: boolean
+}
+export const AppointmentTimes: React.FC<Props> = ({isStepOneCompleted}) => {
+    const make_appointment = useSelector((state: RootState) => state.makeAppointment.appointment)
+    const tempArray: any = []
     make_appointment.times.map(time => {
         tempArray.push(moment(time).format('HH'))
     })
