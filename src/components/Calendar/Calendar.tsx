@@ -12,19 +12,24 @@ import {
 
 import moment from "moment";
 
+type Props = {
+    onChange: any
+    isStepOneCompleted: boolean
+    today: any
+}
+export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today}, ...props) => {
 
-export const Calendar = ({onChange, isStepOneCompleted, today}, ...props) => {
     const [date, setDate] = useState(moment())
     let value = date
     const [calendar, setCalendar] = useState([])
     const startDay = value.clone().startOf('month').startOf("week").add(1, 'days')
     const endDay = value.clone().endOf('month').endOf("week").add(1, 'days')
-    const month = value.clone().format('MMMM')
-    const year = value.clone().format('YYYY')
+    const month: string = value.clone().format('MMMM')
+    const year: string = value.clone().format('YYYY')
 
     useEffect(() => {
         const day = startDay.clone().subtract(1, "day")
-        const tempDay = []
+        const tempDay: any = []
         while (day.isBefore(endDay, 'day')) {
             tempDay.push(
                 Array(7)
@@ -35,7 +40,7 @@ export const Calendar = ({onChange, isStepOneCompleted, today}, ...props) => {
         setCalendar(tempDay)
     }, [value])
 
-    const beforeToday = (day) => day.isBefore(new Date(), 'day')
+    const beforeToday = (day:any) => day.isBefore(new Date(), 'day')
     const prevMonth = () => {
         return value.clone().subtract(1, 'month')
     }
@@ -43,7 +48,7 @@ export const Calendar = ({onChange, isStepOneCompleted, today}, ...props) => {
         return value.clone().add(1, 'month')
     }
 
-    const setDay = (day) => {
+    const setDay = (day:any) => {
         const isoDate = day.toISOString()
         onChange(isoDate)
         return !beforeToday(day) && setDate(day)
@@ -69,9 +74,9 @@ export const Calendar = ({onChange, isStepOneCompleted, today}, ...props) => {
                     ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(d => <StyledDayName>{d}</StyledDayName>)
                 }
             </StyledWeek>
-            {calendar.map((week) =>
+            {calendar.map((week: any) =>
                 <StyledWeek>
-                    {week.map((day) => (
+                    {week.map((day:any) => (
                             <StyledDay
                             isToday={day.format('DDMMYY') === today.format('DDMMYY')}
                             >

@@ -20,7 +20,7 @@ import {
     StyledAppointmentField,
     StyledAppointmentLabel
 } from "./MakeAppointmentSelectsStyles";
-import {appointmentValidationSchema} from "../../validations/appointmentValidation";
+import {appointmentValidationSchema} from "../../_backup/validations/appointmentValidation";
 import {useDispatch, useSelector} from "react-redux";
 import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
 import {createAppointment, selectDate} from "../../store/makeAppointmentSlice";

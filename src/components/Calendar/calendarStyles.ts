@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
+interface Props {
+    isToday: boolean
+}
 export const StyledWeek = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 `
-export const StyledDay = styled.div`
+export const StyledDay = styled.div<Props>`
   text-align: center;
   cursor: pointer;
   caret-color: transparent;
