@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from "styled-components";
-import {Field} from "formik";
 
-const StyledTimeRadioInput = styled.div`
+export const StyledTimeRadioInput = styled.div`
   
   & label {
     cursor: pointer;
@@ -49,20 +47,3 @@ export const Label = styled.div`
   width: 104px;
   height: 40px;
 `
-
-export const TimeRadioInput = (props) => {
-
-    return (
-        <StyledTimeRadioInput {...props}>
-            <Label>
-                <Field type="radio"
-                       id={props.radioId}
-                       disabled={props.isStepOneFull ? props.disabled : true}
-                       name={props.name}
-                       value={props.radioId}
-                />
-                <label htmlFor={props.radioId}>{props.time} </label>
-            </Label>
-        </StyledTimeRadioInput>
-    )
-};

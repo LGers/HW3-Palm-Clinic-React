@@ -1,7 +1,17 @@
 import styled, {css} from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
 
-export const StyledButton = styled.button`
+interface Props {
+  width?: number
+  height?: number
+  primary?: string
+  secondary?: string
+  isDisabled?: boolean
+  leftIcon?: string
+  rightIcon?: string
+}
+
+export const StyledButton = styled.button<Props>`
   font-weight: 600;
   font-size: 15px;
   line-height: 130%;
@@ -41,7 +51,7 @@ export const StyledButton = styled.button`
     }
   `}
 
-  ${props => props.disabled && css`
+  ${props => props.isDisabled && css`
     color: white;
     background-color: #DCE0EC;
   `}

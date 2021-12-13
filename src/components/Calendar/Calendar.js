@@ -9,11 +9,7 @@ import {
     StyledMothNavigate,
     StyledWeek
 } from "./calendarStyles";
-import axios from "axios";
-// import {selectDate, setTimes} from "../../store/userSlice";
-import {useDispatch, useSelector} from "react-redux";
-import {selectDate, setTimes} from "../../store/makeAppointmentSlice";
-import {fetchTimesAppointment} from "../../api";
+
 import moment from "moment";
 
 
@@ -47,34 +43,9 @@ export const Calendar = ({onChange, isStepOneCompleted, today}, ...props) => {
         return value.clone().add(1, 'month')
     }
 
-    const dispatch = useDispatch()
-    const selectedDoctorId = useSelector(state => state.makeAppointment.appointment).selected_doctor_id
-    const apiUrl = 'https://reactlabapi.herokuapp.com/api/'
     const setDay = (day) => {
         const isoDate = day.toISOString()
         onChange(isoDate)
-        /*    fetchTimesAppointment(isoDate, selectedDoctorId)
-            axios.get(`${apiUrl}appointments/time/free?date=${isoDate}&doctorID=${selectedDoctorId}`,
-
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                })
-                .then(response => {
-                    debugger
-                    const times = response.data
-                    // console.log(times)
-                    dispatch(setTimes({times}))
-                    const date = day.toISOString()
-                    dispatch(selectDate({date}))
-
-                })
-                .catch(error =>
-                    console.log(error)
-                )
-
-            */
         return !beforeToday(day) && setDate(day)
     }
 

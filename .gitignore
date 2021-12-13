@@ -15,6 +15,7 @@
 /src/pages/test
 /src/pages/LoginPage/LoginPageComponents/StyledButton.jsx
 /src/pages/test/api/api.js
+/src/_backup
 
 # misc
 .DS_Store

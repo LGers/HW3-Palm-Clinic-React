@@ -5,13 +5,13 @@ import {
     EmptyName,
     EmptyStatus,
     EmptyTime,
-    StyledUserCardPreloaded
+    StyledUserCardPreloaded,
+    NameAndStatus, Resolutions, UserInfo
 } from "./userCardPreloaded.styles";
-import {NameAndStatus, Resolutions, UserInfo} from "../UserCard/userCard.styles";
 
-export const UserCardPreloaded = () => {
+export const UserCardPreloaded: React.FC = (props) => {
     return (
-        <StyledUserCardPreloaded>
+        <StyledUserCardPreloaded {...props}>
             <UserInfo>
                 <EmptyAvatar/>
                 <NameAndStatus>

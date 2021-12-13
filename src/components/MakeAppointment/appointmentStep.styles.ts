@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from "styled-components";
 
-const StyledMakeAppointmentStep = styled.p`
+export const StyledMakeAppointmentStep = styled.p`
   display: flex;
   align-items: center;
   color: #A1ABC9;
@@ -20,7 +19,3 @@ const StyledMakeAppointmentStep = styled.p`
     padding: 16px;
   }
 `
-
-export const AppointmentStep = (props) => {
-    return <StyledMakeAppointmentStep {...props}/>
-};

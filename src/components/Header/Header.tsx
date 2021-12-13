@@ -2,14 +2,15 @@ import React from 'react';
 import {Flex} from "../Flex/Flex";
 import {HeaderUserAvatar, HeaderUserName, HeaderUserProfession, StyledHeader, UserStatusIcon} from "./headerStyles";
 import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 
 
 
-export const Header = () => {
-    const userProfile = useSelector(state => state.currentLogonUser.user)
+export const Header: React.FC = (props) => {
+    const userProfile = useSelector((state: RootState) => state.currentLogonUser.user)
 
     return (
-        <StyledHeader>
+        <StyledHeader {...props}>
             <Flex justify={'space-between'}>
                 <img height={32} width={132} src="static/img/logo.png" alt="Palm Clinic Logo"/>
                 <Flex>

@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from "styled-components";
 
-const StyledTimeCheckbox = styled.div`
+export const StyledTimeCheckbox = styled.div`
   
   & label {
     cursor: pointer;
@@ -48,14 +47,3 @@ export const Label = styled.div`
   width: 104px;
   height: 40px;
 `
-
-export const TimeCheckbox = (props) => {
-    return (
-        <StyledTimeCheckbox {...props}>
-            <Label>
-                <input type="checkbox" id={props.checkboxId} disabled={props.disabled}/>
-                <label htmlFor={props.checkboxId}>{props.time} </label>
-            </Label>
-        </StyledTimeCheckbox>
-    )
-};

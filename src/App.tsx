@@ -19,7 +19,7 @@ import {Counter} from "./pages/test/Counter/Counter";
 import {ConnectedRouter} from "connected-react-router";
 
 
-function App() {
+const App: React.FC  = () => {
 
     return (
         <ConnectedRouter history={history}>
@@ -44,9 +44,9 @@ function App() {
                 </Route>
 
                 <Route exact path={MAIN_PAGE_PATH}>
-                    {1
+                    {0
                         ? <UserCabinetPage/>
-                        : <SignPage link={SIGN_UP_PATH}/>}
+                        : <SignPage link={SIGN_IN_PATH}/>}
                 </Route>
 
                 <Route path={CABINET_PAGE_PATH}>

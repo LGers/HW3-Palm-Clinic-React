@@ -4,7 +4,7 @@ export const StyledUserCardPreloaded = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  box-shadow: 0px 4px 32px rgba(218, 228, 255, 0.24);
+  box-shadow: 0 4px 32px rgba(218, 228, 255, 0.24);
   border-radius: 12px;
   max-width: 100%;
 `
@@ -25,7 +25,7 @@ export const EmptyName = styled.p`
 
   height: 24px;
   width: 50%;
-  padding-top: 0px;
+  padding-top: 0;
   background: #F9FAFF;
   border-radius: 4px;
 `
@@ -46,7 +46,7 @@ export const Status = styled.div`
   font-size: 13px;
   line-height: 130%;
   color: #A1ABC9;
-  padding-top: 0px;
+  padding-top: 0;
   padding-bottom: 3px;
   padding-left: 16px;
 

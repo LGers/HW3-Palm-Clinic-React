@@ -9,18 +9,18 @@ export const NavigationTabs = () => {
 
     const tabs = userRole === 'patient'
         ? [
-            {key: 1, type: 'secondary', text: 'Profile'},
-            {key: 2, type: 'primary', text: 'Appointments'},
-            {key: 3, type: 'secondary', text: 'Resolutions'}
+            {key: 1, variant: 'secondary', text: 'Profile'},
+            {key: 2, variant: 'primary', text: 'Appointments'},
+            {key: 3, variant: 'secondary', text: 'Resolutions'}
         ]
         : [
-            {key: 1, type: 'primary', text: 'Patients'},
-            {key: 2, type: 'secondary', text: 'Resolutions'}
+            {key: 1, variant: 'primary', text: 'Patients'},
+            {key: 2, variant: 'secondary', text: 'Resolutions'}
         ]
     return (
 
         <Flex gap={'0 24px'} padding={'40px 0'}>
-            {tabs.map(tab => <Tab key={tab.key} type={tab.type}>{tab.text}</Tab>)}
+            {tabs.map(tab => <Tab key={tab.key} variant={tab.variant}>{tab.text}</Tab>)}
         </Flex>
 
     );
