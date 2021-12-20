@@ -1,16 +1,17 @@
 import React from 'react';
-import styled from "styled-components";
 import Select, {components} from "react-select";
 import {MoreVertical} from "react-feather";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    cancelAppointment,
-    confirmAppointment,
-    deleteAppointment,
-} from "../../store/currentUserSlice";
-
-const StyledUserCardSelect = styled.div`
-`
+import {useDispatch} from "react-redux";
+import {changeAppointment} from "../../store/appointments/appointmentsSlice";
+import {CANCELED, CONFIRMED, DELETE, PATCH} from "../../constants/api.dictionary";
+//todo TS it
+const DropdownIndicator = (props) => {
+    return (
+        <components.DropdownIndicator {...props}>
+            <MoreVertical/>
+        </components.DropdownIndicator>
+    );
+};
 
 const resolutionsOptions = [
     {value: 'create', label: 'Create a resolution', isDisabled: true},
@@ -20,15 +21,7 @@ const resolutionsOptions = [
     {value: 'delete', label: 'Delete', color: 'red'},
 ]
 
-const DropdownIndicator = (props) => {
-    return (
-        <components.DropdownIndicator {...props}>
-            <MoreVertical/>
-        </components.DropdownIndicator>
-    );
-};
-
-const customStyles = {
+export const customStyles = {
     menu: () => ({
         position: "absolute",
         right: '16px',
@@ -71,12 +64,12 @@ const defaultValue = (options, value) => {
 export const UserCardSelect = ({appointmentId, ...props}) => {
     const value = ''
     const dispatch = useDispatch()
-    const userRole = useSelector(state => state.currentLogonUser.user).role_name.toLowerCase()
 
-    const handleChange = (option, appointmentId) => {
+    const handleChange = (option, id) => {
         switch (option.value) {
 
-            case 'delete': dispatch(deleteAppointment(appointmentId, userRole))
+            case 'delete':
+                dispatch(changeAppointment({id, request: DELETE}))
                 break
             case 'create': //createResolutionAppointment()
                 break
@@ -84,16 +77,17 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
                 break
             case 'editAppointment': //editResolutionAppointment()
                 break
-            case 'confirmAppointment': dispatch(confirmAppointment(appointmentId))
+            case 'confirmAppointment':
+                dispatch(changeAppointment({id, request: PATCH, status: CONFIRMED}))
                 break
-            case 'cancelAppointment': dispatch(cancelAppointment(appointmentId))
+            case 'cancelAppointment':
+                dispatch(changeAppointment({id, request: PATCH, status: CANCELED}))
                 break
             default :
         }
     }
 
     return (
-        <StyledUserCardSelect {...props}>
             <Select
                 value={defaultValue(resolutionsOptions, value)}
                 components={{
@@ -107,6 +101,5 @@ export const UserCardSelect = ({appointmentId, ...props}) => {
                 onChange={(option) => handleChange(option, appointmentId)}
                 menuPlacement='auto'
             />
-        </StyledUserCardSelect>
     )
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledFlex} from "./flex.styles";
+import {StyledFlex} from "./Flex.styles";
 
 type Props = {
     direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse' | 'inherit' | 'initial' | 'unset'

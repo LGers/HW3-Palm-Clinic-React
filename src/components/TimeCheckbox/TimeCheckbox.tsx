@@ -1,5 +1,5 @@
 import React from 'react';
-import {Label, StyledTimeCheckbox } from './timeCheckbox.styles';
+import {Label, StyledTimeCheckbox } from './TimeCheckbox.styles';
 
 type Props = {
     checkboxId: string

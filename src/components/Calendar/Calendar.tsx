@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {Field} from "formik";
 import {ChevronLeft, ChevronRight} from "react-feather";
 import {
     StyledCalendarHeader,
@@ -8,17 +7,18 @@ import {
     StyledMonthYear,
     StyledMothNavigate,
     StyledWeek
-} from "./calendarStyles";
+} from "./Calendar.styles";
 
 import moment from "moment";
+import {DAY_NAMES} from "../../constants/calendar.dictionary";
 
 type Props = {
     onChange: any
     isStepOneCompleted: boolean
-    today: any
 }
-export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today}, ...props) => {
+export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...props) => {
 
+    const today = moment()
     const [date, setDate] = useState(moment())
     let value = date
     const [calendar, setCalendar] = useState([])
@@ -29,7 +29,7 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today},
 
     useEffect(() => {
         const day = startDay.clone().subtract(1, "day")
-        const tempDay: any = []
+        const tempDay:any = []
         while (day.isBefore(endDay, 'day')) {
             tempDay.push(
                 Array(7)
@@ -40,7 +40,9 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today},
         setCalendar(tempDay)
     }, [value])
 
-    const beforeToday = (day:any) => day.isBefore(new Date(), 'day')
+    const beforeToday = (day: moment.Moment) => day.isBefore(new Date(), 'day')
+    const isDayNotInCurrentMonth = (day: moment.Moment) => day.isBefore(date, 'month') || day.isAfter(date, 'month')
+
     const prevMonth = () => {
         return value.clone().subtract(1, 'month')
     }
@@ -48,12 +50,11 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today},
         return value.clone().add(1, 'month')
     }
 
-    const setDay = (day:any) => {
-        const isoDate = day.toISOString()
+    const setDay = (day: moment.Moment) => {
+        const isoDate = day.add(4, 'hour').toISOString()
         onChange(isoDate)
         return !beforeToday(day) && setDate(day)
     }
-
     return (
         <div {...props}>
             <StyledCalendarHeader>
@@ -71,16 +72,20 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today},
 
             <StyledWeek>
                 {
-                    ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(d => <StyledDayName>{d}</StyledDayName>)
+                    DAY_NAMES.map(d => <StyledDayName>{d}</StyledDayName>)
                 }
             </StyledWeek>
-            {calendar.map((week: any) =>
+            {calendar.map((week:any) =>
                 <StyledWeek>
                     {week.map((day:any) => (
+
                             <StyledDay
-                            isToday={day.format('DDMMYY') === today.format('DDMMYY')}
+
+                                isDayNotInCurrentMonth={isDayNotInCurrentMonth(day)}
+                                isToday={day.format('DDMMYY') === today.format('DDMMYY')}
+
                             >
-                                <Field
+                                <input
                                     onClick={() => {
                                         setDay(day)
                                     }}
@@ -88,8 +93,7 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted, today},
 
                                     id={day.format('DDMMMMYYYY').toString()}
                                     type={'radio'}
-                                    name={'date'}
-                                    value={day.toISOString()}
+                                    name={'calendarDate'}
                                 />
                                 <label
                                     htmlFor={day.format('DDMMMMYYYY').toString()}>{day.format('D').toString()}</label>

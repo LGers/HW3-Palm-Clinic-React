@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyledAppointmentContainer } from './appointmentContent.styles';
-
+import { StyledAppointmentContent } from './AppointmentContent.styles';
 
 export const AppointmentContent: React.FC = (props) => {
-    return <StyledAppointmentContainer {...props}/>
+    return <StyledAppointmentContent {...props}/>
 };

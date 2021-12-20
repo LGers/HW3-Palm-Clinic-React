@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyledTab} from "./tab.styles";
+import {StyledTab} from "./Tab.styles";
 
 type Props = {
+    to: string
     width?: number
     height?: number
     variant?: 'secondary' | 'primary' | 'disabled'

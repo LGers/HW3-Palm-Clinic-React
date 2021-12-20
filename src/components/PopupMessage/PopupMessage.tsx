@@ -1,20 +1,23 @@
 import React from 'react';
-import { StyledPopupMessage, StyledPopupText, StyledPopupTitle } from './popupMessage.styles';
+import {StyledPopupMessage, PopupText, PopupTitle, PopupCloseButton} from './PopupMessage.styles';
+import {AlertOctagon, CheckCircle, X} from "react-feather";
 
 type Props = {
+    title:string
     message: string
-    isSuccess:boolean
+    isSuccess: boolean
+    onClose:()=>void
 }
 
-export const PopupMessage: React.FC<Props> = ({message, isSuccess}) => {
+export const PopupMessage: React.FC<Props> = ({message, title, isSuccess, onClose}) => {
     return (
         <StyledPopupMessage isSuccess={isSuccess}>
-            <StyledPopupTitle>
-                {message}
-            </StyledPopupTitle>
-            <StyledPopupText>
-                {message}
-            </StyledPopupText>
+            {isSuccess ? <CheckCircle/> : <AlertOctagon/>}
+            <div>
+                <PopupTitle>{title}</PopupTitle>
+                <PopupText>{message}</PopupText>
+            </div>
+            <PopupCloseButton onClick={onClose}><X/></PopupCloseButton>
         </StyledPopupMessage>
     )
 };

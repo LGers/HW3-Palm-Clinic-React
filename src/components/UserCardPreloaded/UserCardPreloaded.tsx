@@ -7,7 +7,7 @@ import {
     EmptyTime,
     StyledUserCardPreloaded,
     NameAndStatus, Resolutions, UserInfo
-} from "./userCardPreloaded.styles";
+} from "./UserCardPreloaded.styles";
 
 export const UserCardPreloaded: React.FC = (props) => {
     return (

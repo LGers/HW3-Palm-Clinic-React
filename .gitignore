@@ -13,9 +13,10 @@
 /.netlify
 /.idea
 /src/pages/test
-/src/pages/LoginPage/LoginPageComponents/StyledButton.jsx
+/src/_backup/pages/Login/LoginPageComponents/StyledButton.jsx
 /src/pages/test/api/api.js
 /src/_backup
+/src/_backup/_appointmentsSortBySlice.ts
 
 # misc
 .DS_Store

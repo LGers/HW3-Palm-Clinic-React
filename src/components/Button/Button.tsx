@@ -1,19 +1,20 @@
 import React from 'react';
-import {StyledButton} from "./button.styles";
+import {StyledButton} from "./Button.styles";
 
-type Props1 = {
-    width?: number | undefined
-    height?: number | undefined
-    primary?: string | undefined
-    secondary?: string | undefined
-    isDisabled?: boolean | undefined
-    leftIcon?: string | undefined
-    rightIcon?: string | undefined
+type Props = {
+    width?: number
+    height?: number
+    primary?: string
+    secondary?: string
+    isDisabled?: boolean
+    leftIcon?: string
+    rightIcon?: string
+    variant?: string
+    onClick?:()=>void
 }
 
 
-// @ts-ignore
-export const Button: React.FC<Props1> = (props: Props1) => {
+export const Button: React.FC<Props> = (props: Props) => {
     return (<StyledButton {...props}/>)
 };
 

@@ -11,7 +11,7 @@ import {
     StyledUserCard,
     Time,
     UserInfo
-} from "./userCard.styles";
+} from "./UserCard.styles";
 import {UserCardSelect} from "../UserCardSelect/UserCardSelect";
 
 const appointmentStatus =(status) => {
@@ -27,14 +27,16 @@ const appointmentStatus =(status) => {
 
 
 export const UserCard = ({appointment, ...props}) => {
-    const currentUser = useSelector(state => state.currentLogonUser.user)
+    // debugger
+    const authUser = useSelector(state => state.authUser.data)
+    // const appointmentCardRole = authUser.nameInRequest
 
     let appointmentCardRole = ''
-    switch (currentUser.role_name.toLowerCase()) {
+    switch (authUser.role_name.toLowerCase()) {
         case 'doctor':
             appointmentCardRole = 'patient'
             break
-        case 'patient':
+        default:// 'patient':
             appointmentCardRole = 'doctor'
 
     }
@@ -45,9 +47,10 @@ export const UserCard = ({appointment, ...props}) => {
     const appointmentTime = momentDate.format('h a') + ' - ' + momentDate.add(1, 'hour').format('h a')
 
     let IconDescription = <Heart/>
-    if (currentUser.role_name === 'Doctor') {
+    if (authUser.role_name === 'Doctor') {
         IconDescription = <Clipboard/>
     }
+
 
     return (
         <StyledUserCard {...props}>
@@ -68,7 +71,7 @@ export const UserCard = ({appointment, ...props}) => {
                         </Status>
                     }
                 </NameAndStatus>
-                {currentUser.role_name.toLowerCase() === 'doctor'
+                {authUser.role_name.toLowerCase() === 'doctor'
                     ? <UserCardSelect appointmentId={appointment.id}/>
                     : null
                 }

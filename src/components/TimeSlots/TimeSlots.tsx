@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledTimeSlots} from "./timeSlots.styles";
+import {StyledTimeSlots} from "./TimeSlots.styles";
 
 export const TimeSlots: React.FC = (props) => {
     return <StyledTimeSlots {...props}/>

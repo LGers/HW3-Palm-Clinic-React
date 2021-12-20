@@ -1,0 +1,1 @@
+export const DAY_NAMES =['M', 'T', 'W', 'T', 'F', 'S', 'S']

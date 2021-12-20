@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledGrid} from "./usersGrid.styles";
+import {StyledGrid} from "./UsersGrid.styles";
 
 export const UsersGrid: React.FC = (props) => {
     return <StyledGrid {...props}/>
