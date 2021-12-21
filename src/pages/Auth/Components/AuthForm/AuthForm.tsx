@@ -2,7 +2,7 @@ import React from "react";
 import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from "../../../../constants/path";
 import {AUTH_FORM, RESTORE_PASSWORD} from "../../../../constants/dictionary";
 import {useDispatch} from "react-redux";
-import {Formik} from "formik";
+import {Formik, FormikValues} from "formik";
 import {Link} from "react-router-dom";
 import {Title} from "../../../../components/Title/Title";
 import {ForgotPassword, StyledAuthForm} from "./AuthForm.styles";
@@ -48,9 +48,7 @@ export const AuthForm: React.FC<Props> = ({link, ...props}) => {
 
     const dispatch = useDispatch()
 
-    //todo type value
-    // function handleClick(values: {email:string, password: string}) {
-    function handleClick(values: {email:string, password: string}) {
+    function handleClick(values: FormikValues) {
         link === SIGN_IN_PATH
             ? dispatch(fetchUserToken(values))
             : dispatch(fetchUserToken(values))
@@ -65,9 +63,7 @@ export const AuthForm: React.FC<Props> = ({link, ...props}) => {
             }
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(false);
-                link === SIGN_IN_PATH
-                    ? dispatch(fetchUserToken(values))
-                    : dispatch(fetchUserToken(values))
+                handleClick(values)
             }}
         >
             <StyledAuthForm>
