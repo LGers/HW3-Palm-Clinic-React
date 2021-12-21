@@ -5,17 +5,12 @@ import CabinetIsEmpty from "../CabinetIsEmpty/CabinetIsEmpty";
 import {UserCard} from "../../../../components/UserCard/UserCard";
 import {UserCardPreloaded} from "../../../../components/UserCardPreloaded/UserCardPreloaded";
 import {RootState} from "../../../../store";
-import {fetchUserProfile} from "../../../../store/auth/authSlice";
 import {fetchAppointments} from "../../../../store/appointments/appointmentsSlice";
 
-
-//todo Array(10)
 const PreloadedCards = () => {
-    const cardsArray = []
-    for (let i = 1; i < 10; i++) {
-        cardsArray.push('')
-    }
-    return cardsArray.map(card => <UserCardPreloaded/>)
+    return Array(12)
+        .fill('')
+        .map(() => <UserCardPreloaded/>)
 }
 
 const Appointments: React.FC = () => {
