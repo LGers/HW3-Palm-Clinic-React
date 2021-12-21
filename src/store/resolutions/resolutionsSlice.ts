@@ -9,14 +9,20 @@ export type ResolutionsType =
         next_appointment_date: string
         resolution: string
         visit_date: string
-        // patient: {
-        //     last_name: string
-        //     first_name: string
-        //     id: string
-        //     photo: string
-        //     specialization_name: string
-        // }
+        patient: {
+            last_name: string
+            first_name: string
+            id: string
+            photo: string
+            specialization_name: string
+        }
         doctor: {
+            last_name: string
+            first_name: string
+            id: string
+            photo: string
+        }
+        admin: {
             last_name: string
             first_name: string
             id: string

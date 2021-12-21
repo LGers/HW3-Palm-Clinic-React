@@ -14,7 +14,7 @@ export const StyledProfile = styled.div`
 export const FormContent = styled.div`
   width: 100%;
 `
-export const ProfileHeader = styled.div`
+export const StyledProfileHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

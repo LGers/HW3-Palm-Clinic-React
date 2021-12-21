@@ -1,6 +1,6 @@
 import {Formik} from 'formik';
 import React from 'react';
-import {profileValidationSchema} from "../../../../validations/profileEdit.validation";
+import {doctorProfileValidationSchema} from "../../../../validations/profileEdit.validation";
 
 export const ProfileChangePasswordForm:React.FC = () => {
     return (

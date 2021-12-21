@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const profileValidationSchema = Yup.object({
+export const doctorProfileValidationSchema = Yup.object({
     first_name: Yup.string()
         .max(20, 'Must be 15 characters or less')
         .min(2, 'Must be 2 characters or more')
@@ -13,4 +13,15 @@ export const profileValidationSchema = Yup.object({
         .max(20, 'Must be 20 characters or less')
         .min(2, 'Must be 2 characters or more')
         .required('Required occupation'),
+})
+
+export const patientProfileValidationSchema = Yup.object({
+    first_name: Yup.string()
+        .max(20, 'Must be 15 characters or less')
+        .min(2, 'Must be 2 characters or more')
+        .required('Required'),
+    last_name: Yup.string()
+        .max(20, 'Must be 20 characters or less')
+        .min(2, 'Must be 2 characters or more')
+        .required('Required'),
 })

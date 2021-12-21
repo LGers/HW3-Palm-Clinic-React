@@ -71,7 +71,6 @@ export function* fetchTimesWatcher() {
 
 function* createAppointmentWorker(action:any) {
     try {
-        debugger
         const {statusText} = yield call(fetchCreateAppointment, action.payload)
         yield put(setPopupMessage({
             title: `Appointment ${statusText}`,

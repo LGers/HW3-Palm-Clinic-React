@@ -9,6 +9,7 @@ const PatientResolutions: React.FC = () => {
     const dispatch = useDispatch()
     const authUser = useSelector((state: RootState) => state.authUser)
     const userRole = authUser.data.role_name
+    const roleNameInRequest = authUser.roleNameInRequest
 
     useEffect(() => {
         dispatch(fetchResolutions({userRole}))
@@ -21,7 +22,7 @@ const PatientResolutions: React.FC = () => {
             {isFetching
                 ? <p>Loading</p>
                 : total
-                    ? <TableResolutions resolutions={resolutions}/>
+                    ? <TableResolutions resolutions={resolutions} userRole={roleNameInRequest}/>
                     : <CabinetIsEmpty/>
             }
         </>

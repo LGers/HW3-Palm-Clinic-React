@@ -1,8 +1,5 @@
 import React, {useEffect} from "react";
-import {
-    Switch,
-    Route,
-} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import {history, RootState} from "../store";
 import Cabinet from "../pages/Cabinet/Cabinet";
 import {GlobalStyles} from "../components/GlobalStyles";
@@ -24,23 +21,23 @@ import AuthPage from "../pages/Auth/AuthPage";
 import AuthRestorePassword from "../pages/Auth/AuthRestorePassword";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUserProfile} from "../store/auth/authSlice";
-import {fetchAppointments} from "../store/appointments/appointmentsSlice";
 
 export const Routes: React.FC = () => {
     const dispatch = useDispatch()
-    const userRole = useSelector((state: RootState) => state.authUser.data).role_name
+    const userData = useSelector((state: RootState) => state.authUser.data)
 
 //todo create private routing
     useEffect(() => {
-        if (!userRole) {
+        if (!userData.id) {
             {
                 dispatch(fetchUserProfile())
             }
         } else {
-            dispatch(fetchAppointments({userRole: userRole}))
+            if (history.location.pathname === SIGN_IN_PATH) {
+                history.push(CABINET_APPOINTMENTS_PATH)
+            }
         }
-
-    }, [userRole])
+    })
 
     return (
         <ConnectedRouter history={history}>

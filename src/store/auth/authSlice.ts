@@ -1,15 +1,15 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 export type AuthUser = {
     data: {
-        id: string// | null
-        first_name: string// | null
-        last_name: string// | null
+        id: string
+        first_name: string
+        last_name: string
         photo: string
-        role_name: string
+        role_name: 'doctor' | 'patient' | 'admin'
     },
     occupation: string
-    roleNameInRequest: 'doctor' | 'patient'
+    roleNameInRequest: 'doctor' | 'patient' | 'admin'
     isFetching: boolean
     isTokenExist: boolean
     popupMessage: {
@@ -26,7 +26,7 @@ const initialState: AuthUser = {
         first_name: '',
         last_name: '',
         photo: '',
-        role_name: '',
+        role_name: 'patient',
     },
     occupation: '',
     roleNameInRequest: 'doctor',
@@ -41,13 +41,10 @@ const initialState: AuthUser = {
 
 }
 
-
 const authSlice = createSlice({
         name: 'authUser',
         initialState,
         reducers: {
-            redirectToCabinet() {
-            },
             fetchUserToken(state,action) {
                 state.isFetching = true
             },
@@ -80,7 +77,6 @@ const authSlice = createSlice({
 )
 
 export const {
-    redirectToCabinet,
     fetchUserToken,
     fetchUserProfile,
     setAuthUser,

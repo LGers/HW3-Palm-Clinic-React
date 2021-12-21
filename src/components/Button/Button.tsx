@@ -2,14 +2,15 @@ import React from 'react';
 import {StyledButton} from "./Button.styles";
 
 type Props = {
+    type?: 'submit' | 'button'
     width?: number
     height?: number
-    primary?: string
-    secondary?: string
+    primary?: any
+    secondary?: any
     isDisabled?: boolean
-    leftIcon?: string
-    rightIcon?: string
-    variant?: string
+    leftIcon?: any
+    rightIcon?: any
+    variant?: 'primary' | 'secondary' | 'disabled'
     onClick?:()=>void
 }
 

@@ -1,18 +1,20 @@
 import {ErrorMessage, Form} from 'formik';
 import React, {useState} from 'react';
 import {Flex} from '../../../../components/Flex/Flex';
-import {Title} from "../../../../components/Title/Title";
 import {Button} from "../../../../components/Button/Button";
-import {Lock, PenTool, X} from 'react-feather';
+import {Lock} from 'react-feather';
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store";
 import {Name, NameAndStatus, Specialization} from "../../../../components/UserCard/UserCard.styles";
-import {FormContent, ProfileHeader} from "./Profile.styles";
+import {FormContent} from "./Profile.styles";
 import {StyledAppointmentField} from "../../../CreateAppointment/CreateAppointmentSelects.styles";
+import {ProfileHeader} from "./ProfileHeader";
 
 const ProfileEditForm: React.FC = () => {
     const profile = useSelector((state: RootState) => state.authUser.data)
     const [isEditProfile, setIsEditProfile] = useState(false)
+    const isDoctor = profile.role_name === 'doctor'
+
     const handleClick = () => {
         setIsEditProfile(!isEditProfile)
     }
@@ -20,16 +22,7 @@ const ProfileEditForm: React.FC = () => {
         <FormContent>
             {isEditProfile
                 ? <Form>
-                    <ProfileHeader>
-                        <Title>Profile</Title>
-                        <Flex>
-                            <Button secondary={'secondary'} leftIcon={'X'}
-                                    onClick={handleClick}><X/>Cancel</Button>
-                            <button type="submit">
-                                Save
-                            </button>
-                        </Flex>
-                    </ProfileHeader>
+                    <ProfileHeader isEditProfile={isEditProfile} handleClick={handleClick}/>
 
                     <Flex>
                         <img src={profile.photo} alt={'Profile Photo'}/>
@@ -53,6 +46,7 @@ const ProfileEditForm: React.FC = () => {
                                 />
                                 <ErrorMessage name="last_name" component="div"/>
                             </Flex>
+                            {isDoctor &&
                             <Flex direction={'column'}>
                                 <label htmlFor={'occupation'}>Occupation</label>
                                 <StyledAppointmentField
@@ -62,6 +56,7 @@ const ProfileEditForm: React.FC = () => {
                                 />
                                 <ErrorMessage name="occupation" component="div"/>
                             </Flex>
+                            }
                         </Flex>
 
                     </Flex>
@@ -69,11 +64,7 @@ const ProfileEditForm: React.FC = () => {
 
                 : <Form>
                     <Flex direction={'column'}>
-                        <ProfileHeader>
-                            <Title>Profile</Title>
-                            <Button primary={'primary'} leftIcon={'pencil'}
-                                    onClick={handleClick}><PenTool/>Edit</Button>
-                        </ProfileHeader>
+                        <ProfileHeader isEditProfile={isEditProfile} handleClick={handleClick}/>
                         <Flex justify={'flex-start'}>
                             <img src={profile.photo} alt={'Profile Photo'}/>
                             <Flex justify={'space-between'} direction={'column'}>
@@ -82,7 +73,7 @@ const ProfileEditForm: React.FC = () => {
                                     <Specialization>Therapist</Specialization>{/*//todo delete it*/}
                                     {profile.role_name === 'doctor' && <Specialization>Therapist</Specialization>}
                                 </NameAndStatus>
-                                <Button secondary={'secondary'} leftIcon={'pencil'}><Lock/>Change password</Button>
+                                <Button secondary leftIcon><Lock/>Change password</Button>
                             </Flex>
                         </Flex>
                     </Flex>
@@ -90,8 +81,6 @@ const ProfileEditForm: React.FC = () => {
             }
 
         </FormContent>
-
-
     );
 };
 

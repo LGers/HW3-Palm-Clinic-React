@@ -12,7 +12,6 @@ import {
     getDoctorWatcher,
     getTokensWatcher,
     getUserProfileWatcher,
-    redirectToCabinetWatcher
 } from "./auth/authSaga";
 import {changeResolutionWatcher, userResolutionsWatcher} from "./resolutions/resolutionsSaga";
 
@@ -20,7 +19,6 @@ export function* rootSagas() {
     yield all([
         getTokensWatcher(),
         getUserProfileWatcher(),
-        redirectToCabinetWatcher(),
 
         fetchOccupationsWatcher(),
         fetchDoctorsWatcher(),

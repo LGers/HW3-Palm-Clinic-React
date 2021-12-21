@@ -3,6 +3,7 @@ import {Flex} from "../Flex/Flex";
 import {HeaderUserAvatar, HeaderUserName, HeaderUserProfession, StyledHeader, UserStatusIcon} from "./Header.styles";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import {CABINET_PROFILE_PATH} from "../../constants/path";
 
 
 
@@ -19,7 +20,7 @@ export const Header: React.FC = (props) => {
                         <HeaderUserProfession>{userProfile.role_name}</HeaderUserProfession>
                     </div>
 
-                    <HeaderUserAvatar>
+                    <HeaderUserAvatar to={CABINET_PROFILE_PATH}>
                         <img src={userProfile.photo} alt="avatar"/>
                         <UserStatusIcon/>
                     </HeaderUserAvatar>

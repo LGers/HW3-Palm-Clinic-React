@@ -1,18 +1,20 @@
 import styled, {css} from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
 
-interface Props {
-  width?: number
-  height?: number
-  primary?: string
-  secondary?: string
-  isDisabled?: boolean
-  leftIcon?: string
-  rightIcon?: string
-  // onClick?:()=>void
+type ButtonProps = {
+    type?: 'submit' | 'button'
+    primary?: any
+    secondary?: any
+    isDisabled?: boolean
+    width?: number
+    height?: number
+    leftIcon?: any
+    rightIcon?: any
 }
 
-export const StyledButton = styled.button<Props>`
+export const StyledButton = styled.button.attrs(props => ({
+    type: props.type || 'button'
+}))<ButtonProps>`
   font-weight: 600;
   font-size: 15px;
   line-height: 130%;
@@ -20,8 +22,6 @@ export const StyledButton = styled.button<Props>`
   border: none;
   padding: 15px 16px;
   cursor: pointer;
-  width: ${props => props.width + 'px' || 'auto'};
-  height: ${props => props.height + 'px' || 'auto'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,32 +42,33 @@ export const StyledButton = styled.button<Props>`
   `}
 
   ${props => props.secondary && css`
-    
+
     color: #A1ABC9;
     background-color: #FFF;
     border: 1px solid #DCE0EC;
+
     &:hover {
       background-color: #F9FAFF;
       transition: 0.3s ease-out;
     }
-  `}
+  `};
 
   ${props => props.isDisabled && css`
     color: white;
     background-color: #DCE0EC;
-  `}
+  `};
 
   ${props => props.leftIcon && css`
     & svg {
-        margin-right: 16px;
+      margin-right: 16px;
     }
-  `}
+  `};
 
   ${props => props.rightIcon && css`
     & svg {
       margin-left: 16px;
     }
-  `}
+  `};
   
   @media ${MEDIA_QUERY.TABLET} {
     font-size: 17px;

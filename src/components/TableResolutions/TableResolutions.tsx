@@ -3,29 +3,28 @@ import {TableHeader, TableRow} from './TableResolutions.styles';
 import {HEADER} from "../../constants/resolutions.dictionary";
 import {ChevronDown, MoreVertical} from "react-feather";
 import {ResolutionsType} from "../../store/resolutions/resolutionsSlice";
-import {UserCardSelect} from "../UserCardSelect/UserCardSelect";
 import moment from "moment";
 
 type Props = {
     resolutions: ResolutionsType[]
+    userRole: 'doctor' | 'patient' | 'admin'
 }
+const res = (resolutions: ResolutionsType[], userRole: 'doctor' | 'patient' | 'admin') => {
 
-const res = (resolutions: ResolutionsType[]) => {
     return (
         resolutions.map((resolution: ResolutionsType) =>
             <TableRow key={resolution.id}>
-                <div>{resolution.doctor.first_name}</div>
-                <div>{resolution.doctor.last_name}</div>
+                <div>{resolution[userRole].first_name}</div>
+                <div>{resolution[userRole].last_name}</div>
                 <div>{resolution.resolution}</div>
                 <div>{moment(resolution.visit_date).format('MM/DD/YY')}</div>
                 <div>{moment(resolution.next_appointment_date).format('MM/DD/YY')}</div>
-                {/*<div><UserCardSelect appointmentId={'111'}/></div>*/}
                 <div><MoreVertical/></div>
             </TableRow>)
     )
 }
 
-export const TableResolutions: React.FC<Props> = ({resolutions}) => {
+export const TableResolutions: React.FC<Props> = ({resolutions, userRole}) => {
 
     return (
         <div>
@@ -38,7 +37,7 @@ export const TableResolutions: React.FC<Props> = ({resolutions}) => {
                 <div>{HEADER.ACTIONS}</div>
             </TableHeader>
 
-            {res(resolutions)}
+            {res(resolutions, userRole)}
         </div>
     );
 };
