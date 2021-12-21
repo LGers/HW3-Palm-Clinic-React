@@ -41,7 +41,7 @@ export const DOCTOR_CABINET = {
 
 export const CREATE_APPOINTMENT ={
     OCCUPATION: 'occupation',
-    DOCTOR_ID: 'doctorId',
+    DOCTOR_ID: 'doctorID',
     REASON: {
         INPUT_NAME:'reason',
         PLACEHOLDER:'Reason for visit'

@@ -68,7 +68,7 @@ export function* fetchTimesWatcher() {
     // @ts-ignore // todo @ts-ignore
     yield takeEvery(fetchTimes.type, fetchTimesWorker)
 }
-
+//todo TS action
 function* createAppointmentWorker(action:any) {
     try {
         const {statusText} = yield call(fetchCreateAppointment, action.payload)

@@ -25,12 +25,13 @@ type valuesType = {
     date: string
     reason: string
     note: string
-    doctorId: string
+    doctorID: string
 }
-export const fetchCreateAppointment = (values: valuesType) =>  instance.post(URL.appointments(),
+// export const fetchCreateAppointment = (values: valuesType) =>  instance.post(URL.appointments(),
+export const fetchCreateAppointment = ({date, reason, note, doctorID}:valuesType) =>  instance.post(URL.appointments(),
         {
-            date: values.date,
-            reason: values.reason,
-            note: values.note,
-            doctorID: values.doctorId,
+            date,
+            reason,
+            note,
+            doctorID,
         })

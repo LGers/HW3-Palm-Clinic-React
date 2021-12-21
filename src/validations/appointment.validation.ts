@@ -1,8 +1,13 @@
 import * as Yup from "yup";
 
 export const appointmentValidationSchema = Yup.object({
-    occupation: Yup.string()
+
+    doctorID: Yup.string()
         .required('Required'),
-    doctor_id: Yup.string()
+    reason: Yup.string()
         .required('Required'),
+    date: Yup.string()
+        .required('Required'),
+    note: Yup.string()
+        .max(200, 'Must be 200 characters or less'),
 })

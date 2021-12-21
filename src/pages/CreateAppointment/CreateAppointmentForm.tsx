@@ -64,13 +64,13 @@ export const CreateAppointmentForm: React.FC = () => {
         <Formik
             initialValues={
                 {
-                    doctorId: '',
+                    doctorID: '',
                     reason: '',
                     note: '',
                     date: '',
                 }
             }
-            // validationSchema={appointmentValidationSchema}
+            validationSchema={appointmentValidationSchema}
             onSubmit={(values, {setSubmitting}) => {
                 setSubmitting(false);
                 handleClick(values)
@@ -137,8 +137,8 @@ export const CreateAppointmentForm: React.FC = () => {
                         <div>
                             <AppointmentStep><span>2</span>Chose a day for an appointment</AppointmentStep>
                             <Calendar
-                                onChange={(day: any, doctorId: string) => handleDateChange(day, values.doctorId)}
-                                isStepOneCompleted={!!values.doctorId}
+                                onChange={(day: any, doctorId: string) => handleDateChange(day, values.doctorID)}
+                                isStepOneCompleted={!!values.doctorID}
                             />
                         </div>
 
@@ -146,16 +146,14 @@ export const CreateAppointmentForm: React.FC = () => {
                             <AppointmentStep><span>3</span>Select an available timeslot</AppointmentStep>
 
                             <TimeSlots>
-                                <CreateAppointmentTimes date={date} isStepOneCompleted={!!values.doctorId}/>
+                                <CreateAppointmentTimes date={date} isStepOneCompleted={!!values.doctorID}/>
                             </TimeSlots>
                         </div>
 
-                        {/*<Button type={"submit"}>Submit</Button>*/}
-
-                        <button type="submit"
-                                className="sign-button sign-button_style">Submit
-                        </button>
                     </AppointmentContent>
+                    <Flex justify={'flex-end'}>
+                        <Button type={'submit'} primary>Submit</Button>
+                    </Flex>
                 </Form>
             )}
         </Formik>
