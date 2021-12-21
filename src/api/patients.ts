@@ -1,5 +1,8 @@
-// todo do it
+import {instance} from "./index";
 
-export const a=()=>{
-
+const URL = {
+    patientsMe: () => 'patients/me',
 }
+
+
+export const patientProfile = () => instance.get(URL.patientsMe())

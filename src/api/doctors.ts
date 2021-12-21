@@ -1,4 +1,3 @@
-// todo do it
 import {instance} from "./index";
 
 const URL = {

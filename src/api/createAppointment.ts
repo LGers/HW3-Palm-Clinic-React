@@ -1,5 +1,12 @@
 import {instance} from "./index";
 
+type valuesType = {
+    date: string
+    reason: string
+    note: string
+    doctorID: string
+}
+
 const URL = {
     specializations: () => `/specializations/`,
     doctorsSpecialization: (id: string) => `/doctors/specialization/${id}`,
@@ -19,15 +26,6 @@ export const fetchTimesAppointment = (date: string, id: string) => instance.get(
             }
         })
 
-
-//  todo rename values
-type valuesType = {
-    date: string
-    reason: string
-    note: string
-    doctorID: string
-}
-// export const fetchCreateAppointment = (values: valuesType) =>  instance.post(URL.appointments(),
 export const fetchCreateAppointment = ({date, reason, note, doctorID}:valuesType) =>  instance.post(URL.appointments(),
         {
             date,
