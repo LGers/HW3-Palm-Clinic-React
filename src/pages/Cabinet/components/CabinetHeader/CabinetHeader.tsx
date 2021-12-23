@@ -12,14 +12,15 @@ import {
     USER_ROLE,
     PATIENT_CABINET, DOCTOR_CABINET
 } from "../../../../constants/constants";
+import { RootState } from '../../../../store';
 
+type OptionType = {
+    label: string
+    value: string
+}
 
-export const CabinetHeader = (props) => {
-    const value = ''
-    const dispatch = useDispatch()
-
-    const userRole = useSelector(state => state.authUser.data).role_name.toLowerCase()
-
+export const CabinetHeader: React.FC = () => {
+    const userRole = useSelector((state: RootState) => state.authUser.data).role_name
     const cabinetHeaderData = userRole === USER_ROLE.PATIENT
         ? PATIENT_CABINET
         : DOCTOR_CABINET
@@ -30,30 +31,26 @@ export const CabinetHeader = (props) => {
         history.push(CREATE_APPOINTMENT_PAGE_PATH);
     }
 
-    const handleChange = (value) => {
-        //todo dispatch(fetchAppointments()) // by parameters from value
-    }
-
-    const defaultValue = (options, value) => {
-        return options ? options.find(option => option.value === value) : ""
+    const handleSortChange = (option: OptionType) => {
+        //todo sort dispatch(fetchAppointments()) // by parameters from value
     }
 
     return (
-        <CabinetSearch {...props}>
+        <CabinetSearch >
             <Title>{cabinetHeaderData.TITLE}</Title>
             <SearchBlock>
                 <SearchInput type="text" placeholder="Search"/>
                 <SearchLabel>{cabinetHeaderData.SELECT_LABEL}</SearchLabel>
 
                 <Select
-                    value={defaultValue(cabinetHeaderData.SORT_OPTIONS, value)}
+                    value={''}
                     styles={CabinetHeaderSelectStyles}
                     components={{
                         IndicatorSeparator: null
                     }}
                     options={cabinetHeaderData.SORT_OPTIONS}
                     isSearchable={false}
-                    onChange={(value) => handleChange(value)}
+                    onChange={(option) => handleSortChange(option as OptionType)}
                 />
                 {userRole === USER_ROLE.PATIENT
                     ? <Button primary leftIcon onClick={handleClick}><Plus/> Create an appointment</Button>

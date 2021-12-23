@@ -26,7 +26,7 @@ export const Routes: React.FC = () => {
     const dispatch = useDispatch()
     const userData = useSelector((state: RootState) => state.authUser.data)
 
-//todo create private routing
+//todo create full private routing
     useEffect(() => {
         if (!userData.id) {
             {

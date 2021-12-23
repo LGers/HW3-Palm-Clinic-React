@@ -3,9 +3,9 @@ import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from "../../../../con
 import {
     AUTH_FORM,
     RESTORE_PASSWORD,
-} from "../../../../constants/dictionary";
+} from "../../../../constants/auth.dictionary";
 
-import {Formik} from "formik";
+import {Formik, FormikValues} from "formik";
 import {Link} from "react-router-dom";
 import {Title} from "../../../../components/Title/Title";
 import {AuthText, Email, ForgotPassword, StyledAuthForm} from "./AuthForm.styles";
@@ -40,6 +40,7 @@ const setAuthPageData = (link:string) => {
 const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS)=> {
     return inputs.map(input =>
         <AuthInput
+            key={input.NAME}
             name={input.NAME}
             id={input.NAME}
             type={input.TYPE}
@@ -48,11 +49,11 @@ const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS)=> {
         />
     )
 }
-export const AuthRestorePasswordForm: React.FC<Props> =({link,...props})=>{
+export const AuthRestorePasswordForm: React.FC<Props> =({link})=>{
     const authPageData = setAuthPageData(link)
     const [email, setEmail] = useState('')
 
-    function handleClick(values:any) {
+    function handleClick(values: FormikValues) {
         setEmail(values.email)
     }
     return(

@@ -5,5 +5,4 @@ export const StyledTitle = styled.h1`
   font-weight: 600;
   font-size: 24px;
   line-height: 110%;
-  //padding-bottom: 38px;
 `

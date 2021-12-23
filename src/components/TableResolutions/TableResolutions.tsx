@@ -1,33 +1,42 @@
 import React from 'react';
-import {TableHeader, TableRow} from './TableResolutions.styles';
+import {Table, TableHeader, StyledTableRow} from './TableResolutions.styles';
 import {HEADER} from "../../constants/resolutions.dictionary";
 import {ChevronDown, MoreVertical} from "react-feather";
 import {ResolutionsType} from "../../store/resolutions/resolutionsSlice";
 import moment from "moment";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 
 type Props = {
     resolutions: ResolutionsType[]
     userRole: 'doctor' | 'patient' | 'admin'
 }
-const res = (resolutions: ResolutionsType[], userRole: 'doctor' | 'patient' | 'admin') => {
+
+type ResolutionProps = {
+    resolutionData: ResolutionsType
+}
+
+const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
+    const role_name = useSelector((state: RootState) => state.authUser.data).role_name
+    const isDoctor = role_name === 'doctor'
+    const {next_appointment_date, visit_date, patient, doctor, resolution} = resolutionData
+    const {last_name, first_name} = isDoctor ? patient : doctor
 
     return (
-        resolutions.map((resolution: ResolutionsType) =>
-            <TableRow key={resolution.id}>
-                <div>{resolution[userRole].first_name}</div>
-                <div>{resolution[userRole].last_name}</div>
-                <div>{resolution.resolution}</div>
-                <div>{moment(resolution.visit_date).format('MM/DD/YY')}</div>
-                <div>{moment(resolution.next_appointment_date).format('MM/DD/YY')}</div>
-                <div><MoreVertical/></div>
-            </TableRow>)
-    )
+        <StyledTableRow>
+            <div>{first_name}</div>
+            <div>{last_name}</div>
+            <div>{resolution}</div>
+            <div>{moment(visit_date).format('MM/DD/YY')}</div>
+            <div>{moment(next_appointment_date).format('MM/DD/YY')}</div>
+            <div><MoreVertical/></div>
+        </StyledTableRow>)
 }
 
 export const TableResolutions: React.FC<Props> = ({resolutions, userRole}) => {
 
     return (
-        <div>
+        <>
             <TableHeader>
                 <div>{HEADER.FIRST_NAME} <ChevronDown/></div>
                 <div>{HEADER.LAST_NAME} <ChevronDown/></div>
@@ -36,8 +45,9 @@ export const TableResolutions: React.FC<Props> = ({resolutions, userRole}) => {
                 <div>{HEADER.NEXT_VISIT} <ChevronDown/></div>
                 <div>{HEADER.ACTIONS}</div>
             </TableHeader>
-
-            {res(resolutions, userRole)}
-        </div>
+            <Table>
+                {resolutions.map((resolution) => <TableRow key={resolution.id} resolutionData={resolution}/>)}
+            </Table>
+        </>
     );
 };

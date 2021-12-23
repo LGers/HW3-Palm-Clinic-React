@@ -1,6 +1,6 @@
 import React from "react";
 import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from "../../../../constants/path";
-import {AUTH_FORM, RESTORE_PASSWORD} from "../../../../constants/dictionary";
+import {AUTH_FORM, RESTORE_PASSWORD} from "../../../../constants/auth.dictionary";
 import {useDispatch} from "react-redux";
 import {Formik, FormikValues} from "formik";
 import {Link} from "react-router-dom";
@@ -13,8 +13,8 @@ import {signInValidationSchema, signUpValidationSchema} from "../../../../valida
 
 type Props = {
     link: string
-    showPassword?: any
-    toggleShowPassword?: any
+    showPassword?: never
+    toggleShowPassword?: never
 }
 
 const setAuthPageData = (link: string) => {
@@ -31,10 +31,10 @@ const setAuthPageData = (link: string) => {
     }
 }
 
-
 const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS) => {
     return inputs.map(input =>
         <AuthInput
+            key={input.NAME}
             name={input.NAME}
             id={input.NAME}
             type={input.TYPE}
@@ -43,7 +43,7 @@ const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS) => {
         />
     )
 }
-export const AuthForm: React.FC<Props> = ({link, ...props}) => {
+export const AuthForm: React.FC<Props> = ({link}) => {
     const authPageData = setAuthPageData(link)
 
     const dispatch = useDispatch()

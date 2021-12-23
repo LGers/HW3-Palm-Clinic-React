@@ -9,7 +9,7 @@ import {
     StyledWeek
 } from "./Calendar.styles";
 
-import moment from "moment";
+import moment, { Moment } from "moment";
 import {DAY_NAMES} from "../../constants/calendar.dictionary";
 
 type Props = {
@@ -20,7 +20,7 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
 
     const today = moment()
     const [date, setDate] = useState(moment())
-    let value = date
+    const value = date
     const [calendar, setCalendar] = useState([])
     const startDay = value.clone().startOf('month').startOf("week").add(1, 'days')
     const endDay = value.clone().endOf('month').endOf("week").add(1, 'days')
@@ -29,9 +29,11 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
 
     useEffect(() => {
         const day = startDay.clone().subtract(1, "day")
-        const tempDay:any = []
+        const tempDay:any=[]
+
         while (day.isBefore(endDay, 'day')) {
             tempDay.push(
+                // tempDay2
                 Array(7)
                     .fill(0)
                     .map(() => day.add(1, 'day').clone())
@@ -72,22 +74,22 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
 
             <StyledWeek>
                 {
-                    DAY_NAMES.map(d => <StyledDayName>{d}</StyledDayName>)
+                    DAY_NAMES.map((day, index) => <StyledDayName key={index}>{day}</StyledDayName>)
                 }
             </StyledWeek>
-            {calendar.map((week:any) =>
-                <StyledWeek>
-                    {week.map((day:any) => (
+            {calendar.map((week:Moment[], index) =>
+                <StyledWeek key={index}>
+                    {week.map((day) => (
 
-                            <StyledDay
+                        <StyledDay
+                           key={index}
+                            isDayNotInCurrentMonth={isDayNotInCurrentMonth(day)}
+                            isToday={day.format('DDMMYY') === today.format('DDMMYY')}
 
-                                isDayNotInCurrentMonth={isDayNotInCurrentMonth(day)}
-                                isToday={day.format('DDMMYY') === today.format('DDMMYY')}
-
-                            >
-                                <input
-                                    onClick={() => {
-                                        setDay(day)
+                        >
+                            <input
+                                onClick={() => {
+                                    setDay(day)
                                     }}
                                     disabled={(!isStepOneCompleted || beforeToday(day))}
 

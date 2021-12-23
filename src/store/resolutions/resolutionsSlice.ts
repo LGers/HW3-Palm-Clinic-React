@@ -21,6 +21,7 @@ export type ResolutionsType =
             first_name: string
             id: string
             photo: string
+            specialization_name: string
         }
         admin: {
             last_name: string

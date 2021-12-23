@@ -7,10 +7,11 @@ import {UserCardPreloaded} from "../../../../components/UserCardPreloaded/UserCa
 import {RootState} from "../../../../store";
 import {fetchAppointments} from "../../../../store/appointments/appointmentsSlice";
 
+
 const PreloadedCards = () => {
     return Array(12)
         .fill('')
-        .map(() => <UserCardPreloaded/>)
+        .map((card) => <UserCardPreloaded key={card.key}/>)
 }
 
 const Appointments: React.FC = () => {

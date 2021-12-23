@@ -1,19 +1,6 @@
 import styled from "styled-components";
 import {Field} from "formik";
-
-export const occupationOptions = [
-    {value: 'therapist', label: 'Therapist'},
-    {value: 'dent', label: 'Dent'},
-    {value: 'doctor', label: 'Doctor'},
-]
-
-export const doctorsOptions = [
-    {value: 'doctorId1', label: 'John Milton'},
-    {value: 'doctorId2', label: 'Miranda Nelson'},
-    {value: 'doctorId3', label: 'Miranda Nelson'},
-    {value: 'doctorId4', label: 'Miranda Nelson'},
-]
-
+import {StylesConfig} from "react-select";
 
 export const StyledAppointmentLabel = styled.label`
   font-style: normal;
@@ -39,8 +26,8 @@ export const StyledAppointmentField = styled(Field)`
   }
 `
 
-export const AppointmentSelectStyles = {
-    menu: (provided, state) => ({
+export const AppointmentSelectStyles: StylesConfig = {
+    menu: (provided) => ({
         ...provided,
         borderRadius: '8px',
         padding: '4px',
@@ -50,7 +37,7 @@ export const AppointmentSelectStyles = {
     }),
 
 
-    menuList: (provided, state) => ({
+    menuList: (provided) => ({
         ...provided,
         border: 'none',
         margin: '4px',
@@ -70,7 +57,7 @@ export const AppointmentSelectStyles = {
         },
         cursor: state.isDisabled ? 'not-allowed' : 'pointer',
     }),
-    control: (provided, state) => ({
+    control: (provided) => ({
         ...provided,
         border: '1px solid #DCE0EC',
         boxShadow: '0px 4px 32px rgba(218, 228, 255, 0.16)',

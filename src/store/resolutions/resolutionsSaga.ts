@@ -17,6 +17,7 @@ export function* fetchResolutionsWorker(action: GetResolutionsType) {
     }
 }
 export function* userResolutionsWatcher() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     yield takeEvery(fetchResolutions.type, fetchResolutionsWorker) // todo @ts-ignore
 }
@@ -32,6 +33,7 @@ type ChangeResolutionsType = {
 export function* changeResolutionWorker(action: ChangeResolutionsType) {
     const {id, request, resolution} = action.payload
     try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         yield call(fetchUpdateResolution, id, request, resolution) //todo @ts-ignore
     } catch (error:any) {
@@ -40,6 +42,7 @@ export function* changeResolutionWorker(action: ChangeResolutionsType) {
 }
 
 export function* changeResolutionWatcher() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     yield takeEvery(changeResolution.type, changeResolutionWorker) //todo @ts-ignore
 }

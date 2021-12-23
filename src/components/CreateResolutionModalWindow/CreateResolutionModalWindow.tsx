@@ -18,8 +18,8 @@ export const CreateResolutionModalWindow: React.FC<Props> = ({name, ...props}) =
                     <TextArea/>
                 </Resolution>
                 <Buttons>
-                    <Button variant={'secondary'} leftIcon={'X'}><X/>Cancel</Button>
-                    <Button variant={'primary'} leftIcon={'Clipboard'}><Clipboard/> Create</Button>
+                    <Button secondary leftIcon><X/>Cancel</Button>
+                    <Button primary leftIcon><Clipboard/> Create</Button>
                 </Buttons>
             </Content>
 

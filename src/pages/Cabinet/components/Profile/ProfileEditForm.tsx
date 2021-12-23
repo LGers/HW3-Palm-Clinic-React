@@ -70,7 +70,6 @@ const ProfileEditForm: React.FC = () => {
                             <Flex justify={'space-between'} direction={'column'}>
                                 <NameAndStatus>
                                     <Name>{profile.first_name} {profile.last_name}</Name>
-                                    <Specialization>Therapist</Specialization>{/*//todo delete it*/}
                                     {profile.role_name === 'doctor' && <Specialization>Therapist</Specialization>}
                                 </NameAndStatus>
                                 <Button secondary leftIcon><Lock/>Change password</Button>

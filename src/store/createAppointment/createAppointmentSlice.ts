@@ -1,12 +1,9 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-//todo delete it
+import {createSlice} from "@reduxjs/toolkit";
 
 interface CreateAppointment {
     occupations: any[]
     doctors: any[]
     times: any[]
-    // errorMessage: string
-    // showSuccessMessage: boolean
     isFetching: boolean
 }
 
@@ -14,10 +11,7 @@ const initialState: CreateAppointment = {
     occupations: [],
     doctors: [],
     times: [],
-    // errorMessage: '',
-    // showSuccessMessage: false,
     isFetching: false
-
 }
 
 const createAppointmentSlice = createSlice({
@@ -49,17 +43,10 @@ const createAppointmentSlice = createSlice({
             },
 
 
-            //todo delete it or Not??
+            //todo delete it??
             createAppointment(state, action) {
-
+                state.isFetching = true
             },
-
-            /*showErrorMessage(state, action) {
-                state.errorMessage = action.payload
-            },
-            showSuccessMessage(state, action) {
-                state.showSuccessMessage = !state.showSuccessMessage
-            },*/
         }
     }
 )
@@ -71,9 +58,6 @@ export const {
     setDoctors,
     fetchTimes,
     setTimes,
-    // showErrorMessage,
-    // showSuccessMessage,
-
     createAppointment,
 } = createAppointmentSlice.actions
 

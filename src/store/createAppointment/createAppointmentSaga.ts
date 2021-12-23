@@ -44,7 +44,9 @@ function* fetchDoctorsWorker(action: OccupationsType) {
     }
 }
 export function* fetchDoctorsWatcher() {
-    // @ts-ignore // todo @ts-ignore
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     yield takeEvery(fetchDoctors.type, fetchDoctorsWorker)
 }
 
@@ -65,6 +67,7 @@ function* fetchTimesWorker(action: TimesFreeType) {
 }
 
 export function* fetchTimesWatcher() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore // todo @ts-ignore
     yield takeEvery(fetchTimes.type, fetchTimesWorker)
 }
@@ -85,6 +88,7 @@ function* createAppointmentWorker(action:any) {
 }
 
 export function* createAppointmentWatcher() {
-// @ts-ignore // todo @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore // todo @ts-ignore
     yield takeEvery(createAppointment.type, createAppointmentWorker)
 }

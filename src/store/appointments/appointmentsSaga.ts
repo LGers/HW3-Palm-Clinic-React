@@ -21,6 +21,7 @@ export function* fetchAppointmentsWorker(action: AppointmentsType) {
 }
 
 export function* userAppointmentsWatcher() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore //todo @ts-ignore
     yield takeEvery(fetchAppointments.type, fetchAppointmentsWorker)
 }
@@ -35,6 +36,7 @@ type ChangeAppointmentsType = {
 export function* changeAppointmentWorker(action:ChangeAppointmentsType) {
     const {id, request, status} = action.payload
     try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore //todo @ts-ignore
         yield call(fetchUpdateAppointment, id, request, status)
     } catch (error: any) {
@@ -43,6 +45,7 @@ export function* changeAppointmentWorker(action:ChangeAppointmentsType) {
 }
 
 export function* changeAppointmentWatcher() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore //todo @ts-ignore
     yield takeEvery(changeAppointment.type, changeAppointmentWorker)
 }

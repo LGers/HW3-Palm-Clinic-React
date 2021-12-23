@@ -10,8 +10,15 @@ export type AppointmentType =
         patient_id: string
         doctor_id: string
         visit_date: string
-        status: string
+        status: 'confirmed' | 'canceled' | 'waiting'
         doctor: {
+            last_name: string
+            first_name: string
+            id: string
+            photo: string
+            specialization_name: string
+        }
+        patient: {
             last_name: string
             first_name: string
             id: string

@@ -25,6 +25,7 @@ import {CABINET_APPOINTMENTS_PATH} from '../../constants/path';
 import {Link} from 'react-router-dom';
 import {ChevronRight} from 'react-feather';
 import {Button} from "../../components/Button/Button";
+import {LABELS, STEP} from '../../constants/appointment.dictionary';
 
 
 export const CreateAppointmentForm: React.FC = () => {
@@ -93,29 +94,27 @@ export const CreateAppointmentForm: React.FC = () => {
                     <AppointmentContent>
                         <Flex direction={'column'}>
                             <AppointmentStep>
-                                <span>1</span>Select a doctor and define the reason of your visit
+                                <span>1</span>{STEP.ONE}
                             </AppointmentStep>
 
                             <StyledAppointmentLabel
-                                htmlFor={CREATE_APPOINTMENT.OCCUPATION}>Occupation</StyledAppointmentLabel>
+                                htmlFor={CREATE_APPOINTMENT.OCCUPATION}>{LABELS.OCCUPATION}</StyledAppointmentLabel>
                             <CreateAppointmentSelect
                                 options={occupationOptions}
                                 name={CREATE_APPOINTMENT.OCCUPATION}
                                 selectId={CREATE_APPOINTMENT.OCCUPATION}
                             />
 
-                            <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>Doctor's
-                                name</StyledAppointmentLabel>
+                            <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>{LABELS.DOCTORS}</StyledAppointmentLabel>
                             <CreateAppointmentSelect
                                 onChange={() => handleChange}
                                 options={doctorOptions}
                                 name={CREATE_APPOINTMENT.DOCTOR_ID}
                                 selectId={CREATE_APPOINTMENT.DOCTOR_ID}
-                                isDisabled={!Boolean(newAppointment.doctors.length)}
+                                isDisabled={!newAppointment.doctors.length}
                             />
 
-                            <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.REASON.INPUT_NAME}>Reason for
-                                visit</StyledAppointmentLabel>
+                            <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.REASON.INPUT_NAME}>{LABELS.REASON}</StyledAppointmentLabel>
                             <StyledAppointmentField
 
                                 name={CREATE_APPOINTMENT.REASON.INPUT_NAME}
@@ -125,7 +124,7 @@ export const CreateAppointmentForm: React.FC = () => {
                             />
 
                             <StyledAppointmentLabel
-                                htmlFor={CREATE_APPOINTMENT.NOTE.INPUT_NAME}>Note</StyledAppointmentLabel>
+                                htmlFor={CREATE_APPOINTMENT.NOTE.INPUT_NAME}>{LABELS.NOTE}</StyledAppointmentLabel>
                             <StyledAppointmentField
                                 name={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
                                 id={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
@@ -135,15 +134,16 @@ export const CreateAppointmentForm: React.FC = () => {
                         </Flex>
 
                         <div>
-                            <AppointmentStep><span>2</span>Chose a day for an appointment</AppointmentStep>
+                            <AppointmentStep><span>2</span>{STEP.TWO}</AppointmentStep>
+                            {/*//todo TS any delete doctorID*/}
                             <Calendar
-                                onChange={(day: any, doctorId: string) => handleDateChange(day, values.doctorID)}
+                                onChange={(day: any, doctorID: string) => handleDateChange(day, values.doctorID)}
                                 isStepOneCompleted={!!values.doctorID}
                             />
                         </div>
 
                         <div>
-                            <AppointmentStep><span>3</span>Select an available timeslot</AppointmentStep>
+                            <AppointmentStep><span>3</span>{STEP.THREE}</AppointmentStep>
 
                             <TimeSlots>
                                 <CreateAppointmentTimes date={date} isStepOneCompleted={!!values.doctorID}/>

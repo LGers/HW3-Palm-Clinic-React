@@ -1,4 +1,6 @@
-export const CabinetHeaderSelectStyles = {
+import {StylesConfig} from "react-select";
+
+export const CabinetHeaderSelectStyles: StylesConfig = {
     menu: (provided) => ({
         ...provided,
         color: '#7297FF',
@@ -9,7 +11,7 @@ export const CabinetHeaderSelectStyles = {
     }),
 
 
-    menuList: (provided, state) => ({
+    menuList: (provided) => ({
         ...provided,
 
         border: 'none',
@@ -34,7 +36,7 @@ export const CabinetHeaderSelectStyles = {
         },
     }),
 
-    control: (provided, state) => ({
+    control: (provided) => ({
         ...provided,
         backgroundColor: 'transparent',
 

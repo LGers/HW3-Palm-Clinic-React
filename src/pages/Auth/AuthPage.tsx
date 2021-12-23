@@ -1,7 +1,7 @@
 import React from 'react';
 import {AuthForm} from "./Components/AuthForm/AuthForm";
 import {AuthFooter} from "./Components/AuthFooter/AuthFooter";
-import {AUTH_FOOTER} from "../../constants/dictionary";
+import {AUTH_FOOTER} from "../../constants/auth.dictionary";
 import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from '../../constants/path';
 import {AuthBar, AuthBarContent, AuthBody} from './AuthPage.styles';
 

@@ -27,10 +27,10 @@ export function* getTokenWorker(action: TokenType) {
 }
 
 export function* getTokensWatcher() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore // todo @ts-ignore
-    yield takeEvery(fetchUserToken.type , getTokenWorker)
+    yield takeEvery(fetchUserToken.type, getTokenWorker)
 }
-
 
 export function* getUserProfileWorker() {
     try {
@@ -50,10 +50,6 @@ export function* getDoctorWorker() {
     try {
         const {data} = yield call(doctorProfile)
         yield put(setDoctorOccupation(data.specialization_name))
-    } catch (error: any) {
-        yield errorMessage(error)
-    }
-    try {
     } catch (error: any) {
         yield errorMessage(error)
     }

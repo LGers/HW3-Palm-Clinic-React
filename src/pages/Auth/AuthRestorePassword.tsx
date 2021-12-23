@@ -1,6 +1,6 @@
 import React from 'react';
 import {AuthFooter} from "./Components/AuthFooter/AuthFooter";
-import {AUTH_FOOTER} from "../../constants/dictionary";
+import {AUTH_FOOTER} from "../../constants/auth.dictionary";
 import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from '../../constants/path';
 import {AuthBar, AuthBarContent, AuthBody} from './AuthPage.styles';
 import {AuthRestorePasswordForm} from "./Components/AuthForm/AuthRestorePasswordForm";
@@ -19,7 +19,6 @@ const setAuthPageData = (link:string) => {
             return AUTH_FOOTER.RESTORE_PASSWORD
         default :
             return AUTH_FOOTER.RESTORE_PASSWORD_SENT
-
     }
 }
 

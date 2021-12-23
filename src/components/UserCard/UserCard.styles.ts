@@ -1,10 +1,13 @@
 import styled, {css} from "styled-components";
+interface StatusIconProps {
+  status: 'confirmed' | 'canceled' | 'waiting'
+}
 
 export const StyledUserCard = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
-  box-shadow: 0px 4px 32px rgba(218, 228, 255, 0.24);
+  box-shadow: 0 4px 32px rgba(218, 228, 255, 0.24);
   border-radius: 12px;
   max-width: 100%;
 `
@@ -25,7 +28,6 @@ export const UserInfo = styled.div`
 `
 
 export const NameAndStatus = styled.div`
-  
   overflow: hidden;
 `
 
@@ -35,7 +37,7 @@ export const Name = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-top: 0px;
+  padding-top: 0;
   padding-bottom: 3px;
   padding-left: 16px;
 `
@@ -67,13 +69,13 @@ export const Status = styled.div`
     text-overflow: ellipsis;
   }
 `
-export const StatusIcon = styled.div`
+export const StatusIcon = styled.div<StatusIconProps>`
   border-radius: 50%;
   width:  4px;
   padding: 4px;
   margin-right: 10px;
 
-  background-color: #7297FF; // waiting
+  background-color: #7297FF;
 
   ${props => props.status === 'confirmed' && css`
     background-color: #34C197;
@@ -82,16 +84,6 @@ export const StatusIcon = styled.div`
   ${props => props.status === 'canceled' && css`
     background-color: #FF2567;
   `}
-`
-
-const ManageButton = styled.button`
-  width: 52px;
-  border: none;
-  background: transparent;
-  height: 24px;
-  background: url("../../../../static/img/edit_user.svg") no-repeat center;
-  align-self: center;
-  justify-self: center;
 `
 
 export const Resolutions = styled.p`
