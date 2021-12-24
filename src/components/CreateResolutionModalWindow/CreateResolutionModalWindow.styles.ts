@@ -14,8 +14,8 @@ export const Content = styled.div`
   width: 560px;
   border-radius: 16px;
   background-color: #FFF;
-
 `
+
 export const Resolution = styled.div`
   padding: 40px;
   border-bottom: solid 1px #DCE0EC;;

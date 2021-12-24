@@ -14,7 +14,6 @@ export const StyledAuthInput = styled(Field).attrs(props => ({
   padding: 16px 24px 16px 64px;
   width: 100%;
   background: #FFFFFF;
-  //border: 1px solid #DCE0EC;
   border: ${props => props.error ? '1px solid #F6657F': '1px solid #DCE0EC'};
   box-shadow: 0 4px 32px rgba(218, 228, 255, 0.16);
   border-radius: 8px;
@@ -51,7 +50,6 @@ export const ShowPasswordButton = styled.div`
   cursor: pointer;
   position: absolute;
   right: 7%;
-  //right: px;
   width: 20px;
   height: 20px;
   top: 29px;

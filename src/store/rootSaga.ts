@@ -9,6 +9,7 @@ import {
     fetchOccupationsWatcher, fetchTimesWatcher,
 } from "./createAppointment/createAppointmentSaga";
 import {
+    ChangePasswordWatcher,
     getDoctorWatcher,
     getTokensWatcher,
     getUserProfileWatcher, SignUpWatcher,
@@ -21,6 +22,7 @@ export function* rootSagas() {
         getTokensWatcher(),
         getUserProfileWatcher(),
         SignUpWatcher(),
+        ChangePasswordWatcher(),
 
         fetchOccupationsWatcher(),
         fetchDoctorsWatcher(),

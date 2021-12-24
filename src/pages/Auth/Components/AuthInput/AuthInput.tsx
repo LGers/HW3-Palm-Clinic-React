@@ -22,7 +22,7 @@ export const AuthInput: React.FC<Props> = (props) => {
     }
 
     const isPassword = () => {
-        return props.name === 'password'
+        return props.type === 'password'
     }
 
     return (

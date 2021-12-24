@@ -98,4 +98,19 @@ export const RESTORE_PASSWORD = {
     SEND_TEXT_AFTER: `. Check your inbox, and click the reset link provided`,
 }
 
+export const CHANGE_PASSWORD = {
+    TITLE: `Change password`,
+    INPUTS: [
+        {NAME: 'oldPassword', PLACEHOLDER: 'Old password', TYPE: 'password', ICON_URL: PASSWORD_ICON, LABEL_TEXT: 'Old password'},
+        {NAME: 'newPassword', PLACEHOLDER: 'New password', TYPE: 'password', ICON_URL: PASSWORD_ICON, LABEL_TEXT: 'New password'},
+    ],
+    INITIAL_VALUES: {
+        oldPassword: '',
+        newPassword: '',
+    },
+    BUTTON_TEXT:{
+        SAVE: 'Save',
+        CANCEL: 'Cancel',
+    },
+}
 

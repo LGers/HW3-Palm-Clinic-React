@@ -34,3 +34,12 @@ export const restorePasswordValidationSchema = Yup.object({
             .email('Invalid email address')
             .required('Required'),
 })
+
+export const changePasswordValidationSchema = Yup.object({
+        oldPassword: Yup.string()
+            .required('Required')
+            .min(6, 'Must be 6 characters or more'),
+        newPassword: Yup.string()
+            .required('Required')
+            .min(6, 'Must be 6 characters or more'),
+})

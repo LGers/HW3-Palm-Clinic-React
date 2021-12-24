@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {StyledProfile} from './Profile.styles';
+import React, {useEffect, useState} from 'react';
+import {FormContent, StyledProfile} from './Profile.styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../../store";
 import {
@@ -7,9 +7,15 @@ import {
     patientProfileValidationSchema
 } from "../../../../validations/profileEdit.validation";
 import {fetchDoctorProfile} from "../../../../store/auth/authSlice";
-import {Formik} from "formik";
+import {Form, Formik} from "formik";
 import ProfileEditForm from "./ProfileEditForm";
-import { fetchDoctorChangeProfile, fetchPatientChangeProfile } from '../../../../store/profile/profileSlice';
+import {fetchDoctorChangeProfile, fetchPatientChangeProfile} from '../../../../store/profile/profileSlice';
+import {ProfileHeader} from "./ProfileHeader";
+import {Flex} from "../../../../components/Flex/Flex";
+import {Name, NameAndStatus, Specialization} from "../../../../components/UserCard/UserCard.styles";
+import {Button} from "../../../../components/Button/Button";
+import {Lock} from "react-feather";
+import {ChangePasswordForm} from '../../../../components/ChangePasswordForm/ChangePasswordForm';
 
 type ProfileType = {
     id: string
@@ -21,7 +27,7 @@ type ProfileType = {
 export const Profile: React.FC = (props) => {
     const dispatch = useDispatch()
     const profile: ProfileType = useSelector((state: RootState) => state.authUser.data)
-    const {role_name, first_name, last_name, id} =profile
+    const {role_name, first_name, last_name, photo} = profile
     const specialization = useSelector((state: RootState) => state.authUser.occupation)
     const isDoctor = role_name === 'doctor'
     const initialValues = isDoctor
@@ -37,9 +43,19 @@ export const Profile: React.FC = (props) => {
 
     const validationSchema = isDoctor ? doctorProfileValidationSchema : patientProfileValidationSchema
 
+    const [isEditProfile, setIsEditProfile] = useState(false)
+    const [isChangePassword, setIsChangePassword] = useState(false)
+
     useEffect(() => {
         isDoctor && dispatch(fetchDoctorProfile())
     }, [])
+
+    const handleEditProfile = () => {
+        setIsEditProfile(!isEditProfile)
+    }
+    const handleChangePassword = () => {
+        setIsChangePassword(!isChangePassword)
+    }
 
     return (
         <StyledProfile {...props}>
@@ -56,9 +72,32 @@ export const Profile: React.FC = (props) => {
                 {({
                       isSubmitting,
                   }) => (
-                    <ProfileEditForm/>
+                    // <ProfileEditForm/>
+                    isEditProfile ? <ProfileEditForm setIsEditProfile={setIsEditProfile}/>
+                        :
+                        <FormContent>
+                            <Form>
+                                <ProfileHeader isEditProfile={isEditProfile} handleEditProfile={handleEditProfile}/>
+                                <Flex direction={'column'}>
+                                    <Flex justify={'flex-start'}>
+                                        <img src={photo} alt={'Profile Photo'}/>
+                                        <Flex justify={'space-between'} direction={'column'}>
+                                            <NameAndStatus>
+                                                <Name>{first_name} {last_name}</Name>
+                                                {isDoctor && <Specialization>Therapist</Specialization>}
+                                            </NameAndStatus>
+                                            <Button secondary leftIcon onClick={handleChangePassword}>
+                                                <Lock/>Change password
+                                            </Button>
+                                        </Flex>
+                                    </Flex>
+                                </Flex>
+                            </Form>
+                        </FormContent>
+
                 )}
             </Formik>
+            {isChangePassword && <ChangePasswordForm handleChangePassword={handleChangePassword}/>}
         </StyledProfile>
     );
 };

@@ -68,19 +68,17 @@ export const AuthForm: React.FC<Props> = ({link}) => {
                     <Title>{authPageData.TITLE}</Title>
                 </div>
 
-                {link === RESTORE_PASSWORD_PATH ? RESTORE_PASSWORD.TEXT : null}
-                {authPageData.INPUTS.length ? authInputs(authPageData.INPUTS) : null}
+                {link === RESTORE_PASSWORD_PATH && RESTORE_PASSWORD.TEXT}
+                {authPageData.INPUTS.length && authInputs(authPageData.INPUTS)}
 
-                {authPageData.BUTTON_TEXT ?
-                    <AuthButton type={"submit"}>{authPageData.BUTTON_TEXT}</AuthButton>
-                    : null}
+                {authPageData.BUTTON_TEXT && <AuthButton type={"submit"}>{authPageData.BUTTON_TEXT}</AuthButton>}
 
-                {link === SIGN_IN_PATH ?
-                    <ForgotPassword>
-                        <Link to={RESTORE_PASSWORD_PATH}>Forgot
-                            Password?</Link>
-                    </ForgotPassword>
-                    : null}
+                {link === SIGN_IN_PATH &&
+                <ForgotPassword>
+                    <Link to={RESTORE_PASSWORD_PATH}>Forgot
+                        Password?</Link>
+                </ForgotPassword>
+                }
             </StyledAuthForm>
         </Formik>
     )
