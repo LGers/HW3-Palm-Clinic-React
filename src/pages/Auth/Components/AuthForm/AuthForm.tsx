@@ -8,7 +8,7 @@ import {Title} from "../../../../components/Title/Title";
 import {ForgotPassword, StyledAuthForm} from "./AuthForm.styles";
 import {AuthInput} from "../AuthInput/AuthInput";
 import {AuthButton} from "../../AuthPage.styles";
-import {fetchUserToken} from "../../../../store/auth/authSlice";
+import {fetchSignUp, fetchSignIn} from "../../../../store/auth/authSlice";
 import {signInValidationSchema, signUpValidationSchema} from "../../../../validations/auth.validation";
 
 type Props = {
@@ -19,15 +19,12 @@ type Props = {
 
 const setAuthPageData = (link: string) => {
     switch (link) {
-        case SIGN_IN_PATH:
-            return AUTH_FORM.SIGN_IN
         case SIGN_UP_PATH:
             return AUTH_FORM.SIGN_UP
         case RESTORE_PASSWORD_PATH:
             return AUTH_FORM.RESTORE_PASSWORD
         default :
-            return AUTH_FORM.RESTORE_PASSWORD_SENT
-
+            return AUTH_FORM.SIGN_IN
     }
 }
 
@@ -50,8 +47,8 @@ export const AuthForm: React.FC<Props> = ({link}) => {
 
     function handleClick(values: FormikValues) {
         link === SIGN_IN_PATH
-            ? dispatch(fetchUserToken(values))
-            : dispatch(fetchUserToken(values))
+            ? dispatch(fetchSignIn(values))
+            : dispatch(fetchSignUp(values))
     }
 
     return (

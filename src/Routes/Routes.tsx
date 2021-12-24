@@ -33,7 +33,7 @@ export const Routes: React.FC = () => {
                 dispatch(fetchUserProfile())
             }
         } else {
-            if (history.location.pathname === SIGN_IN_PATH) {
+            if (history.location.pathname === SIGN_IN_PATH || history.location.pathname === MAIN_PAGE_PATH) {
                 history.push(CABINET_APPOINTMENTS_PATH)
             }
         }

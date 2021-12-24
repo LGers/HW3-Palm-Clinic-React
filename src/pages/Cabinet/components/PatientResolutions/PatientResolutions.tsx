@@ -4,6 +4,7 @@ import CabinetIsEmpty from "../CabinetIsEmpty/CabinetIsEmpty";
 import {RootState} from "../../../../store";
 import {fetchResolutions} from "../../../../store/resolutions/resolutionsSlice";
 import {TableResolutions} from "../../../../components/TableResolutions/TableResolutions";
+import {CabinetHeader} from "../CabinetHeader/CabinetHeader";
 
 const PatientResolutions: React.FC = () => {
     const dispatch = useDispatch()
@@ -19,6 +20,7 @@ const PatientResolutions: React.FC = () => {
 
     return (
         <>
+            <CabinetHeader/>
             {isFetching
                 ? <p>Loading</p>
                 : total

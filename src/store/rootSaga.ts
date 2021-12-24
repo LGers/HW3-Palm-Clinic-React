@@ -11,14 +11,16 @@ import {
 import {
     getDoctorWatcher,
     getTokensWatcher,
-    getUserProfileWatcher,
+    getUserProfileWatcher, SignUpWatcher,
 } from "./auth/authSaga";
 import {changeResolutionWatcher, userResolutionsWatcher} from "./resolutions/resolutionsSaga";
+import {ChangeDoctorProfileWatcher, ChangePatientProfileWatcher} from "./profile/profileSaga";
 
 export function* rootSagas() {
     yield all([
         getTokensWatcher(),
         getUserProfileWatcher(),
+        SignUpWatcher(),
 
         fetchOccupationsWatcher(),
         fetchDoctorsWatcher(),
@@ -31,6 +33,9 @@ export function* rootSagas() {
         userResolutionsWatcher(),
         changeResolutionWatcher(),
         getDoctorWatcher(),
+
+        ChangePatientProfileWatcher(),
+        ChangeDoctorProfileWatcher(),
     ])
 
 }

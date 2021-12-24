@@ -7,9 +7,9 @@ import {StyledProfileHeader} from './Profile.styles';
 
 type Props = {
     isEditProfile: boolean
-    handleClick: () => void
+    handleEditProfile: () => void
 }
-export const ProfileHeader: React.FC<Props> = ({isEditProfile, handleClick}) => {
+export const ProfileHeader: React.FC<Props> = ({isEditProfile, handleEditProfile}) => {
     return (<>
             {isEditProfile
                 ?
@@ -17,7 +17,7 @@ export const ProfileHeader: React.FC<Props> = ({isEditProfile, handleClick}) => 
                     <Title>Profile</Title>
                     <Flex gap={'0 32px'}>
                         <Button secondary leftIcon
-                                onClick={handleClick}><X/>Cancel</Button>
+                                onClick={handleEditProfile}><X/>Cancel</Button>
                         <Button primary leftIcon type={'submit'}><Check/>Save</Button>
                     </Flex>
                 </StyledProfileHeader>
@@ -25,7 +25,7 @@ export const ProfileHeader: React.FC<Props> = ({isEditProfile, handleClick}) => 
                 <StyledProfileHeader>
                     <Title>Profile</Title>
                     <Button primary leftIcon
-                            onClick={handleClick}><PenTool/>Edit</Button>
+                            onClick={handleEditProfile}><PenTool/>Edit</Button>
                 </StyledProfileHeader>
             }
         </>

@@ -41,9 +41,6 @@ const createAppointmentSlice = createSlice({
                 state.isFetching = false
                 state.times = action.payload
             },
-
-
-            //todo delete it??
             createAppointment(state, action) {
                 state.isFetching = true
             },

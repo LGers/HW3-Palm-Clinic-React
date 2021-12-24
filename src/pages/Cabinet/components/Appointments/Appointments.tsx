@@ -6,6 +6,7 @@ import {UserCard} from "../../../../components/UserCard/UserCard";
 import {UserCardPreloaded} from "../../../../components/UserCardPreloaded/UserCardPreloaded";
 import {RootState} from "../../../../store";
 import {fetchAppointments} from "../../../../store/appointments/appointmentsSlice";
+import {CabinetHeader} from "../CabinetHeader/CabinetHeader";
 
 
 const PreloadedCards = () => {
@@ -29,6 +30,7 @@ const Appointments: React.FC = () => {
 
     return (
         <>
+            <CabinetHeader/>
             {isFetching
                 ? <UsersGrid>{PreloadedCards()}</UsersGrid>
                 : total

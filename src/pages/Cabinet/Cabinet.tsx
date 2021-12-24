@@ -54,7 +54,7 @@ const Cabinet: React.FC<Props> = ({link}) => {
                 <Header/>
                 <MainContent>
                     <NavigationTabs/>
-                    <CabinetHeader/>
+                    {/*<CabinetHeader/>*/}
                     {content(link)}
                 </MainContent>
                 {showPopupMessage &&

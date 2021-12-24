@@ -9,6 +9,7 @@ import {
 import {fetchDoctorProfile} from "../../../../store/auth/authSlice";
 import {Formik} from "formik";
 import ProfileEditForm from "./ProfileEditForm";
+import { fetchDoctorChangeProfile, fetchPatientChangeProfile } from '../../../../store/profile/profileSlice';
 
 type ProfileType = {
     id: string
@@ -20,25 +21,24 @@ type ProfileType = {
 export const Profile: React.FC = (props) => {
     const dispatch = useDispatch()
     const profile: ProfileType = useSelector((state: RootState) => state.authUser.data)
-    const occupation = useSelector((state: RootState) => state.authUser.occupation)
-    const isDoctor = profile.role_name === 'doctor'
+    const {role_name, first_name, last_name, id} =profile
+    const specialization = useSelector((state: RootState) => state.authUser.occupation)
+    const isDoctor = role_name === 'doctor'
     const initialValues = isDoctor
         ? {
-            first_name: profile.first_name,
-            last_name: profile.last_name,
-            occupation: occupation
+            firstName: first_name,
+            lastName: last_name,
+            specialization: specialization
         }
         : {
-            first_name: profile.first_name,
-            last_name: profile.last_name,
+            firstName: first_name,
+            lastName: last_name,
         }
 
     const validationSchema = isDoctor ? doctorProfileValidationSchema : patientProfileValidationSchema
 
     useEffect(() => {
-        if (isDoctor) {
-            dispatch(fetchDoctorProfile())
-        }
+        isDoctor && dispatch(fetchDoctorProfile())
     }, [])
 
     return (
@@ -48,7 +48,9 @@ export const Profile: React.FC = (props) => {
                 validationSchema={validationSchema}
                 onSubmit={(values, {setSubmitting}) => {
                     setSubmitting(false);
-                    console.log(JSON.stringify(values, null, 2))
+                    isDoctor
+                        ? dispatch(fetchDoctorChangeProfile(values))
+                        : dispatch(fetchPatientChangeProfile(values))
                 }}
             >
                 {({

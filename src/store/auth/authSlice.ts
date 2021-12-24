@@ -35,8 +35,8 @@ const initialState: AuthUser = {
     popupMessage: {
         isSuccess: true,
         showPopupMessage: false,
-        popupMessageTitle: 'Error or Success title',
-        popupMessageText: 'Error or Success message text'
+        popupMessageTitle: '',
+        popupMessageText: ''
     },
 
 }
@@ -45,7 +45,7 @@ const authSlice = createSlice({
         name: 'authUser',
         initialState,
         reducers: {
-            fetchUserToken(state,action) {
+            fetchSignIn(state, action) {
                 state.isFetching = true
             },
             fetchUserProfile(state) {
@@ -71,19 +71,27 @@ const authSlice = createSlice({
                 state.popupMessage.popupMessageText = action.payload.message
                 state.popupMessage.popupMessageTitle = action.payload.title
                 state.popupMessage.isSuccess = action.payload.isSuccess
-            }
+            },
+            fetchSignUp(state, action) {
+                state.isTokenExist = true
+            },
+            fetchChangePassword(state, action) {
+                state.isFetching = true
+            },
         }
     }
 )
 
 export const {
-    fetchUserToken,
+    fetchSignIn,
     fetchUserProfile,
     setAuthUser,
     fetchDoctorProfile,
     setDoctorOccupation,
     toggleShowMessage,
     setPopupMessage,
+    fetchSignUp,
+    fetchChangePassword,
 } = authSlice.actions
 
 export default authSlice.reducer

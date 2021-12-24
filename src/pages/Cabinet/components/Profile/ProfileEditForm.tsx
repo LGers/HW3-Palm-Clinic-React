@@ -12,8 +12,9 @@ import {ProfileHeader} from "./ProfileHeader";
 
 const ProfileEditForm: React.FC = () => {
     const profile = useSelector((state: RootState) => state.authUser.data)
+    const {photo, first_name, last_name, role_name}=profile
     const [isEditProfile, setIsEditProfile] = useState(false)
-    const isDoctor = profile.role_name === 'doctor'
+    const isDoctor = role_name === 'doctor'
 
     const handleClick = () => {
         setIsEditProfile(!isEditProfile)
@@ -22,55 +23,54 @@ const ProfileEditForm: React.FC = () => {
         <FormContent>
             {isEditProfile
                 ? <Form>
-                    <ProfileHeader isEditProfile={isEditProfile} handleClick={handleClick}/>
+                    <ProfileHeader isEditProfile={isEditProfile} handleEditProfile={handleClick}/>
 
                     <Flex>
-                        <img src={profile.photo} alt={'Profile Photo'}/>
+                        <img src={photo} alt={'Profile Photo'}/>
                         <Flex align={'flex-end'} gap={'0 32px'}>
                             <Flex direction={'column'}>
-                                <label htmlFor={'first_name'}>First Name</label>
+                                <label htmlFor={'firstName'}>First Name</label>
                                 <StyledAppointmentField
                                     type="text"
-                                    id="first_name"
-                                    name="first_name"
+                                    id="firstName"
+                                    name="firstName"
                                 />
-                                <ErrorMessage name="first_name" component="div"/>
+                                <ErrorMessage name="firstName" component="div"/>
                             </Flex>
 
                             <Flex direction={'column'}>
-                                <label htmlFor={'last_name'}>Last Name</label>
+                                <label htmlFor={'lastName'}>Last Name</label>
                                 <StyledAppointmentField
                                     type="text"
-                                    id="last_name"
-                                    name="last_name"
+                                    id="lastName"
+                                    name="lastName"
                                 />
-                                <ErrorMessage name="last_name" component="div"/>
+                                <ErrorMessage name="lastName" component="div"/>
                             </Flex>
                             {isDoctor &&
                             <Flex direction={'column'}>
-                                <label htmlFor={'occupation'}>Occupation</label>
+                                <label htmlFor={'specialization'}>Occupation</label>
                                 <StyledAppointmentField
                                     type="text"
-                                    id="occupation"
-                                    name="occupation"
+                                    id="specialization"
+                                    name="specialization"
                                 />
-                                <ErrorMessage name="occupation" component="div"/>
+                                <ErrorMessage name="specialization" component="div"/>
                             </Flex>
                             }
                         </Flex>
-
                     </Flex>
                 </Form>
 
                 : <Form>
                     <Flex direction={'column'}>
-                        <ProfileHeader isEditProfile={isEditProfile} handleClick={handleClick}/>
+                        <ProfileHeader isEditProfile={isEditProfile} handleEditProfile={handleClick}/>
                         <Flex justify={'flex-start'}>
-                            <img src={profile.photo} alt={'Profile Photo'}/>
+                            <img src={photo} alt={'Profile Photo'}/>
                             <Flex justify={'space-between'} direction={'column'}>
                                 <NameAndStatus>
-                                    <Name>{profile.first_name} {profile.last_name}</Name>
-                                    {profile.role_name === 'doctor' && <Specialization>Therapist</Specialization>}
+                                    <Name>{first_name} {last_name}</Name>
+                                    {isDoctor && <Specialization>Therapist</Specialization>}
                                 </NameAndStatus>
                                 <Button secondary leftIcon><Lock/>Change password</Button>
                             </Flex>

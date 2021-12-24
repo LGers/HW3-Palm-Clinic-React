@@ -18,25 +18,24 @@ const URL = {
 export const fetchAuthLogin_Token = (email: string, password: string) => instance.post(URL.authLogin(),
     {
         "userName": email,
-        "password": password
+        password
     }
 )
-//todo check it //change password
-export const fetchAuthPassword = (oldPassword: string, newPassword: string) => instance.patch(URL.authPassword(),
-    {
-        oldPassword,
-        newPassword
-    }
-)
-//todo check it
-export const fetchAuthRegistration= (email: string, password: string, firstName:string, lastName:string) => instance.post(URL.authProfile(),
+
+export const signUp = (email: string, password: string, firstName: string, lastName: string) => instance.post(URL.authRegistration(),
     {
         "userName": email,
-        "password": password,
-        "firstName": firstName,
-        "lastName": lastName,
+        password,
+        firstName,
+        lastName,
     }
 )
-//
 
 export const fetchAuthProfile = () => instance.get(URL.authProfile())
+
+export const changePassword = (newPassword: string, oldPassword: string) => instance.patch(URL.authPassword(),
+    {
+        oldPassword,
+        newPassword,
+    }
+)

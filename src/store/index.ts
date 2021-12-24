@@ -1,12 +1,13 @@
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import {configureStore} from "@reduxjs/toolkit";
+import {rootSagas} from "./rootSaga"
+import createSagaMiddleware from "redux-saga";
 import authUserReducer from "./auth/authSlice"
 import appointmentsReducer from "./appointments/appointmentsSlice";
 import createAppointmentReducer from "./createAppointment/createAppointmentSlice";
-import createSagaMiddleware from "redux-saga";
-import {rootSagas} from "./rootSaga"
 import resolutionsReducer from "./resolutions/resolutionsSlice";
+import profileReducer from "./profile/profileSlice";
 
 export const history = createBrowserHistory()
 
@@ -19,6 +20,7 @@ export const store = configureStore({
         appointments: appointmentsReducer,
         resolutions: resolutionsReducer,
         createAppointment: createAppointmentReducer,
+        profile: profileReducer,
     },
     middleware: [sagaMiddleware, routerMiddleware(history)]
 })
