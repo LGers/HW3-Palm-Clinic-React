@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Formik, FormikValues } from "formik";
 import { Link } from "react-router-dom";
 import { Title } from "../../../../components/Title/Title";
-import { ForgotPassword, StyledAuthForm } from "./AuthForm.styles";
+import { AuthTitle, ForgotPassword, StyledAuthForm } from "./AuthForm.styles";
 import { AuthInput } from "../AuthInput/AuthInput";
 import { AuthButton } from "../../AuthPage.styles";
 import { fetchSignUp, fetchSignIn } from "../../../../store/auth/authSlice";
@@ -62,7 +62,9 @@ export const AuthForm: React.FC<AuthFormProps> = ({link}) => {
             }}
         >
             <StyledAuthForm>
-                <Title>{authPageData.TITLE}</Title>
+                <AuthTitle>
+                    <Title>{authPageData.TITLE}</Title>
+                </AuthTitle>
                 {link === RESTORE_PASSWORD_PATH && RESTORE_PASSWORD.TEXT}
                 {authPageData.INPUTS.length && authInputs(authPageData.INPUTS)}
 

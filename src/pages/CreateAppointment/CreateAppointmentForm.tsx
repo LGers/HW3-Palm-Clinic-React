@@ -87,7 +87,6 @@ export const CreateAppointmentForm: React.FC = () => {
                             <AppointmentStep>
                                 <span>1</span>{STEP.ONE}
                             </AppointmentStep>
-
                             <div>
                                 <StyledAppointmentLabel
                                   htmlFor={CREATE_APPOINTMENT.OCCUPATION}>{LABELS.OCCUPATION}
@@ -144,10 +143,8 @@ export const CreateAppointmentForm: React.FC = () => {
                                 isStepOneCompleted={!!values.doctorID}
                             />
                         </div>
-
                         <div>
                             <AppointmentStep><span>3</span>{STEP.THREE}</AppointmentStep>
-
                             <TimeSlots>
                                 <CreateAppointmentTimes
                                   date={date}
@@ -162,6 +159,5 @@ export const CreateAppointmentForm: React.FC = () => {
                 </Form>
             )}
         </Formik>
-
     );
 };

@@ -27,7 +27,6 @@ const content = (link: string) => {
             return <Profile/>
         default :
             return <Appointments/>
-
     }
 }
 

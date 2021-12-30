@@ -22,15 +22,16 @@ export const AuthInput: React.FC<AuthInputProps> = (props) => {
     return (
       <AuthInputContent>
           <InputIcon {...props} />
-          {isPassword()
-            ? <>
+          {isPassword() ?
+            <>
                 <StyledAuthInput
                   error={meta.error}
                   password_input_type={passwordInputType(showPassword)} {...props}
                 />
                 <ShowPasswordButton onClick={() => handleClick()} />
             </>
-            : <StyledAuthInput error={meta.error} {...props} />}
+            :
+            <StyledAuthInput error={meta.error} {...props} />}
           {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
       </AuthInputContent>
     )

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH } from "../../../../constants/path";
-import {
-    AUTH_FORM,
-    RESTORE_PASSWORD,
-} from "../../../../constants/auth.dictionary";
-
+import { AUTH_FORM, RESTORE_PASSWORD } from "../../../../constants/auth.dictionary";
 import { Formik, FormikValues } from "formik";
 import { Link } from "react-router-dom";
 import { Title } from "../../../../components/Title/Title";
-import { AuthText, Email, ForgotPassword, StyledAuthForm } from "./AuthForm.styles";
+import { AuthText, AuthTitle, Email, ForgotPassword, StyledAuthForm } from "./AuthForm.styles";
 import { AuthInput } from "../AuthInput/AuthInput";
 import { ChevronLeft } from "react-feather";
 import { restorePasswordValidationSchema } from "../../../../validations/auth.validation";
@@ -25,7 +21,6 @@ const setAuthPageData = (link: string) => {
             return AUTH_FORM.RESTORE_PASSWORD
         default :
             return AUTH_FORM.RESTORE_PASSWORD_SENT
-
     }
 }
 
@@ -62,30 +57,38 @@ export const AuthRestorePasswordForm: React.FC<AuthFormProps> = ({link}) => {
                   }}
                 >
                     <StyledAuthForm>
-                        <Title><span><Link
-                          to={SIGN_IN_PATH}><ChevronLeft /></Link></span>{authPageData.TITLE}
-                        </Title>
+                        <AuthTitle>
+                            <Title><
+                              span><Link to={SIGN_IN_PATH}><ChevronLeft /></Link></span>
+                                {authPageData.TITLE}
+                            </Title>
+                        </AuthTitle>
 
                         <AuthText>{RESTORE_PASSWORD.TEXT}</AuthText>
 
-                        {authPageData.INPUTS.length ? authInputs(authPageData.INPUTS) : null}
+                        {authPageData.INPUTS.length && authInputs(authPageData.INPUTS)}
 
-                        {authPageData.BUTTON_TEXT ?
-                          <AuthButton type={"submit"}>{authPageData.BUTTON_TEXT}</AuthButton>
-                          : null}
+                        {authPageData.BUTTON_TEXT &&
+                        <AuthButton type={"submit"}>{authPageData.BUTTON_TEXT}</AuthButton>
+                        }
 
-                        {link === SIGN_IN_PATH ?
-                            <ForgotPassword>
-                                <Link to={RESTORE_PASSWORD_PATH}>Forgot
-                                    Password?</Link>
-                            </ForgotPassword>
-                            :null}
+                        {link === SIGN_IN_PATH &&
+                        <ForgotPassword>
+                            <Link to={RESTORE_PASSWORD_PATH}>Forgot
+                                Password?</Link>
+                        </ForgotPassword>
+                        }
                     </StyledAuthForm>
                 </Formik>
                 </>
                 :
             <>
-                <Title><span><Link to={SIGN_IN_PATH}><ChevronLeft/></Link></span>{authPageData.TITLE}</Title>
+                <AuthTitle>
+                    <Title>
+                        <span><Link to={SIGN_IN_PATH}><ChevronLeft /></Link></span>
+                        {authPageData.TITLE}
+                    </Title>
+                </AuthTitle>
 
                 <AuthText>
                     {RESTORE_PASSWORD.SEND_TEXT_BEFORE} {' '}
@@ -94,6 +97,5 @@ export const AuthRestorePasswordForm: React.FC<AuthFormProps> = ({link}) => {
                 </AuthText>
             </>}
     </>
-
     )
 }

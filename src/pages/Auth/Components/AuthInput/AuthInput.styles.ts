@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import {Field} from "formik";
+import { Field } from "formik";
 
 export const AuthInputContent =styled.div`
-  position: relative;
+    position: relative;
+    //margin-top: 28px;
 `
 
 export const StyledAuthInput = styled(Field).attrs(props => ({
@@ -15,20 +16,20 @@ export const StyledAuthInput = styled(Field).attrs(props => ({
   width: 100%;
   background: #FFFFFF;
   border: ${props => props.error ? '1px solid #F6657F': '1px solid #DCE0EC'};
-  box-shadow: 0 4px 32px rgba(218, 228, 255, 0.16);
-  border-radius: 8px;
-  font-size: 17px;
-  line-height: 24px;
-  color: #202225;
-  margin-bottom: 24px;
-  
-  &:focus {
-    border: 1px solid #7297FF;
-  }
-  
-  &:hover {
-    border: 1px solid #7297FF;
-  }
+    box-shadow: 0 4px 32px rgba(218, 228, 255, 0.16);
+    border-radius: 8px;
+    font-size: 17px;
+    line-height: 24px;
+    color: #202225;
+    margin-bottom: 24px;
+
+    &:focus {
+        border: 1px solid #7297FF;
+    }
+
+    &:hover {
+        border: 1px solid #7297FF;
+    }
 `
 
 interface Props {

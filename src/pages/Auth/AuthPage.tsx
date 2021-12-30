@@ -1,16 +1,16 @@
 import React from 'react';
-import {AuthForm} from "./Components/AuthForm/AuthForm";
-import {AuthFooter} from "./Components/AuthFooter/AuthFooter";
-import {AUTH_FOOTER} from "../../constants/auth.dictionary";
-import {RESTORE_PASSWORD_PATH, SIGN_UP_PATH} from '../../constants/path';
-import {AuthBar, AuthBarContent, AuthBody} from './AuthPage.styles';
-import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {toggleShowMessage} from "../../store/auth/authSlice";
+import { AuthForm } from "./Components/AuthForm/AuthForm";
+import { AuthFooter } from "./Components/AuthFooter/AuthFooter";
+import { AUTH_FOOTER } from "../../constants/auth.dictionary";
+import { RESTORE_PASSWORD_PATH, SIGN_UP_PATH } from '../../constants/path';
+import { AuthBar, AuthBarContent, AuthBody } from './AuthPage.styles';
+import { PopupMessage } from "../../components/PopupMessage/PopupMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { toggleShowMessage } from "../../store/auth/authSlice";
 import { AuthPageProps } from './Auth.types';
 
-const setAuthPageData = (link:string) => {
+const setAuthPageData = (link: string) => {
     switch (link) {
         case SIGN_UP_PATH:
             return AUTH_FOOTER.SIGN_UP
@@ -28,7 +28,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({link}) => {
         isSuccess,
         showPopupMessage,
         popupMessageTitle,
-        popupMessageText
+        popupMessageText,
     } = useSelector((state: RootState) => state.authUser.popupMessage)
     const handleCloseMessage = () => {
         dispatch(toggleShowMessage())

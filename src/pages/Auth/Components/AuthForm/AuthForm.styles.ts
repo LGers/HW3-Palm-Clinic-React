@@ -37,4 +37,9 @@ export const Email = styled.span`
   line-height: 130%;
   color: #7297FF;
 `
-
+export const AuthTitle = styled.div`
+  display: flex;
+  //justify-con: center;
+  align-items: center;
+  margin-bottom: 28px;
+`
