@@ -8,6 +8,10 @@ export const StyledWeek = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 `
+
+export const StyledCalendar = styled.div`
+  max-width: 400px;
+`
 export const StyledDay = styled.div<Props>`
   text-align: center;
   cursor: pointer;

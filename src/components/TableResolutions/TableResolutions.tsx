@@ -1,19 +1,19 @@
 import React from 'react';
-import {Table, TableHeader, StyledTableRow} from './TableResolutions.styles';
-import {HEADER} from "../../constants/resolutions.dictionary";
-import {ChevronDown, MoreVertical} from "react-feather";
-import {ResolutionsType} from "../../store/resolutions/resolutionsSlice";
+import { Table, TableHeader, StyledTableRow } from './TableResolutions.styles';
+import { HEADER } from "../../constants/resolutions.dictionary";
+import { ChevronDown, MoreVertical } from "react-feather";
 import moment from "moment";
-import {useSelector} from "react-redux";
-import {RootState} from "../../store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { ResolutionsType } from '../../store/resolutions/resolutions.types';
 
 type Props = {
-    resolutions: ResolutionsType[]
-    userRole: 'doctor' | 'patient' | 'admin'
+  resolutions: ResolutionsType[]
+  userRole: 'doctor' | 'patient' | 'admin'
 }
 
 type ResolutionProps = {
-    resolutionData: ResolutionsType
+  resolutionData: ResolutionsType
 }
 
 const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
@@ -34,7 +34,6 @@ const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
 }
 
 export const TableResolutions: React.FC<Props> = ({resolutions, userRole}) => {
-
     return (
         <>
             <TableHeader>

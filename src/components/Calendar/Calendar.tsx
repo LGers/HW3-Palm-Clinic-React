@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {ChevronLeft, ChevronRight} from "react-feather";
 import {
+    StyledCalendar,
     StyledCalendarHeader,
     StyledDay,
     StyledDayName,
@@ -58,7 +59,7 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
         return !beforeToday(day) && setDate(day)
     }
     return (
-        <div {...props}>
+        <StyledCalendar {...props}>
             <StyledCalendarHeader>
                 <StyledMothNavigate onClick={() => setDate(prevMonth)}>
                     <ChevronLeft/>
@@ -104,6 +105,6 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
                     )}
                 </StyledWeek>
             )}
-        </div>
+        </StyledCalendar>
     )
 };

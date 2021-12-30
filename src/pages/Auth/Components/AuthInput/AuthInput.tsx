@@ -35,9 +35,7 @@ export const AuthInput: React.FC<Props> = (props) => {
                 </>
                 : <StyledAuthInput error={meta.error} { ...props}/>}
 
-            {meta.touched && meta.error ? (
-                <ErrorMessage>{meta.error}</ErrorMessage>
-            ) : null}
+            {meta.touched && meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}
 
         </AuthInputContent>
     )

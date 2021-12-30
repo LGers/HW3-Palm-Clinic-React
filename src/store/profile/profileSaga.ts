@@ -1,25 +1,10 @@
-import {call, put, takeEvery} from "redux-saga/effects";
-import {setAuthUser} from "../auth/authSlice";
-import {errorMessage} from "../commonSaga";
-import {updateDoctorProfile} from "../../api/doctors";
-import {updatePatientProfile} from "../../api/patients";
-import {fetchDoctorChangeProfile, fetchPatientChangeProfile} from "./profileSlice";
-import {changePassword} from "../../api/auth";
-
-type PatientProfileType = {
-    payload: {
-        firstName: string
-        lastName: string
-    }
-}
-
-type DoctorProfileType = {
-    payload: {
-        firstName: string
-        lastName: string
-        specializations: string
-    }
-}
+import { call, put, takeEvery } from "redux-saga/effects";
+import { setAuthUser } from "../auth/authSlice";
+import { errorMessage } from "../commonSaga";
+import { updateDoctorProfile } from "../../api/doctors";
+import { updatePatientProfile } from "../../api/patients";
+import { fetchDoctorChangeProfile, fetchPatientChangeProfile } from "./profileSlice";
+import { DoctorProfileType, PatientProfileType } from './profile.types';
 
 function* ChangeDoctorProfileWorker(action: DoctorProfileType) {
     const {firstName, lastName, specializations} = action.payload
@@ -32,7 +17,6 @@ function* ChangeDoctorProfileWorker(action: DoctorProfileType) {
 }
 
 export function* ChangeDoctorProfileWatcher() {
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     yield takeEvery(fetchDoctorChangeProfile.type, ChangeDoctorProfileWorker)

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BreadcrumbsStyles = styled.div`
+export const Breadcrumbs = styled.div`
   display: flex;
   gap: 0 15px;
   padding: 48px 0;

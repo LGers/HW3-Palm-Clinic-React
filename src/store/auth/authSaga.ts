@@ -1,32 +1,19 @@
-import {call, put, takeEvery} from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import {
     fetchUserProfile,
-    setAuthUser, setDoctorOccupation, fetchSignIn, fetchDoctorProfile, fetchSignUp, fetchChangePassword,
+    setAuthUser,
+    setDoctorOccupation,
+    fetchSignIn,
+    fetchDoctorProfile,
+    fetchSignUp,
+    fetchChangePassword,
 } from "./authSlice";
-import {SIGN_IN_PATH} from "../../constants/path";
-import {push} from "connected-react-router";
-import {fetchAuthProfile, fetchAuthLogin_Token, signUp, changePassword} from "../../api/auth";
-import {errorMessage} from "../commonSaga";
-import {doctorProfile} from "../../api/doctors";
-
-type SignUpType = {
-    payload: {
-        email: string, password: string
-    }
-}
-
-type SignInType = {
-    payload: {
-        email: string, password: string,
-        firstName: string, lastName: string
-    }
-}
-type PasswordType = {
-    payload: {
-        oldPassword: string,
-        newPassword: string,
-    }
-}
+import { SIGN_IN_PATH } from "../../constants/path";
+import { push } from "connected-react-router";
+import { fetchAuthProfile, fetchAuthLogin_Token, signUp, changePassword } from "../../api/auth";
+import { errorMessage } from "../commonSaga";
+import { doctorProfile } from "../../api/doctors";
+import { PasswordType, SignInType, SignUpType } from './auth.types';
 
 export function* getTokenWorker(action: SignUpType) {
     try {

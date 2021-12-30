@@ -6,6 +6,7 @@ export const StyledMakeAppointmentStep = styled.p`
   color: #A1ABC9;
   margin-bottom: 40px;
   width: 100%;
+  margin-top: 40px;
 
   & span {
     display: flex;

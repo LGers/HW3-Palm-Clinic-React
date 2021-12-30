@@ -21,7 +21,6 @@ type Props = {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-// export const CreateAppointmentSelect: React.FC<Props> = ({options, name, selectId, isDisabled}, onChange) => {
 export const CreateAppointmentSelect: React.FC<Props> = ({options, name, selectId, isDisabled}) => {
     const dispatch = useDispatch()
     const [field, meta, helpers] = useField(name);

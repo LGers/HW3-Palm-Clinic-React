@@ -14,8 +14,8 @@ import {
 } from "./UserCard.styles";
 import {UserCardSelect} from "../UserCardSelect/UserCardSelect";
 import {RootState} from '../../store';
-import {AppointmentType} from "../../store/appointments/appointmentsSlice";
 import {STATUS} from "../../constants/appointment.dictionary";
+import { AppointmentType } from '../../store/appointments/appointments.types';
 
 type Props = {
     appointment: AppointmentType
@@ -31,7 +31,6 @@ const appointmentStatus = (status: string) => {
             return STATUS.WAITING
     }
 }
-
 
 export const UserCard: React.FC<Props> = ({appointment}) => {
     const role_name = useSelector((state: RootState) => state.authUser.data).role_name

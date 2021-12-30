@@ -1,37 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {DELETE, PATCH} from "../../constants/api.dictionary";
-
-
-export type AppointmentType =
-    {
-        id: string
-        reason: string
-        note: string
-        patient_id: string
-        doctor_id: string
-        visit_date: string
-        status: 'confirmed' | 'canceled' | 'waiting'
-        doctor: {
-            last_name: string
-            first_name: string
-            id: string
-            photo: string
-            specialization_name: string
-        }
-        patient: {
-            last_name: string
-            first_name: string
-            id: string
-            photo: string
-            specialization_name: string
-        }
-    }
-
-export interface Appointments {
-    appointments: AppointmentType[]
-    total: number | null
-    isFetching: boolean
-}
+import { createSlice } from "@reduxjs/toolkit";
+import { DELETE, PATCH } from "../../constants/api.dictionary";
+import { Appointments } from './appointments.types';
 
 const initialState: Appointments = {
     appointments: [],

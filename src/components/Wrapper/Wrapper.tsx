@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyledWrapper} from "./Wrapper.styles";
+import { StyledWrapper } from "./Wrapper.styles";
 
 export const Wrapper:React.FC = (props) => {
-    return <StyledWrapper {...props}>
-    </StyledWrapper>
+    return <StyledWrapper {...props} />
 };

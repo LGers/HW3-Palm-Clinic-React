@@ -1,24 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-
-export type AuthUser = {
-    data: {
-        id: string
-        first_name: string
-        last_name: string
-        photo: string
-        role_name: 'doctor' | 'patient' | 'admin'
-    },
-    occupation: string
-    roleNameInRequest: 'doctor' | 'patient' | 'admin'
-    isFetching: boolean
-    isTokenExist: boolean
-    popupMessage: {
-        isSuccess: boolean
-        showPopupMessage: boolean
-        popupMessageTitle: string
-        popupMessageText: string
-    }
-}
+import { createSlice } from "@reduxjs/toolkit";
+import { AuthUser } from "./auth.types";
 
 const initialState: AuthUser = {
     data: {
@@ -38,7 +19,6 @@ const initialState: AuthUser = {
         popupMessageTitle: '',
         popupMessageText: ''
     },
-
 }
 
 const authSlice = createSlice({
@@ -79,8 +59,7 @@ const authSlice = createSlice({
                 state.isFetching = true
             },
         }
-    }
-)
+})
 
 export const {
     fetchSignIn,

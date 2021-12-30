@@ -5,12 +5,11 @@ export const StyledMainContent = styled.div`
 
   @media all {
     position: relative;
-    padding-left: 24px;
-    padding-right: 24px;
-    overflow: hidden;
+    padding: 0 24px 24px 24px;
+    overflow: auto;
     height: 100%;
     background: #F9FAFF;
-    box-shadow: 0px 4px 32px rgba(218, 228, 255, 0.32);
+    box-shadow: 0 4px 32px rgba(218, 228, 255, 0.32);
     border-radius: 16px 16px 0px 0px;
     display: flex;
     flex-direction: column;

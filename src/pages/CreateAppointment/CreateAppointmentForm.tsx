@@ -1,31 +1,32 @@
-import {Form, Formik, FormikValues} from 'formik';
+import { Form, Formik, FormikValues } from 'formik';
 import * as React from 'react';
-import {Flex} from '../../components/Flex/Flex';
-import {AppointmentContent} from '../../components/MakeAppointment/AppointmentContent';
-import {AppointmentStep} from '../../components/MakeAppointment/AppointmentStep';
-import {Title} from '../../components/Title/Title';
-import {appointmentValidationSchema} from '../../validations/appointment.validation';
-import {StyledAppointmentField, StyledAppointmentLabel} from './CreateAppointmentSelects.styles';
-import {CreateAppointmentSelect} from "./CreateAppointmentSelects";
-import {CREATE_APPOINTMENT} from '../../constants/constants';
-import {Calendar} from "../../components/Calendar/Calendar";
-import {TimeSlots} from "../../components/TimeSlots/TimeSlots";
-import {CreateAppointmentTimes} from "./CreateAppointmentTimes";
+import { Flex } from '../../components/Flex/Flex';
+import { AppointmentContent } from '../../components/MakeAppointment/AppointmentContent';
+import { AppointmentStep } from '../../components/MakeAppointment/AppointmentStep';
+import { Title } from '../../components/Title/Title';
+import { appointmentValidationSchema } from '../../validations/appointment.validation';
+import { StyledAppointmentField, StyledAppointmentLabel } from './CreateAppointmentSelects.styles';
+import { CreateAppointmentSelect } from "./CreateAppointmentSelects";
+import { CREATE_APPOINTMENT } from '../../constants/constants';
+import { Calendar } from "../../components/Calendar/Calendar";
+import { TimeSlots } from "../../components/TimeSlots/TimeSlots";
+import { CreateAppointmentTimes } from "./CreateAppointmentTimes";
 import moment from "moment";
 import {
     createAppointment,
     fetchOccupations,
     fetchTimes,
 } from "../../store/createAppointment/createAppointmentSlice";
-import {ChangeEvent, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {CABINET_APPOINTMENTS_PATH} from '../../constants/path';
-import {Link} from 'react-router-dom';
-import {ChevronRight} from 'react-feather';
-import {Button} from "../../components/Button/Button";
-import {LABELS, STEP} from '../../constants/appointment.dictionary';
-import { BreadcrumbsStyles } from '../../components/Breadcrumbs/Breadcrumbs.styles';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { CABINET_APPOINTMENTS_PATH } from '../../constants/path';
+import { Link } from 'react-router-dom';
+import { ChevronRight } from 'react-feather';
+import { Button } from "../../components/Button/Button";
+import { LABELS, STEP } from '../../constants/appointment.dictionary';
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.styles';
+import { ErrorMessage } from '../Auth/AuthPage.styles';
 
 export const CreateAppointmentForm: React.FC = () => {
     const dispatch = useDispatch()
@@ -45,7 +46,6 @@ export const CreateAppointmentForm: React.FC = () => {
         return {value: doctor.id, label: doctor.first_name + ' ' + doctor.last_name}
     })
 
-
     const handleDateChange = (day: moment.Moment, doctorId: string) => {
         setDate(day)
         dispatch(fetchTimes({day, doctorId}))
@@ -54,7 +54,6 @@ export const CreateAppointmentForm: React.FC = () => {
     function handleClick(values: FormikValues) {
         dispatch(createAppointment(values))
     }
-
 
     return (
         <Formik
@@ -71,60 +70,69 @@ export const CreateAppointmentForm: React.FC = () => {
                 setSubmitting(false);
                 handleClick(values)
             }}
-
         >
             {({
                   values,
-
+                  errors,
+                  touched,
               }) => (
                 <Form>
-                    <BreadcrumbsStyles>
+                    <Breadcrumbs>
                         <Link to={CABINET_APPOINTMENTS_PATH}>Doctors</Link><ChevronRight/>Make an appointment
                         {newAppointment.isFetching && <span>Loading...</span>}
-
-                    </BreadcrumbsStyles>
+                    </Breadcrumbs>
 
                     <Title>Make an appointment</Title>
 
                     <AppointmentContent>
-                        <Flex direction={'column'}>
+                        <Flex direction={'column'} gap={'20px 0'}>
                             <AppointmentStep>
                                 <span>1</span>{STEP.ONE}
                             </AppointmentStep>
 
-                            <StyledAppointmentLabel
-                                htmlFor={CREATE_APPOINTMENT.OCCUPATION}>{LABELS.OCCUPATION}</StyledAppointmentLabel>
-                            <CreateAppointmentSelect
-                                options={occupationOptions}
-                                name={CREATE_APPOINTMENT.OCCUPATION}
-                                selectId={CREATE_APPOINTMENT.OCCUPATION}
-                            />
-
-                            <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>{LABELS.DOCTORS}</StyledAppointmentLabel>
-                            <CreateAppointmentSelect
-                                options={doctorOptions}
-                                name={CREATE_APPOINTMENT.DOCTOR_ID}
-                                selectId={CREATE_APPOINTMENT.DOCTOR_ID}
-                                isDisabled={!newAppointment.doctors.length}
-                            />
-
-                            <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.REASON.INPUT_NAME}>{LABELS.REASON}</StyledAppointmentLabel>
-                            <StyledAppointmentField
-
-                                name={CREATE_APPOINTMENT.REASON.INPUT_NAME}
-                                id={CREATE_APPOINTMENT.REASON.INPUT_NAME}
-                                placeholder={CREATE_APPOINTMENT.REASON.PLACEHOLDER}
-                                type={'text'}
-                            />
-
-                            <StyledAppointmentLabel
-                                htmlFor={CREATE_APPOINTMENT.NOTE.INPUT_NAME}>{LABELS.NOTE}</StyledAppointmentLabel>
-                            <StyledAppointmentField
-                                name={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
-                                id={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
-                                placeholder={CREATE_APPOINTMENT.NOTE.PLACEHOLDER}
-                                type={'text'}
-                            />
+                            <div>
+                                <StyledAppointmentLabel
+                                  htmlFor={CREATE_APPOINTMENT.OCCUPATION}>{LABELS.OCCUPATION}</StyledAppointmentLabel>
+                                <CreateAppointmentSelect
+                                  options={occupationOptions}
+                                  name={CREATE_APPOINTMENT.OCCUPATION}
+                                  selectId={CREATE_APPOINTMENT.OCCUPATION}
+                                />
+                            </div>
+                            <div>
+                                <StyledAppointmentLabel
+                                  htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>{LABELS.DOCTORS}</StyledAppointmentLabel>
+                                <CreateAppointmentSelect
+                                  options={doctorOptions}
+                                  name={CREATE_APPOINTMENT.DOCTOR_ID}
+                                  selectId={CREATE_APPOINTMENT.DOCTOR_ID}
+                                  isDisabled={!newAppointment.doctors.length}
+                                />
+                            </div>
+                            <div>
+                                <StyledAppointmentLabel
+                                  htmlFor={CREATE_APPOINTMENT.REASON.INPUT_NAME}>{LABELS.REASON}</StyledAppointmentLabel>
+                                <StyledAppointmentField
+                                  name={CREATE_APPOINTMENT.REASON.INPUT_NAME}
+                                  id={CREATE_APPOINTMENT.REASON.INPUT_NAME}
+                                  placeholder={CREATE_APPOINTMENT.REASON.PLACEHOLDER}
+                                  type={'text'}
+                                />
+                                {touched.reason && errors.reason &&
+                                <ErrorMessage>{errors.reason}</ErrorMessage>}
+                            </div>
+                            <div>
+                                <StyledAppointmentLabel
+                                  htmlFor={CREATE_APPOINTMENT.NOTE.INPUT_NAME}>{LABELS.NOTE}</StyledAppointmentLabel>
+                                <StyledAppointmentField
+                                  name={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
+                                  id={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
+                                  placeholder={CREATE_APPOINTMENT.NOTE.PLACEHOLDER}
+                                  type={'text'}
+                                />
+                                {touched.note && errors.note &&
+                                <ErrorMessage>{errors.note}</ErrorMessage>}
+                            </div>
                         </Flex>
 
                         <div>
@@ -142,7 +150,6 @@ export const CreateAppointmentForm: React.FC = () => {
                                 <CreateAppointmentTimes date={date} isStepOneCompleted={!!values.doctorID}/>
                             </TimeSlots>
                         </div>
-
                     </AppointmentContent>
                     <Flex justify={'flex-end'}>
                         <Button type={'submit'} primary>Submit</Button>

@@ -19,3 +19,10 @@ export type createAppointmentType = {
     reason: string
   }
 }
+
+export interface CreateAppointment {
+  occupations: any[]
+  doctors: any[]
+  times: any[]
+  isFetching: boolean
+}

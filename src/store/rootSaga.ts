@@ -1,5 +1,4 @@
-import {all} from 'redux-saga/effects'
-
+import { all } from 'redux-saga/effects'
 import {
     changeAppointmentWatcher, userAppointmentsWatcher,
 } from "./appointments/appointmentsSaga";
@@ -14,8 +13,8 @@ import {
     getTokensWatcher,
     getUserProfileWatcher, SignUpWatcher,
 } from "./auth/authSaga";
-import {changeResolutionWatcher, userResolutionsWatcher} from "./resolutions/resolutionsSaga";
-import {ChangeDoctorProfileWatcher, ChangePatientProfileWatcher} from "./profile/profileSaga";
+import { changeResolutionWatcher, userResolutionsWatcher } from "./resolutions/resolutionsSaga";
+import { ChangeDoctorProfileWatcher, ChangePatientProfileWatcher } from "./profile/profileSaga";
 
 export function* rootSagas() {
     yield all([
@@ -39,5 +38,4 @@ export function* rootSagas() {
         ChangePatientProfileWatcher(),
         ChangeDoctorProfileWatcher(),
     ])
-
 }

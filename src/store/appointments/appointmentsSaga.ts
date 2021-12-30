@@ -1,13 +1,8 @@
-import {call, put, takeEvery} from "redux-saga/effects";
-import {changeAppointment, fetchAppointments, setUserAppointments} from "./appointmentsSlice";
-import {fetchUpdateAppointment, fetchUserAppointments} from "../../api/appointments";
-import {errorMessage} from "../commonSaga";
-
-type AppointmentsType = {
-    payload: {
-        userRole: string
-    }
-}
+import { call, put, takeEvery } from "redux-saga/effects";
+import { changeAppointment, fetchAppointments, setUserAppointments } from "./appointmentsSlice";
+import { fetchUpdateAppointment, fetchUserAppointments } from "../../api/appointments";
+import { errorMessage } from "../commonSaga";
+import { AppointmentsType, ChangeAppointmentsType } from './appointments.types';
 
 export function* fetchAppointmentsWorker(action: AppointmentsType) {
     const {userRole} = action.payload
@@ -26,13 +21,6 @@ export function* userAppointmentsWatcher() {
     yield takeEvery(fetchAppointments.type, fetchAppointmentsWorker)
 }
 
-type ChangeAppointmentsType = {
-    payload: {
-        id:string
-        request:string
-        status: string
-    }
-}
 export function* changeAppointmentWorker(action:ChangeAppointmentsType) {
     const {id, request, status} = action.payload
     try {

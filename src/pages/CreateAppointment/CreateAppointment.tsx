@@ -1,13 +1,13 @@
 import React from "react";
-import {Wrapper} from "../../components/Wrapper/Wrapper";
-import {Header} from "../../components/Header/Header";
-import {RootWrapper} from "../../components/RootWrapper/RootWrapper";
-import {MainContent} from "../../components/MainContent/MainContent";
-import {CreateAppointmentForm} from "./CreateAppointmentForm";
-import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
-import {useDispatch, useSelector} from "react-redux";
-import {toggleShowMessage} from "../../store/auth/authSlice";
-import {RootState} from "../../store";
+import { Wrapper } from "../../components/Wrapper/Wrapper";
+import { Header } from "../../components/Header/Header";
+import { RootWrapper } from "../../components/RootWrapper/RootWrapper";
+import { MainContent } from "../../components/MainContent/MainContent";
+import { CreateAppointmentForm } from "./CreateAppointmentForm";
+import { PopupMessage } from "../../components/PopupMessage/PopupMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShowMessage } from "../../store/auth/authSlice";
+import { RootState } from "../../store";
 
 const CreateAppointment: React.FC = () => {
     const dispatch = useDispatch()

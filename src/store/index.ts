@@ -1,7 +1,7 @@
-import {connectRouter, routerMiddleware} from 'connected-react-router'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
-import {configureStore} from "@reduxjs/toolkit";
-import {rootSagas} from "./rootSaga"
+import { configureStore } from "@reduxjs/toolkit";
+import { rootSagas } from "./rootSaga"
 import createSagaMiddleware from "redux-saga";
 import authUserReducer from "./auth/authSlice"
 import appointmentsReducer from "./appointments/appointmentsSlice";
