@@ -1,4 +1,5 @@
-import {instance} from "./index";
+import { instance } from "./index";
+import { DELETE, PATCH } from '../constants/api.dictionary';
 
 const offset = 0
 const limit = 100
@@ -21,11 +22,11 @@ export const fetchUserResolutions = (userRole: string) => instance.get(URL.resol
 
 export const fetchUpdateResolution = (id: string, request: 'patch' | 'delete', resolution?: string) => {
     switch (request) {
-        case 'patch' :
+        case PATCH :
             return instance.patch(URL.resolutionsId(id),
                 {resolution},
             )
-        case 'delete' :
+        case DELETE :
             return instance.delete(URL.resolutionsId(id))
     }
 }

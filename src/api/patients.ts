@@ -1,10 +1,9 @@
-import {instance} from "./index";
+import { instance } from "./index";
 
 const URL = {
     patientsMe: () => 'patients/me',
     adminPatients: (id: string) => `admin/patients/${id}`,
 }
-
 
 export const patientProfile = () => instance.get(URL.patientsMe())
 

@@ -1,4 +1,4 @@
-import {instance} from "./index";
+import { instance } from "./index";
 
 const URL = {
     doctorsMe: () => 'doctors/me',
@@ -15,6 +15,7 @@ export const updateDoctorProfile = (firstName: string, lastName: string, special
         specializations
     }
 )
+
 export const updateAdminDoctorProfile = (id:string, firstName: string, lastName: string, specializations: string[]) =>
     instance.patch(URL.adminDoctors(id),
         {

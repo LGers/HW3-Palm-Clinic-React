@@ -1,4 +1,4 @@
-import {instance} from "./index";
+import { instance } from "./index";
 const offset = 0
 const limit = 100
 
