@@ -7,7 +7,7 @@ type Props= {
     name: string
     id: string,
     placeholder: string
-    iconUrl: string
+    icon_url: string
 }
 const passwordInputType= (showPassword: boolean) => {
     return showPassword ? 'text' : 'password'
@@ -30,7 +30,7 @@ export const AuthInput: React.FC<Props> = (props) => {
             <InputIcon {...props}/>
             {isPassword()
                 ? <>
-                    <StyledAuthInput error={meta.error} passwordInputType={passwordInputType(showPassword)} { ...props}/>
+                    <StyledAuthInput error={meta.error} password_input_type={passwordInputType(showPassword)} { ...props}/>
                     <ShowPasswordButton onClick={()=>handleClick()}/>
                 </>
                 : <StyledAuthInput error={meta.error} { ...props}/>}

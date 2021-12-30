@@ -12,9 +12,9 @@ import {CabinetHeader} from "../CabinetHeader/CabinetHeader";
 const PreloadedCards = () => {
     return Array(12)
         .fill('')
-        .map((card) => <UserCardPreloaded key={card.key}/>)
+        .map(() => <UserCardPreloaded key={Math.random()}/>)
 }
-
+console.log(PreloadedCards)
 const Appointments: React.FC = () => {
     const dispatch = useDispatch()
     const userRole = useSelector((state: RootState) => state.authUser.data).role_name

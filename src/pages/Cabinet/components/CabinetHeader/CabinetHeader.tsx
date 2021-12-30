@@ -1,13 +1,13 @@
 import React from 'react';
-import {Title} from "../../../../components/Title/Title";
-import {Button} from "../../../../components/Button/Button";
-import {Plus} from "react-feather";
-import {useDispatch, useSelector} from "react-redux";
+import { Title } from "../../../../components/Title/Title";
+import { Button } from "../../../../components/Button/Button";
+import { Plus } from "react-feather";
+import { useSelector } from "react-redux";
 import Select from "react-select";
-import {useHistory} from "react-router-dom";
-import {CREATE_APPOINTMENT_PAGE_PATH} from "../../../../constants/path";
-import {SearchBlock, SearchInput, SearchLabel, CabinetSearch} from "./CabinetHeaderSearch.styles";
-import {CabinetHeaderSelectStyles} from "./CabinetHeaderSelect.styles";
+import { useHistory } from "react-router-dom";
+import { CREATE_APPOINTMENT_PAGE_PATH } from "../../../../constants/path";
+import { SearchBlock, SearchInput, SearchLabel, CabinetSearch } from "./CabinetHeaderSearch.styles";
+import { CabinetHeaderSelectStyles } from "./CabinetHeaderSelect.styles";
 import {
     USER_ROLE,
     PATIENT_CABINET, DOCTOR_CABINET
@@ -33,6 +33,7 @@ export const CabinetHeader: React.FC = () => {
 
     const handleSortChange = (option: OptionType) => {
         //todo sort dispatch(fetchAppointments()) // by parameters from value
+        console.log('sort options', option)
     }
 
     return (

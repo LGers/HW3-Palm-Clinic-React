@@ -24,3 +24,8 @@ export const EDIT_CARD_OPTION ={
     CANCEL: 'Cancel an appointment',
     DELETE: 'Delete',
 }
+
+export const FREE_TIMES = {
+    START: 8,
+    END:21,
+}

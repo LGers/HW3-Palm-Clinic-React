@@ -5,7 +5,6 @@ import {AppointmentContent} from '../../components/MakeAppointment/AppointmentCo
 import {AppointmentStep} from '../../components/MakeAppointment/AppointmentStep';
 import {Title} from '../../components/Title/Title';
 import {appointmentValidationSchema} from '../../validations/appointment.validation';
-import {Breadcrumbs} from '../test/Components/Breadcrumbs';
 import {StyledAppointmentField, StyledAppointmentLabel} from './CreateAppointmentSelects.styles';
 import {CreateAppointmentSelect} from "./CreateAppointmentSelects";
 import {CREATE_APPOINTMENT} from '../../constants/constants';
@@ -26,7 +25,7 @@ import {Link} from 'react-router-dom';
 import {ChevronRight} from 'react-feather';
 import {Button} from "../../components/Button/Button";
 import {LABELS, STEP} from '../../constants/appointment.dictionary';
-
+import { BreadcrumbsStyles } from '../../components/Breadcrumbs/Breadcrumbs.styles';
 
 export const CreateAppointmentForm: React.FC = () => {
     const dispatch = useDispatch()
@@ -47,17 +46,13 @@ export const CreateAppointmentForm: React.FC = () => {
     })
 
 
-    const handleDateChange = (day: any, doctorId: string) => {
+    const handleDateChange = (day: moment.Moment, doctorId: string) => {
         setDate(day)
         dispatch(fetchTimes({day, doctorId}))
     }
 
     function handleClick(values: FormikValues) {
         dispatch(createAppointment(values))
-    }
-
-    function handleChange(values: ChangeEvent<any>) {
-        console.log('handleChange values', values)
     }
 
 
@@ -83,11 +78,11 @@ export const CreateAppointmentForm: React.FC = () => {
 
               }) => (
                 <Form>
-                    <Breadcrumbs>
+                    <BreadcrumbsStyles>
                         <Link to={CABINET_APPOINTMENTS_PATH}>Doctors</Link><ChevronRight/>Make an appointment
                         {newAppointment.isFetching && <span>Loading...</span>}
 
-                    </Breadcrumbs>
+                    </BreadcrumbsStyles>
 
                     <Title>Make an appointment</Title>
 
@@ -107,7 +102,6 @@ export const CreateAppointmentForm: React.FC = () => {
 
                             <StyledAppointmentLabel htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>{LABELS.DOCTORS}</StyledAppointmentLabel>
                             <CreateAppointmentSelect
-                                onChange={() => handleChange}
                                 options={doctorOptions}
                                 name={CREATE_APPOINTMENT.DOCTOR_ID}
                                 selectId={CREATE_APPOINTMENT.DOCTOR_ID}
@@ -135,9 +129,8 @@ export const CreateAppointmentForm: React.FC = () => {
 
                         <div>
                             <AppointmentStep><span>2</span>{STEP.TWO}</AppointmentStep>
-                            {/*//todo TS any delete doctorID*/}
                             <Calendar
-                                onChange={(day: any, doctorID: string) => handleDateChange(day, values.doctorID)}
+                                onChange={(day: moment.Moment) => handleDateChange(day, values.doctorID)}
                                 isStepOneCompleted={!!values.doctorID}
                             />
                         </div>

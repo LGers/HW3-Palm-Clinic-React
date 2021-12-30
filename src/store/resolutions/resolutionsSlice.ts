@@ -46,7 +46,6 @@ const initialState: Resolutions = {
 const resolutionsSlice = createSlice({
         name: 'resolutions',
         initialState,
-        //todo create common reducer - duplicate code
         reducers: {
             fetchResolutions(state, action) {
                 state.isFetching = true

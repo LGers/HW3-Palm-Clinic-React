@@ -1,50 +1,40 @@
 import moment from "moment";
-import {TimeRadioInput} from "../../components/TimeRadioInput/TimeRadioInput";
+import { TimeRadioInput } from "../../components/TimeRadioInput/TimeRadioInput";
 import React from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../../store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { FREE_TIMES } from '../../constants/appointment.dictionary';
 
 type Props = {
-    date: any
+    date: moment.Moment
     isStepOneCompleted: boolean
 }
 
 export const CreateAppointmentTimes: React.FC<Props> = ({isStepOneCompleted, date}) => {
 
-    const createAppointment = useSelector((state: RootState) => state.createAppointment)
-    const tempArray: any = []
-    createAppointment.times.map(time => {
-        tempArray.push(moment(time).format('HH'))
-    })
+    const appointmentTimes = useSelector((state: RootState) => state.createAppointment).times
     const timesArray = []
-//todo refactor it Array(13)
-    for (let i = 8; i < 21; i++) {
+    for (let i = FREE_TIMES.START; i < FREE_TIMES.END; i++) {
         const obj = Object()
-        obj.id = 'hour' + i
-        const formatHour = i < 10 ? '0' + i : i
-        obj.time = moment(date).startOf('day').add(i, 'hours').format()
-
-        tempArray.includes(formatHour.toString())
-            ? obj.isAvailable = false
-            : obj.isAvailable = true
+        obj.time = moment(date).startOf('day').add(i, 'hours').toISOString()
+        obj.isAvailable = appointmentTimes.includes(obj.time)
         timesArray.push(obj)
     }
 
-
     const times = timesArray.map(time =>
-        <TimeRadioInput
-            key={time.id}
-            radioId={moment(time.time).toISOString()}
-            time={moment(time.time).format('HH:OO a')}
-            name={'date'}
-            disabled={time.isAvailable}
-            isStepOneFull={isStepOneCompleted}
-        />
+      <TimeRadioInput
+        key={time.time}
+        radioId={time.time}
+        time={moment(time.time).format('HH:OO a')}
+        name={'date'}
+        disabled={!time.isAvailable}
+        isStepOneFull={isStepOneCompleted}
+      />
     )
 
     return (
-        <>
-            {times}
-        </>
+      <>
+          {times}
+      </>
     )
 }

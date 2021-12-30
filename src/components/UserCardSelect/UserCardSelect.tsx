@@ -6,6 +6,7 @@ import {changeAppointment} from "../../store/appointments/appointmentsSlice";
 import {CANCELED, CONFIRMED, DELETE, PATCH} from "../../constants/api.dictionary";
 import { customStyles } from './UserCardSelect.styles';
 import { EDIT_CARD_OPTION } from '../../constants/appointment.dictionary';
+import { Dispatch } from '@reduxjs/toolkit';
 
 type Props = {
     appointmentId: string
@@ -32,44 +33,42 @@ const editCardOptions = [
     {value: 'delete', label: EDIT_CARD_OPTION.DELETE, color: 'red'},
 ]
 
+const handleChange = (option: OptionType, id: string, dispatch: Dispatch) => {
+    switch (option.value) {
+        case 'delete':
+            return dispatch(changeAppointment({id, request: DELETE}))
+        case 'create': //todo createResolutionAppointment()
+            return null
+        case 'editResolution': //todo editResolutionAppointment()
+            return null
+        case 'editAppointment': //todo editResolutionAppointment()
+            return null
+        case 'confirmAppointment':
+            return dispatch(changeAppointment({id, request: PATCH, status: CONFIRMED}))
+        case 'cancelAppointment':
+            return dispatch(changeAppointment({id, request: PATCH, status: CANCELED}))
+        default :
+    }
+}
+
 export const UserCardSelect: React.FC<Props> = ({appointmentId}) => {
     const dispatch = useDispatch()
 
-    const handleChange = (option: OptionType, id: string) => {
-        switch (option.value) {
-
-            case 'delete':
-                dispatch(changeAppointment({id, request: DELETE}))
-                break
-            case 'create': //todo createResolutionAppointment()
-                break
-            case 'editResolution': //todo editResolutionAppointment()
-                break
-            case 'editAppointment': //todo editResolutionAppointment()
-                break
-            case 'confirmAppointment':
-                dispatch(changeAppointment({id, request: PATCH, status: CONFIRMED}))
-                break
-            case 'cancelAppointment':
-                dispatch(changeAppointment({id, request: PATCH, status: CANCELED}))
-                break
-            default :
-        }
-    }
 
     return (
-        <Select
-            value={''}
-            components={{
-                DropdownIndicator,
-                IndicatorSeparator: null
-            }}
-            styles={customStyles}
-            options={editCardOptions}
-            placeholder=''
-            isSearchable={false}
-            onChange={(option) => handleChange((option as OptionType), appointmentId)}
-            menuPlacement='auto'
-            />
+      <Select
+        value={''}
+        components={{
+            DropdownIndicator,
+            IndicatorSeparator: null
+        }}
+        styles={customStyles}
+        options={editCardOptions}
+        placeholder=''
+        isSearchable={false}
+        // onChange={(option) => handleChange((option as OptionType), appointmentId)}
+        onChange={(option) => handleChange((option as OptionType), appointmentId, dispatch)}
+        menuPlacement='auto'
+      />
     )
 };

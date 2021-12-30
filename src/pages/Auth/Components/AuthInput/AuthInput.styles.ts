@@ -6,10 +6,10 @@ export const AuthInputContent =styled.div`
 `
 
 export const StyledAuthInput = styled(Field).attrs(props => ({
-    type: props.passwordInputType || props.type,
+    type: props.password_input_type || props.type,
     name: props.name,
     id: props.id,
-    placeholder: props.placeholder
+    placeholder: props.placeholder,
 }))`
   padding: 16px 24px 16px 64px;
   width: 100%;
@@ -30,8 +30,9 @@ export const StyledAuthInput = styled(Field).attrs(props => ({
     border: 1px solid #7297FF;
   }
 `
+
 interface Props {
-    iconUrl: string
+    icon_url: string
 }
 
 export const InputIcon = styled.div<Props>`
@@ -40,7 +41,8 @@ export const InputIcon = styled.div<Props>`
   left: 5px;
   height: 40px;
   width: 40px;
-  background: url(${props => props.iconUrl}) no-repeat;
+  // background: url(${props => props.icon_url}) no-repeat;
+  background: url(/static/img/lock-icon.svg) no-repeat;
   background-position-y: center;
   background-position-x: 18px;
 `

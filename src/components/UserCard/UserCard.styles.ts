@@ -86,7 +86,7 @@ export const StatusIcon = styled.div<StatusIconProps>`
   `}
 `
 
-export const Resolutions = styled.p`
+export const Resolutions = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 24px;

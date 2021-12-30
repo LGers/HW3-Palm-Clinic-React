@@ -45,7 +45,7 @@ const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS)=> {
             id={input.NAME}
             type={input.TYPE}
             placeholder={input.PLACEHOLDER}
-            iconUrl={input.ICON_URL}
+            icon_url={input.ICON_URL}
         />
     )
 }

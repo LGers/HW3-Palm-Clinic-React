@@ -21,7 +21,7 @@ export const NameAndStatus = styled.div`
     
 `
 
-export const EmptyName = styled.p`
+export const EmptyName = styled.div`
 
   height: 24px;
   width: 50%;
@@ -30,7 +30,7 @@ export const EmptyName = styled.p`
   border-radius: 4px;
 `
 
-export const EmptyStatus = styled.p`
+export const EmptyStatus = styled.div`
   padding-left: 16px;
   background: #F9FAFF;
   border-radius: 4px;
@@ -57,21 +57,20 @@ export const Status = styled.div`
   }
 `
 
-
-export const Resolutions = styled.p`
+export const Resolutions = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px 24px;
 `
 
-export const EmptyTime = styled.p`
+export const EmptyTime = styled.div`
   height: 24px;
   width: 100%;
   background: #F9FAFF;
   border-radius: 4px;
 `
 
-export const EmptyDescription = styled.p`
+export const EmptyDescription = styled.div`
   margin-top: 16px;
   height: 63px;
   width: 100%;
