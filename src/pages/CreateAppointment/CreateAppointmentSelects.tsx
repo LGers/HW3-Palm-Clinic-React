@@ -1,27 +1,18 @@
 import Select from "react-select";
 import React from "react";
-import {useField} from "formik";
-import {AppointmentSelectStyles} from "./CreateAppointmentSelects.styles";
-import {useDispatch} from "react-redux";
-import {ErrorValidation} from "../../components/ErrorValidation/ErrorValidation";
-import {fetchDoctors, fetchTimes} from "../../store/createAppointment/createAppointmentSlice";
-import {CREATE_APPOINTMENT} from "../../constants/constants";
+import { useField } from "formik";
+import { AppointmentSelectStyles } from "./CreateAppointmentSelects.styles";
+import { useDispatch } from "react-redux";
+import { ErrorValidation } from "../../components/ErrorValidation/ErrorValidation";
+import { fetchDoctors, fetchTimes } from "../../store/createAppointment/createAppointmentSlice";
+import { CREATE_APPOINTMENT } from "../../constants/constants";
 import moment from "moment";
+import { CreateAppointmentSelectProps, OptionType } from './CreateAppointment.types';
 
-type OptionType = {
-    label: string
-    value: string
-}
-
-type Props = {
-    options: OptionType[]
-    name: string
-    selectId: string
-    isDisabled?: boolean
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-export const CreateAppointmentSelect: React.FC<Props> = ({options, name, selectId, isDisabled}) => {
+export const CreateAppointmentSelect: React.FC<CreateAppointmentSelectProps> = (
+  {
+      options, name, selectId, isDisabled
+  }) => {
     const dispatch = useDispatch()
     const [field, meta, helpers] = useField(name);
     const {setValue} = helpers;
@@ -49,9 +40,7 @@ export const CreateAppointmentSelect: React.FC<Props> = ({options, name, selectI
                 id={selectId}
                 instanceId={selectId}
             />
-            {meta.touched && meta.error ? (
-                <ErrorValidation>{meta.error}</ErrorValidation>
-            ) : null}
+            {meta.touched && meta.error && <ErrorValidation>{meta.error}</ErrorValidation>}
         </>
     )
 }

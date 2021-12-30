@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import CabinetIsEmpty from "../CabinetIsEmpty/CabinetIsEmpty";
-import {RootState} from "../../../../store";
-import {fetchResolutions} from "../../../../store/resolutions/resolutionsSlice";
-import {TableResolutions} from "../../../../components/TableResolutions/TableResolutions";
-import {CabinetHeader} from "../CabinetHeader/CabinetHeader";
+import { RootState } from "../../../../store";
+import { fetchResolutions } from "../../../../store/resolutions/resolutionsSlice";
+import { TableResolutions } from "../../../../components/TableResolutions/TableResolutions";
+import { CabinetHeader } from "../CabinetHeader/CabinetHeader";
 
 const PatientResolutions: React.FC = () => {
     const dispatch = useDispatch()
@@ -30,4 +30,5 @@ const PatientResolutions: React.FC = () => {
         </>
     );
 };
+
 export default PatientResolutions

@@ -8,23 +8,15 @@ import { useHistory } from "react-router-dom";
 import { CREATE_APPOINTMENT_PAGE_PATH } from "../../../../constants/path";
 import { SearchBlock, SearchInput, SearchLabel, CabinetSearch } from "./CabinetHeaderSearch.styles";
 import { CabinetHeaderSelectStyles } from "./CabinetHeaderSelect.styles";
-import {
-    USER_ROLE,
-    PATIENT_CABINET, DOCTOR_CABINET
-} from "../../../../constants/constants";
+import { USER_ROLE, PATIENT_CABINET, DOCTOR_CABINET } from "../../../../constants/constants";
 import { RootState } from '../../../../store';
-
-type OptionType = {
-    label: string
-    value: string
-}
+import { OptionType } from '../../Cabinet.types';
 
 export const CabinetHeader: React.FC = () => {
     const userRole = useSelector((state: RootState) => state.authUser.data).role_name
     const cabinetHeaderData = userRole === USER_ROLE.PATIENT
         ? PATIENT_CABINET
         : DOCTOR_CABINET
-
 
     const history = useHistory();
     const handleClick = () => {
@@ -44,18 +36,19 @@ export const CabinetHeader: React.FC = () => {
                 <SearchLabel>{cabinetHeaderData.SELECT_LABEL}</SearchLabel>
 
                 <Select
-                    value={''}
-                    styles={CabinetHeaderSelectStyles}
-                    components={{
-                        IndicatorSeparator: null
-                    }}
-                    options={cabinetHeaderData.SORT_OPTIONS}
-                    isSearchable={false}
-                    onChange={(option) => handleSortChange(option as OptionType)}
+                  value={''}
+                  styles={CabinetHeaderSelectStyles}
+                  components={{
+                      IndicatorSeparator: null
+                  }}
+                  options={cabinetHeaderData.SORT_OPTIONS}
+                  isSearchable={false}
+                  onChange={(option) => handleSortChange(option as OptionType)}
                 />
-                {userRole === USER_ROLE.PATIENT
-                    ? <Button primary leftIcon onClick={handleClick}><Plus/> Create an appointment</Button>
-                    : null
+                {userRole === USER_ROLE.PATIENT &&
+                <Button primary leftIcon onClick={handleClick}>
+                    <Plus /> Create an appointment
+                </Button>
                 }
             </SearchBlock>
         </CabinetSearch>

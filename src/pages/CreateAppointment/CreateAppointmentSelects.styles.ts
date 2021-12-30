@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {Field} from "formik";
-import {StylesConfig} from "react-select";
+import { Field } from "formik";
+import { StylesConfig } from "react-select";
 
 export const StyledAppointmentLabel = styled.label`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 130%;
-  color: #000000;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 130%;
+    color: #000000;
 `
 
 export const StyledAppointmentField = styled(Field)`

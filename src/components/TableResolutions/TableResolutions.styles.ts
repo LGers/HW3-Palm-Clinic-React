@@ -9,7 +9,7 @@ const CommonTable = styled.div`
   font-size: 15px;
   line-height: 24px;
   display: grid;
-  grid-template-columns: 3fr 3fr 6fr 2fr 2fr 2fr;
+  grid-template-columns: 3fr 3fr 6fr 3fr 3fr 2fr;
   padding: 20px 30px;
   box-shadow: 0 4px 32px rgba(218, 228, 255, 0.24);
   border-radius: 12px;

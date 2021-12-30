@@ -4,13 +4,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { FREE_TIMES } from '../../constants/appointment.dictionary';
+import { CreateAppointmentTimesProps } from './CreateAppointment.types';
 
-type Props = {
-    date: moment.Moment
-    isStepOneCompleted: boolean
-}
-
-export const CreateAppointmentTimes: React.FC<Props> = ({isStepOneCompleted, date}) => {
+export const CreateAppointmentTimes: React.FC<CreateAppointmentTimesProps> = ({isStepOneCompleted, date}) => {
 
     const appointmentTimes = useSelector((state: RootState) => state.createAppointment).times
     const timesArray = []

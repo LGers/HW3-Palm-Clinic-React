@@ -25,12 +25,17 @@ const CreateAppointment: React.FC = () => {
     return (
         <RootWrapper>
             <Wrapper>
-                <Header/>
+                <Header />
                 <MainContent>
-                    <CreateAppointmentForm/>
+                    <CreateAppointmentForm />
                 </MainContent>
-                {showPopupMessage && <PopupMessage title={popupMessageTitle} message={popupMessageText} isSuccess={isSuccess}
-                                                   onClose={handleCloseMessage}/>}
+                {showPopupMessage &&
+                <PopupMessage
+                  title={popupMessageTitle}
+                  message={popupMessageText}
+                  isSuccess={isSuccess}
+                  onClose={handleCloseMessage}
+                />}
             </Wrapper>
         </RootWrapper>
     )

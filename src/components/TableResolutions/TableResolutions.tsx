@@ -36,17 +36,19 @@ const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
 export const TableResolutions: React.FC<Props> = ({resolutions, userRole}) => {
     return (
         <>
-            <TableHeader>
-                <div>{HEADER.FIRST_NAME} <ChevronDown/></div>
-                <div>{HEADER.LAST_NAME} <ChevronDown/></div>
-                <div>{HEADER.RESOLUTION}</div>
-                <div>{HEADER.VISIT_DATE} <ChevronDown/></div>
-                <div>{HEADER.NEXT_VISIT} <ChevronDown/></div>
-                <div>{HEADER.ACTIONS}</div>
-            </TableHeader>
-            <Table>
-                {resolutions.map((resolution) => <TableRow key={resolution.id} resolutionData={resolution}/>)}
-            </Table>
+          <TableHeader>
+            <div>{HEADER.FIRST_NAME} <ChevronDown /></div>
+            <div>{HEADER.LAST_NAME} <ChevronDown /></div>
+            <div>{HEADER.RESOLUTION}</div>
+            <div>{HEADER.VISIT_DATE} <ChevronDown /></div>
+            <div>{HEADER.NEXT_VISIT} <ChevronDown /></div>
+            <div>{HEADER.ACTIONS}</div>
+          </TableHeader>
+          <Table>
+            {resolutions.map((resolution) =>
+              <TableRow key={resolution.id} resolutionData={resolution} />)
+            }
+          </Table>
         </>
     );
 };

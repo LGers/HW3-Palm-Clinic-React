@@ -1,21 +1,19 @@
 import React from "react";
-import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from "../../../../constants/path";
-import {AUTH_FORM, RESTORE_PASSWORD} from "../../../../constants/auth.dictionary";
-import {useDispatch} from "react-redux";
-import {Formik, FormikValues} from "formik";
-import {Link} from "react-router-dom";
-import {Title} from "../../../../components/Title/Title";
-import {ForgotPassword, StyledAuthForm} from "./AuthForm.styles";
-import {AuthInput} from "../AuthInput/AuthInput";
-import {AuthButton} from "../../AuthPage.styles";
-import {fetchSignUp, fetchSignIn} from "../../../../store/auth/authSlice";
-import {signInValidationSchema, signUpValidationSchema} from "../../../../validations/auth.validation";
-
-type Props = {
-    link: string
-    showPassword?: never
-    toggleShowPassword?: never
-}
+import { RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH } from "../../../../constants/path";
+import { AUTH_FORM, RESTORE_PASSWORD } from "../../../../constants/auth.dictionary";
+import { useDispatch } from "react-redux";
+import { Formik, FormikValues } from "formik";
+import { Link } from "react-router-dom";
+import { Title } from "../../../../components/Title/Title";
+import { ForgotPassword, StyledAuthForm } from "./AuthForm.styles";
+import { AuthInput } from "../AuthInput/AuthInput";
+import { AuthButton } from "../../AuthPage.styles";
+import { fetchSignUp, fetchSignIn } from "../../../../store/auth/authSlice";
+import {
+    signInValidationSchema,
+    signUpValidationSchema
+} from "../../../../validations/auth.validation";
+import { AuthFormProps } from "../../Auth.types";
 
 const setAuthPageData = (link: string) => {
     switch (link) {
@@ -30,25 +28,25 @@ const setAuthPageData = (link: string) => {
 
 const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS) => {
     return inputs.map(input =>
-        <AuthInput
-            key={input.NAME}
-            name={input.NAME}
-            id={input.NAME}
-            type={input.TYPE}
-            placeholder={input.PLACEHOLDER}
-            icon_url={input.ICON_URL}
-        />
+      <AuthInput
+        key={input.NAME}
+        name={input.NAME}
+        id={input.NAME}
+        type={input.TYPE}
+        placeholder={input.PLACEHOLDER}
+        icon_url={input.ICON_URL}
+      />
     )
 }
-export const AuthForm: React.FC<Props> = ({link}) => {
+export const AuthForm: React.FC<AuthFormProps> = ({link}) => {
     const authPageData = setAuthPageData(link)
 
     const dispatch = useDispatch()
 
     function handleClick(values: FormikValues) {
         link === SIGN_IN_PATH
-            ? dispatch(fetchSignIn(values))
-            : dispatch(fetchSignUp(values))
+          ? dispatch(fetchSignIn(values))
+          : dispatch(fetchSignUp(values))
     }
 
     return (
@@ -64,19 +62,16 @@ export const AuthForm: React.FC<Props> = ({link}) => {
             }}
         >
             <StyledAuthForm>
-                <div>
-                    <Title>{authPageData.TITLE}</Title>
-                </div>
-
+                <Title>{authPageData.TITLE}</Title>
                 {link === RESTORE_PASSWORD_PATH && RESTORE_PASSWORD.TEXT}
                 {authPageData.INPUTS.length && authInputs(authPageData.INPUTS)}
 
-                {authPageData.BUTTON_TEXT && <AuthButton type={"submit"}>{authPageData.BUTTON_TEXT}</AuthButton>}
+                {authPageData.BUTTON_TEXT &&
+                <AuthButton type={"submit"}>{authPageData.BUTTON_TEXT}</AuthButton>}
 
                 {link === SIGN_IN_PATH &&
                 <ForgotPassword>
-                    <Link to={RESTORE_PASSWORD_PATH}>Forgot
-                        Password?</Link>
+                    <Link to={RESTORE_PASSWORD_PATH}>Forgot Password?</Link>
                 </ForgotPassword>
                 }
             </StyledAuthForm>

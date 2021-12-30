@@ -1,25 +1,21 @@
 import React from "react";
-import {Header} from "../../components/Header/Header";
-import {MainContent} from "../../components/MainContent/MainContent";
-import {NavigationTabs} from "./components/NavigationTabs/NavigationTabs";
+import { Header } from "../../components/Header/Header";
+import { MainContent } from "../../components/MainContent/MainContent";
+import { NavigationTabs } from "./components/NavigationTabs/NavigationTabs";
 import Appointments from "./components/Appointments/Appointments";
-import {CabinetHeader} from "./components/CabinetHeader/CabinetHeader";
-import {RootWrapper} from "../../components/RootWrapper/RootWrapper";
-import {Wrapper} from "../../components/Wrapper/Wrapper";
-import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {toggleShowMessage} from "../../store/auth/authSlice";
+import { RootWrapper } from "../../components/RootWrapper/RootWrapper";
+import { Wrapper } from "../../components/Wrapper/Wrapper";
+import { PopupMessage } from "../../components/PopupMessage/PopupMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { toggleShowMessage } from "../../store/auth/authSlice";
 import {
     CABINET_APPOINTMENTS_PATH, CABINET_PROFILE_PATH,
     CABINET_RESOLUTION_PATH,
 } from "../../constants/path";
 import PatientResolutions from "./components/PatientResolutions/PatientResolutions";
-import {Profile} from "./components/Profile/Profile";
-
-type Props = {
-    link: string
-}
+import { Profile } from "./components/Profile/Profile";
+import { CabinetProps } from './Cabinet.types';
 
 const content = (link: string) => {
     switch (link) {
@@ -35,7 +31,7 @@ const content = (link: string) => {
     }
 }
 
-const Cabinet: React.FC<Props> = ({link}) => {
+const Cabinet: React.FC<CabinetProps> = ({link}) => {
     const dispatch = useDispatch()
     const handleCloseMessage = () => {
         dispatch(toggleShowMessage())
@@ -54,7 +50,6 @@ const Cabinet: React.FC<Props> = ({link}) => {
                 <Header/>
                 <MainContent>
                     <NavigationTabs/>
-                    {/*<CabinetHeader/>*/}
                     {content(link)}
                 </MainContent>
                 {showPopupMessage &&

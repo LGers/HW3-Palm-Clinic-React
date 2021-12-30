@@ -1,4 +1,4 @@
-import {StylesConfig} from "react-select";
+import { StylesConfig } from "react-select";
 
 export const CabinetHeaderSelectStyles: StylesConfig = {
     menu: (provided) => ({
@@ -9,7 +9,6 @@ export const CabinetHeaderSelectStyles: StylesConfig = {
         boxShadow: '0px 4px 32px rgba(218, 228, 255, 0.16)',
 
     }),
-
 
     menuList: (provided) => ({
         ...provided,
@@ -39,7 +38,6 @@ export const CabinetHeaderSelectStyles: StylesConfig = {
     control: (provided) => ({
         ...provided,
         backgroundColor: 'transparent',
-
         boxShadow: '0px 4px 32px rgba(218, 228, 255, 0.16)',
         borderRadius: '8px',
         border: 'none',
@@ -53,7 +51,6 @@ export const CabinetHeaderSelectStyles: StylesConfig = {
         '&:focus ': {
             borderColor: '#7297FF'
         },
-
     }),
     dropdownIndicator: () => ({
         color: '#7297FF',

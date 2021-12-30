@@ -2,16 +2,13 @@ import React from 'react';
 import {AuthForm} from "./Components/AuthForm/AuthForm";
 import {AuthFooter} from "./Components/AuthFooter/AuthFooter";
 import {AUTH_FOOTER} from "../../constants/auth.dictionary";
-import {RESTORE_PASSWORD_PATH, SIGN_IN_PATH, SIGN_UP_PATH} from '../../constants/path';
+import {RESTORE_PASSWORD_PATH, SIGN_UP_PATH} from '../../constants/path';
 import {AuthBar, AuthBarContent, AuthBody} from './AuthPage.styles';
 import {PopupMessage} from "../../components/PopupMessage/PopupMessage";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {toggleShowMessage} from "../../store/auth/authSlice";
-
-type Props ={
-    link: string
-}
+import { AuthPageProps } from './Auth.types';
 
 const setAuthPageData = (link:string) => {
     switch (link) {
@@ -24,9 +21,8 @@ const setAuthPageData = (link:string) => {
     }
 }
 
-export const AuthPage: React.FC<Props> = ({link}) => {
+export const AuthPage: React.FC<AuthPageProps> = ({link}) => {
     const dispatch = useDispatch()
-
     const authPageData = setAuthPageData(link)
     const {
         isSuccess,
@@ -34,7 +30,6 @@ export const AuthPage: React.FC<Props> = ({link}) => {
         popupMessageTitle,
         popupMessageText
     } = useSelector((state: RootState) => state.authUser.popupMessage)
-
     const handleCloseMessage = () => {
         dispatch(toggleShowMessage())
     }

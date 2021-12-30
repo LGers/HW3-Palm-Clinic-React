@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react';
-import {UsersGrid} from "../../../../components/UsersGrid/UsersGrid";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from 'react';
+import { UsersGrid } from "../../../../components/UsersGrid/UsersGrid";
+import { useDispatch, useSelector } from "react-redux";
 import CabinetIsEmpty from "../CabinetIsEmpty/CabinetIsEmpty";
-import {UserCard} from "../../../../components/UserCard/UserCard";
-import {UserCardPreloaded} from "../../../../components/UserCardPreloaded/UserCardPreloaded";
-import {RootState} from "../../../../store";
-import {fetchAppointments} from "../../../../store/appointments/appointmentsSlice";
-import {CabinetHeader} from "../CabinetHeader/CabinetHeader";
+import { UserCard } from "../../../../components/UserCard/UserCard";
+import { UserCardPreloaded } from "../../../../components/UserCardPreloaded/UserCardPreloaded";
+import { RootState } from "../../../../store";
+import { fetchAppointments } from "../../../../store/appointments/appointmentsSlice";
+import { CabinetHeader } from "../CabinetHeader/CabinetHeader";
 
 
 const PreloadedCards = () => {
     return Array(12)
-        .fill('')
-        .map(() => <UserCardPreloaded key={Math.random()}/>)
+      .fill('')
+      .map(() => <UserCardPreloaded key={Math.random()} />)
 }
-console.log(PreloadedCards)
+
 const Appointments: React.FC = () => {
     const dispatch = useDispatch()
     const userRole = useSelector((state: RootState) => state.authUser.data).role_name

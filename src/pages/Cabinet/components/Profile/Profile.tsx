@@ -1,74 +1,75 @@
-import React, {useEffect, useState} from 'react';
-import {FormContent, StyledProfile} from './Profile.styles';
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../../store";
+import React, { useEffect, useState } from 'react';
+import { FormContent, StyledProfile } from './Profile.styles';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../../store";
 import {
-    doctorProfileValidationSchema,
-    patientProfileValidationSchema
+  doctorProfileValidationSchema,
+  patientProfileValidationSchema
 } from "../../../../validations/profileEdit.validation";
-import {fetchDoctorProfile} from "../../../../store/auth/authSlice";
-import {Form, Formik} from "formik";
+import { fetchDoctorProfile } from "../../../../store/auth/authSlice";
+import { Form, Formik } from "formik";
 import ProfileEditForm from "./ProfileEditForm";
-import {fetchDoctorChangeProfile, fetchPatientChangeProfile} from '../../../../store/profile/profileSlice';
-import {ProfileHeader} from "./ProfileHeader";
-import {Flex} from "../../../../components/Flex/Flex";
-import {Name, NameAndStatus, Specialization} from "../../../../components/UserCard/UserCard.styles";
-import {Button} from "../../../../components/Button/Button";
-import {Lock} from "react-feather";
-import {ChangePasswordForm} from '../../../../components/ChangePasswordForm/ChangePasswordForm';
+import {
+  fetchDoctorChangeProfile,
+  fetchPatientChangeProfile
+} from '../../../../store/profile/profileSlice';
+import { ProfileHeader } from "./ProfileHeader";
+import { Flex } from "../../../../components/Flex/Flex";
+import {
+  Name,
+  NameAndStatus,
+  Specialization
+} from "../../../../components/UserCard/UserCard.styles";
+import { Button } from "../../../../components/Button/Button";
+import { Lock } from "react-feather";
+import { ChangePasswordForm } from '../../../../components/ChangePasswordForm/ChangePasswordForm';
+import { ProfileType } from '../../Cabinet.types';
 
-type ProfileType = {
-    id: string
-    first_name: string
-    last_name: string
-    photo: string
-    role_name: string
-}
 export const Profile: React.FC = (props) => {
-    const dispatch = useDispatch()
-    const profile: ProfileType = useSelector((state: RootState) => state.authUser.data)
-    const {role_name, first_name, last_name, photo} = profile
-    const specialization = useSelector((state: RootState) => state.authUser.occupation)
-    const isDoctor = role_name === 'doctor'
-    const initialValues = isDoctor
-        ? {
-            firstName: first_name,
-            lastName: last_name,
-            specialization: specialization
-        }
-        : {
-            firstName: first_name,
-            lastName: last_name,
-        }
-
-    const validationSchema = isDoctor ? doctorProfileValidationSchema : patientProfileValidationSchema
-
-    const [isEditProfile, setIsEditProfile] = useState(false)
-    const [isChangePassword, setIsChangePassword] = useState(false)
-
-    useEffect(() => {
-        isDoctor && dispatch(fetchDoctorProfile())
-    }, [])
-
-    const handleEditProfile = () => {
-        setIsEditProfile(!isEditProfile)
+  const dispatch = useDispatch()
+  const profile: ProfileType = useSelector((state: RootState) => state.authUser.data)
+  const {role_name, first_name, last_name, photo} = profile
+  const specialization = useSelector((state: RootState) => state.authUser.occupation)
+  const isDoctor = role_name === 'doctor'
+  const initialValues = isDoctor
+    ? {
+      firstName: first_name,
+      lastName: last_name,
+      specialization: specialization
     }
-    const handleChangePassword = () => {
-        setIsChangePassword(!isChangePassword)
+    : {
+      firstName: first_name,
+      lastName: last_name,
     }
 
-    return (
-        <StyledProfile {...props}>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={(values, {setSubmitting}) => {
-                    setSubmitting(false);
-                    isDoctor
-                        ? dispatch(fetchDoctorChangeProfile(values))
-                        : dispatch(fetchPatientChangeProfile(values))
-                }}
-            >
+  const validationSchema = isDoctor ? doctorProfileValidationSchema : patientProfileValidationSchema
+
+  const [isEditProfile, setIsEditProfile] = useState(false)
+  const [isChangePassword, setIsChangePassword] = useState(false)
+
+  useEffect(() => {
+    isDoctor && dispatch(fetchDoctorProfile())
+  }, [])
+
+  const handleEditProfile = () => {
+    setIsEditProfile(!isEditProfile)
+  }
+  const handleChangePassword = () => {
+    setIsChangePassword(!isChangePassword)
+  }
+
+  return (
+    <StyledProfile {...props}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values, {setSubmitting}) => {
+          setSubmitting(false);
+          isDoctor
+            ? dispatch(fetchDoctorChangeProfile(values))
+            : dispatch(fetchPatientChangeProfile(values))
+        }}
+      >
                 {({
                       isSubmitting,
                   }) => (
@@ -94,7 +95,6 @@ export const Profile: React.FC = (props) => {
                                 </Flex>
                             </Form>
                         </FormContent>
-
                 )}
             </Formik>
             {isChangePassword && <ChangePasswordForm handleChangePassword={handleChangePassword}/>}

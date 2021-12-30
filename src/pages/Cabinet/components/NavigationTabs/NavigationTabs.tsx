@@ -13,7 +13,6 @@ export const NavigationTabs = () => {
     const tabs: Array<TabType> = (userRole === 'patient') ? PATIENT_TABS : DOCTOR_TABS
 
     return (
-
         <Flex gap={'0 24px'} padding={'40px 0'}>
             {tabs.map((tab) =>
                 <Tab
@@ -23,6 +22,5 @@ export const NavigationTabs = () => {
                 >{tab.text}</Tab>)
             }
         </Flex>
-
     );
 };

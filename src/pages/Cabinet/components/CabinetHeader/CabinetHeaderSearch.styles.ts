@@ -27,8 +27,7 @@ export const SearchInput = styled.input`
   border: none;
   padding-left: 40px;
   font-size: 15px;
-  background-color: transparent;
-  background: url(../../../../static/img/search.svg) no-repeat left 3px;
+  background: transparent url(../../../../static/img/search.svg) no-repeat left 3px;
   background-size: 20px;
   background-position-y: center;
   background-position-x: 10px;

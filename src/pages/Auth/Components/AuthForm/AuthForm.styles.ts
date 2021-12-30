@@ -7,6 +7,7 @@ export const StyledAuthForm = styled(Form)`
   justify-content: center;
   margin: 24px;
 `
+
 export const ForgotPassword = styled.div`
   margin-top: 32px;
   color: #7297FF;
@@ -28,12 +29,12 @@ export const AuthText = styled.p`
   color: #A1ABC9;
   margin-bottom: 24px;
 `
+
 export const Email = styled.span`
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 130%;
   color: #7297FF;
-
 `
 

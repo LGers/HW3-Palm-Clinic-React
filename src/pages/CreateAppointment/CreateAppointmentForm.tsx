@@ -1,5 +1,6 @@
 import { Form, Formik, FormikValues } from 'formik';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { Flex } from '../../components/Flex/Flex';
 import { AppointmentContent } from '../../components/MakeAppointment/AppointmentContent';
 import { AppointmentStep } from '../../components/MakeAppointment/AppointmentStep';
@@ -17,7 +18,6 @@ import {
     fetchOccupations,
     fetchTimes,
 } from "../../store/createAppointment/createAppointmentSlice";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CABINET_APPOINTMENTS_PATH } from '../../constants/path';
@@ -37,15 +37,12 @@ export const CreateAppointmentForm: React.FC = () => {
     }, [dispatch])
 
     const newAppointment = useSelector((state: RootState) => state.createAppointment)
-
     const occupationOptions = newAppointment.occupations.map(occupation => {
         return {value: occupation.id, label: occupation.specialization_name}
     })
-
     const doctorOptions = newAppointment.doctors.map(doctor => {
         return {value: doctor.id, label: doctor.first_name + ' ' + doctor.last_name}
     })
-
     const handleDateChange = (day: moment.Moment, doctorId: string) => {
         setDate(day)
         dispatch(fetchTimes({day, doctorId}))
@@ -78,7 +75,8 @@ export const CreateAppointmentForm: React.FC = () => {
               }) => (
                 <Form>
                     <Breadcrumbs>
-                        <Link to={CABINET_APPOINTMENTS_PATH}>Doctors</Link><ChevronRight/>Make an appointment
+                        <Link to={CABINET_APPOINTMENTS_PATH}>Doctors</Link>
+                        <ChevronRight />Make an appointment
                         {newAppointment.isFetching && <span>Loading...</span>}
                     </Breadcrumbs>
 
@@ -92,7 +90,8 @@ export const CreateAppointmentForm: React.FC = () => {
 
                             <div>
                                 <StyledAppointmentLabel
-                                  htmlFor={CREATE_APPOINTMENT.OCCUPATION}>{LABELS.OCCUPATION}</StyledAppointmentLabel>
+                                  htmlFor={CREATE_APPOINTMENT.OCCUPATION}>{LABELS.OCCUPATION}
+                                </StyledAppointmentLabel>
                                 <CreateAppointmentSelect
                                   options={occupationOptions}
                                   name={CREATE_APPOINTMENT.OCCUPATION}
@@ -101,7 +100,8 @@ export const CreateAppointmentForm: React.FC = () => {
                             </div>
                             <div>
                                 <StyledAppointmentLabel
-                                  htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>{LABELS.DOCTORS}</StyledAppointmentLabel>
+                                  htmlFor={CREATE_APPOINTMENT.DOCTOR_ID}>{LABELS.DOCTORS}
+                                </StyledAppointmentLabel>
                                 <CreateAppointmentSelect
                                   options={doctorOptions}
                                   name={CREATE_APPOINTMENT.DOCTOR_ID}
@@ -111,7 +111,8 @@ export const CreateAppointmentForm: React.FC = () => {
                             </div>
                             <div>
                                 <StyledAppointmentLabel
-                                  htmlFor={CREATE_APPOINTMENT.REASON.INPUT_NAME}>{LABELS.REASON}</StyledAppointmentLabel>
+                                  htmlFor={CREATE_APPOINTMENT.REASON.INPUT_NAME}>{LABELS.REASON}
+                                </StyledAppointmentLabel>
                                 <StyledAppointmentField
                                   name={CREATE_APPOINTMENT.REASON.INPUT_NAME}
                                   id={CREATE_APPOINTMENT.REASON.INPUT_NAME}
@@ -123,7 +124,8 @@ export const CreateAppointmentForm: React.FC = () => {
                             </div>
                             <div>
                                 <StyledAppointmentLabel
-                                  htmlFor={CREATE_APPOINTMENT.NOTE.INPUT_NAME}>{LABELS.NOTE}</StyledAppointmentLabel>
+                                  htmlFor={CREATE_APPOINTMENT.NOTE.INPUT_NAME}>{LABELS.NOTE}
+                                </StyledAppointmentLabel>
                                 <StyledAppointmentField
                                   name={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
                                   id={CREATE_APPOINTMENT.NOTE.INPUT_NAME}
@@ -147,7 +149,10 @@ export const CreateAppointmentForm: React.FC = () => {
                             <AppointmentStep><span>3</span>{STEP.THREE}</AppointmentStep>
 
                             <TimeSlots>
-                                <CreateAppointmentTimes date={date} isStepOneCompleted={!!values.doctorID}/>
+                                <CreateAppointmentTimes
+                                  date={date}
+                                  isStepOneCompleted={!!values.doctorID}
+                                />
                             </TimeSlots>
                         </div>
                     </AppointmentContent>
