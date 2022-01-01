@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {ChevronLeft, ChevronRight} from "react-feather";
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from "react-feather";
 import {
     StyledCalendar,
     StyledCalendarHeader,
@@ -9,15 +9,11 @@ import {
     StyledMothNavigate,
     StyledWeek
 } from "./Calendar.styles";
-
 import moment, { Moment } from "moment";
-import {DAY_NAMES} from "../../constants/calendar.dictionary";
+import { DAY_NAMES } from "../../constants/calendar.dictionary";
+import { CalendarProps } from './Calendar.types';
 
-type Props = {
-    onChange: any
-    isStepOneCompleted: boolean
-}
-export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...props) => {
+export const Calendar: React.FC<CalendarProps> = ({onChange, isStepOneCompleted}, ...props) => {
 
     const today = moment()
     const [date, setDate] = useState(moment())
@@ -70,9 +66,7 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
                 <StyledMothNavigate onClick={() => setDate(nextMonth)}>
                     <ChevronRight/>
                 </StyledMothNavigate>
-
             </StyledCalendarHeader>
-
             <StyledWeek>
                 {
                     DAY_NAMES.map((day, index) => <StyledDayName key={index}>{day}</StyledDayName>)
@@ -86,7 +80,6 @@ export const Calendar: React.FC<Props> = ({onChange, isStepOneCompleted}, ...pro
                            key={index}
                             isDayNotInCurrentMonth={isDayNotInCurrentMonth(day)}
                             isToday={day.format('DDMMYY') === today.format('DDMMYY')}
-
                         >
                             <input
                                 onClick={() => {

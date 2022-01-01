@@ -5,16 +5,7 @@ import { ChevronDown, MoreVertical } from "react-feather";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { ResolutionsType } from '../../store/resolutions/resolutions.types';
-
-type Props = {
-  resolutions: ResolutionsType[]
-  userRole: 'doctor' | 'patient' | 'admin'
-}
-
-type ResolutionProps = {
-  resolutionData: ResolutionsType
-}
+import { ResolutionProps, TableResolutionsProps } from './TableResolutions.types';
 
 const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
     const role_name = useSelector((state: RootState) => state.authUser.data).role_name
@@ -33,7 +24,7 @@ const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
         </StyledTableRow>)
 }
 
-export const TableResolutions: React.FC<Props> = ({resolutions, userRole}) => {
+export const TableResolutions: React.FC<TableResolutionsProps> = ({resolutions}) => {
     return (
         <>
           <TableHeader>

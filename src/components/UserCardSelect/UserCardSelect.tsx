@@ -7,15 +7,7 @@ import {CANCELED, CONFIRMED, DELETE, PATCH} from "../../constants/api.dictionary
 import { customStyles } from './UserCardSelect.styles';
 import { EDIT_CARD_OPTION } from '../../constants/appointment.dictionary';
 import { Dispatch } from '@reduxjs/toolkit';
-
-type Props = {
-    appointmentId: string
-}
-
-type OptionType = {
-    label: string
-    value: string
-}
+import { OptionType, UserCardSelectProps } from './UserCardSelect.types';
 
 const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props: DropdownIndicatorProps) => {
     return (
@@ -51,9 +43,8 @@ const handleChange = (option: OptionType, id: string, dispatch: Dispatch) => {
     }
 }
 
-export const UserCardSelect: React.FC<Props> = ({appointmentId}) => {
+export const UserCardSelect: React.FC<UserCardSelectProps> = ({appointmentId}) => {
     const dispatch = useDispatch()
-
 
     return (
       <Select
