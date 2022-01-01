@@ -7,6 +7,7 @@ import { FormContent } from "./Profile.styles";
 import { StyledAppointmentField } from "../../../CreateAppointment/CreateAppointmentSelects.styles";
 import { ProfileHeader } from "./ProfileHeader";
 import { ProfileEditFormProps } from '../../Cabinet.types';
+import { Image } from '../../../../components/Image';
 
 const ProfileEditForm: React.FC<ProfileEditFormProps> = ({setIsEditProfile}) => {
     const profile = useSelector((state: RootState) => state.authUser.data)
@@ -21,7 +22,7 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({setIsEditProfile}) => 
           <Form>
               <ProfileHeader isEditProfile={true} handleEditProfile={handleClick} />
               <Flex>
-                  <img src={photo} alt={'Profile Photo'} />
+                  <Image src={photo} alt={'Profile Photo'} />
                   <Flex align={'flex-end'} gap={'0 32px'}>
                       <Flex direction={'column'}>
                           <label htmlFor={'firstName'}>First Name</label>
@@ -54,8 +55,8 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({setIsEditProfile}) => 
                       </Flex>
                       }
                   </Flex>
-                    </Flex>
-                </Form>
+              </Flex>
+          </Form>
         </FormContent>
     );
 };

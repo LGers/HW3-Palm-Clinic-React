@@ -24,6 +24,7 @@ import { Button } from "../../../../components/Button/Button";
 import { Lock } from "react-feather";
 import { ChangePasswordForm } from '../../../../components/ChangePasswordForm/ChangePasswordForm';
 import { ProfileType } from '../../Cabinet.types';
+import { Image } from '../../../../components/Image';
 
 export const Profile: React.FC = (props) => {
   const dispatch = useDispatch()
@@ -81,16 +82,16 @@ export const Profile: React.FC = (props) => {
                                 <ProfileHeader isEditProfile={isEditProfile} handleEditProfile={handleEditProfile}/>
                                 <Flex direction={'column'}>
                                     <Flex justify={'flex-start'}>
-                                        <img src={photo} alt={'Profile Photo'}/>
-                                        <Flex justify={'space-between'} direction={'column'}>
-                                            <NameAndStatus>
-                                                <Name>{first_name} {last_name}</Name>
-                                                {isDoctor && <Specialization>Therapist</Specialization>}
-                                            </NameAndStatus>
-                                            <Button secondary leftIcon onClick={handleChangePassword}>
-                                                <Lock/>Change password
-                                            </Button>
-                                        </Flex>
+                                      <Image src={photo} alt={'Profile Photo'} />
+                                      <Flex justify={'space-between'} direction={'column'}>
+                                        <NameAndStatus>
+                                          <Name>{first_name} {last_name}</Name>
+                                          {isDoctor && <Specialization>Therapist</Specialization>}
+                                        </NameAndStatus>
+                                        <Button secondary leftIcon onClick={handleChangePassword}>
+                                          <Lock />Change password
+                                        </Button>
+                                      </Flex>
                                     </Flex>
                                 </Flex>
                             </Form>

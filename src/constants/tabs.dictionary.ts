@@ -1,4 +1,9 @@
-import {CABINET_APPOINTMENTS_PATH, CABINET_PROFILE_PATH, CABINET_RESOLUTION_PATH} from "./path";
+import {
+    CABINET_APPOINTMENTS_PATH,
+    CABINET_PATIENTS_PATH,
+    CABINET_PROFILE_PATH,
+    CABINET_RESOLUTION_PATH
+} from "./path";
 
 export type TabType = {
     key: number
@@ -12,6 +17,6 @@ export const PATIENT_TABS: Array<TabType> = [
     {key: 3, text: 'Resolutions', path: CABINET_RESOLUTION_PATH}
 ]
 export const DOCTOR_TABS: Array<TabType> = [
-    {key: 1, text: 'Patients', path: CABINET_RESOLUTION_PATH},
+    {key: 1, text: 'Patients', path: CABINET_PATIENTS_PATH},
     {key: 2, text: 'Resolutions', path: CABINET_RESOLUTION_PATH}
 ]

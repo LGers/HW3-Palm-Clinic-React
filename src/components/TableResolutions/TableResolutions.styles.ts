@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Table = styled.div`
  overflow-y: auto;
 `
+
 const CommonTable = styled.div`
   position: relative;
   font-weight: normal;
@@ -28,7 +29,7 @@ export const TableHeader = styled(CommonTable)`
 
   & div {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
   }
@@ -38,11 +39,12 @@ export const StyledTableRow = styled(CommonTable)`
   color: #202225;
 
   & div {
+    display: flex;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
 
     &:last-child {
-      display: flex;
       justify-content: flex-end;
       align-items: center;
       border: none;
