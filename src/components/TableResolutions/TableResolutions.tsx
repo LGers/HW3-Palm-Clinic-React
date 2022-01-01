@@ -1,11 +1,12 @@
 import React from 'react';
-import { Table, TableHeader, StyledTableRow } from './TableResolutions.styles';
+import { Table, TableHeader, StyledTableRow, ActionButton } from './TableResolutions.styles';
 import { HEADER } from "../../constants/resolutions.dictionary";
 import { ChevronDown, MoreVertical } from "react-feather";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { ResolutionProps, TableResolutionsProps } from './TableResolutions.types';
+import { Flex } from '../Flex/Flex';
 
 const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
     const role_name = useSelector((state: RootState) => state.authUser.data).role_name
@@ -20,7 +21,9 @@ const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
             <div>{resolution}</div>
             <div>{moment(visit_date).format('MM/DD/YY')}</div>
             <div>{moment(next_appointment_date).format('MM/DD/YY')}</div>
-            <div><MoreVertical/></div>
+          <Flex align={'flex-end'} padding={'0'}>
+            <ActionButton><MoreVertical/></ActionButton>
+          </Flex>
         </StyledTableRow>)
 }
 

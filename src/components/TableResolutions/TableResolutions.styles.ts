@@ -25,19 +25,43 @@ const CommonTable = styled.div`
 
 export const TableHeader = styled(CommonTable)`
   color: #A1ABC9;
+
   & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
   }
 `
 
 export const StyledTableRow = styled(CommonTable)`
- color: #202225;
+  color: #202225;
 
- & div {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  &:last-child {
-   justify-content: flex-end;
+  & div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:last-child {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border: none;
+    }
   }
- }
+`
+
+export const ActionButton = styled.button`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  
+  &:hover {
+    background: #F9FAFF;
+    border-radius: 6px;
+    color: #7297FF;
+  }
 `
