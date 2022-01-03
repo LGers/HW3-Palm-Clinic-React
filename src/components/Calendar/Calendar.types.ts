@@ -1,5 +1,6 @@
 export type CalendarProps = {
-  onChange: any
+  onChange: any // todo any
+  // onChange: (isoDate: string) => void // todo or Moment type
   isStepOneCompleted: boolean
 }
 

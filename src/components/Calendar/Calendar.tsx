@@ -14,7 +14,6 @@ import { DAY_NAMES } from "../../constants/calendar.dictionary";
 import { CalendarProps } from './Calendar.types';
 
 export const Calendar: React.FC<CalendarProps> = ({onChange, isStepOneCompleted}, ...props) => {
-
     const today = moment()
     const [date, setDate] = useState(moment())
     const value = date
@@ -26,14 +25,13 @@ export const Calendar: React.FC<CalendarProps> = ({onChange, isStepOneCompleted}
 
     useEffect(() => {
         const day = startDay.clone().subtract(1, "day")
-        const tempDay:any=[]
+        const tempDay: any = [] // todo any
 
         while (day.isBefore(endDay, 'day')) {
             tempDay.push(
-                // tempDay2
-                Array(7)
-                    .fill(0)
-                    .map(() => day.add(1, 'day').clone())
+              Array(7)
+                .fill(0)
+                .map(() => day.add(1, 'day').clone())
             )
         }
         setCalendar(tempDay)
@@ -69,7 +67,8 @@ export const Calendar: React.FC<CalendarProps> = ({onChange, isStepOneCompleted}
             </StyledCalendarHeader>
             <StyledWeek>
                 {
-                    DAY_NAMES.map((day, index) => <StyledDayName key={index}>{day}</StyledDayName>)
+                    DAY_NAMES.map((day, index) =>
+                      <StyledDayName key={index}>{day}</StyledDayName>)
                 }
             </StyledWeek>
             {calendar.map((week:Moment[], index) =>

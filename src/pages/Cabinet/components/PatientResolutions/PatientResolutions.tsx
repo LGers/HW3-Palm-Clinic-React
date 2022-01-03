@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import CabinetIsEmpty from "../CabinetIsEmpty/CabinetIsEmpty";
 import { RootState } from "../../../../store";
@@ -12,7 +12,6 @@ const PatientResolutions: React.FC = () => {
     const authUser = useSelector((state: RootState) => state.authUser)
     const userRole = authUser.data.role_name
     const roleNameInRequest = authUser.roleNameInRequest
-    const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
         dispatch(fetchResolutions({userRole}))
     }, [userRole])
@@ -20,7 +19,8 @@ const PatientResolutions: React.FC = () => {
     const {resolutions, total, isFetching} = useSelector((state: RootState) => state.resolutions)
 
     const handleChangePage = (page: number) => {
-        setCurrentPage(page)
+        // dispatch(fetchResolutions({userRole}))//todo with page
+        console.log('handleChangePage page', page) // todo log
     }
 
     return (
@@ -32,9 +32,9 @@ const PatientResolutions: React.FC = () => {
               ? <TableResolutions resolutions={resolutions} userRole={roleNameInRequest} />
               : <CabinetIsEmpty />
           }
-          <Paginator total={Number(total)} currentPage={currentPage}
-                     // onChange={(page: number) => handleChangePage(page)}
-          /> {/*todo*/}
+          <Paginator total={Number(total)}
+                     onChange={(page: number) => handleChangePage(page)}
+          />
       </>
     );
 };
