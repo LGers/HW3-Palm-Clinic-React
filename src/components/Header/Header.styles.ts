@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
-import {Link} from "react-router-dom";
-import { AvatarProps } from './Header.types';
+import { Link } from "react-router-dom";
+import { LinkProps } from './Header.types';
 
 export const StyledHeader = styled.div`
   @media all {
@@ -45,7 +45,7 @@ export const HeaderUserProfession = styled.div`
   }
 `
 
-export const HeaderUserAvatar = styled(Link)<AvatarProps>`
+export const HeaderUserAvatar = styled(Link)<LinkProps>`
   position: relative;
 
   &-icon {
@@ -77,4 +77,8 @@ export const UserStatusIcon = styled.div`
   top: -3px;
   right: 0;
   border: 3px solid #E4EBFF;
+`
+
+export const Logo = styled(Link)<LinkProps>`
+  
 `

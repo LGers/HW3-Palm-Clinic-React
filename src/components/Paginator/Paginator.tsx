@@ -41,7 +41,7 @@ export const Paginator: React.FC<PaginatorProps> = ({total, onChange}) => {
   const [page, setPage] = useState(1) // todo
   const firstResults = startItem(total, page)
   const lastResults = endItem(total, page)
-  console.log('paginatorPage', page)
+
   return (
     <StyledPaginator>
       <p><span>Results:</span> {firstResults}-{lastResults} of {total}</p>

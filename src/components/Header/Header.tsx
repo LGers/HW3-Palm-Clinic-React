@@ -4,12 +4,13 @@ import {
     HeaderUserAvatar,
     HeaderUserName,
     HeaderUserProfession,
+    Logo,
     StyledHeader,
     UserStatusIcon
 } from "./Header.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { CABINET_PROFILE_PATH } from "../../constants/path";
+import { CABINET_PROFILE_PATH, MAIN_PAGE_PATH } from "../../constants/path";
 import { Image } from '../Image';
 
 export const Header: React.FC = (props) => {
@@ -17,7 +18,10 @@ export const Header: React.FC = (props) => {
     return (
       <StyledHeader {...props}>
           <Flex justify={'space-between'}>
-              <img height={32} width={132} src="../../static/img/logo.png" alt="Palm Clinic Logo" />
+              <Logo to={MAIN_PAGE_PATH}>
+                  <img height={32} width={132} src="../../static/img/logo.png"
+                       alt="Palm Clinic Logo" />
+              </Logo>
               <Flex>
                   <div>
                       <HeaderUserName>{userProfile.first_name} {userProfile.last_name}</HeaderUserName>
