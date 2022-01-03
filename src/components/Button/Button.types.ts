@@ -1,5 +1,4 @@
 export type ButtonProps = {
-  /* eslint-disable @typescript-eslint/no-explicit-any */
   type?: 'submit' | 'button'
   width?: number
   height?: number
@@ -10,5 +9,4 @@ export type ButtonProps = {
   rightIcon?: any
   variant?: 'primary' | 'secondary' | 'disabled'
   onClick?:()=>void
-  /* eslint-enable @typescript-eslint/no-explicit-any */
 }

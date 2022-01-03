@@ -1,9 +1,6 @@
 import styled from "styled-components";
+import { StyledDayProps } from "./Calendar.types";
 
-interface Props {
-    isToday: boolean
-    isDayNotInCurrentMonth: boolean
-}
 export const StyledWeek = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -12,7 +9,8 @@ export const StyledWeek = styled.div`
 export const StyledCalendar = styled.div`
   max-width: 400px;
 `
-export const StyledDay = styled.div<Props>`
+
+export const StyledDay = styled.div<StyledDayProps>`
   text-align: center;
   cursor: pointer;
   caret-color: transparent;
@@ -39,8 +37,7 @@ export const StyledDay = styled.div<Props>`
       background-color: #476CD3;
     }
   }
-
-
+    
   & input:disabled + label {
     background: #DCE0EC;
     color: #fff;

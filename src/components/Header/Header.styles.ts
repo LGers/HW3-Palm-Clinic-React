@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
 import {Link} from "react-router-dom";
-
-interface AvatarProps  {
-    to: string
-}
-
+import { AvatarProps } from './Header.types';
 
 export const StyledHeader = styled.div`
   @media all {

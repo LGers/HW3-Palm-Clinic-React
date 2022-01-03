@@ -4,7 +4,14 @@ import { AUTH_FORM, RESTORE_PASSWORD } from "../../../../constants/auth.dictiona
 import { Formik, FormikValues } from "formik";
 import { Link } from "react-router-dom";
 import { Title } from "../../../../components/Title/Title";
-import { AuthText, AuthTitle, Email, ForgotPassword, StyledAuthForm } from "./AuthForm.styles";
+import {
+    AuthText,
+    AuthTitle,
+    Email,
+    ForgotPassword,
+    ForgotPasswordSent,
+    StyledAuthForm
+} from "./AuthForm.styles";
 import { AuthInput } from "../AuthInput/AuthInput";
 import { ChevronLeft } from "react-feather";
 import { restorePasswordValidationSchema } from "../../../../validations/auth.validation";
@@ -36,6 +43,7 @@ const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS)=> {
       />
     )
 }
+
 export const AuthRestorePasswordForm: React.FC<AuthFormProps> = ({link}) => {
     const authPageData = setAuthPageData(link)
     const [email, setEmail] = useState('')
@@ -80,9 +88,9 @@ export const AuthRestorePasswordForm: React.FC<AuthFormProps> = ({link}) => {
                         }
                     </StyledAuthForm>
                 </Formik>
-                </>
-                :
-            <>
+            </>
+            :
+            <ForgotPasswordSent>
                 <AuthTitle>
                     <Title>
                         <span><Link to={SIGN_IN_PATH}><ChevronLeft /></Link></span>
@@ -95,7 +103,7 @@ export const AuthRestorePasswordForm: React.FC<AuthFormProps> = ({link}) => {
                     <Email>{email}</Email>
                     {RESTORE_PASSWORD.SEND_TEXT_AFTER}
                 </AuthText>
-            </>}
+            </ForgotPasswordSent>}
     </>
     )
 }

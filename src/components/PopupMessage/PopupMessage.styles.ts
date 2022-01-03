@@ -1,10 +1,7 @@
 import styled from "styled-components";
+import { StyledPopupMessageProps } from './PopupMessage.types';
 
-interface Props {
-    isSuccess:boolean
-}
-
-export const StyledPopupMessage = styled.div<Props>`
+export const StyledPopupMessage = styled.div<StyledPopupMessageProps>`
   min-height: 122px;
   padding: 24px 32px;
   position: absolute;

@@ -22,6 +22,12 @@ export const ForgotPassword = styled.div`
     line-height: 22px;
   }
 `
+export const ForgotPasswordSent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 24px;
+`
 
 export const AuthText = styled.p`
   font-size: 15px;
@@ -39,7 +45,6 @@ export const Email = styled.span`
 `
 export const AuthTitle = styled.div`
   display: flex;
-  //justify-con: center;
   align-items: center;
   margin-bottom: 28px;
 `

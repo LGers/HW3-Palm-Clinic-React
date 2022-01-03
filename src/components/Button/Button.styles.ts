@@ -1,21 +1,9 @@
-import styled, {css} from "styled-components";
-import {MEDIA_QUERY} from "../../constants/mediaQuery";
-
-type ButtonProps = {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    type?: 'submit' | 'button'
-    primary?: any
-    secondary?: any
-    isDisabled?: boolean
-    width?: number
-    height?: number
-    leftIcon?: any
-    rightIcon?: any
-    /* eslint-enable @typescript-eslint/no-explicit-any */
-}
+import styled, { css } from "styled-components";
+import { MEDIA_QUERY } from "../../constants/mediaQuery";
+import { ButtonProps } from "./Button.types";
 
 export const StyledButton = styled.button.attrs(props => ({
-    type: props.type || 'button'
+  type: props.type || 'button'
 }))<ButtonProps>`
   font-weight: 600;
   font-size: 15px;

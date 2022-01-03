@@ -38,6 +38,7 @@ const authInputs = (inputs: typeof AUTH_FORM.SIGN_UP.INPUTS) => {
       />
     )
 }
+
 export const AuthForm: React.FC<AuthFormProps> = ({link}) => {
     const authPageData = setAuthPageData(link)
 

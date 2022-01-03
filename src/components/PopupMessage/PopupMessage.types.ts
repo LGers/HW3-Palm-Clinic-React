@@ -4,3 +4,7 @@ export type PopupMessageProps = {
   isSuccess: boolean
   onClose: () => void
 }
+
+export interface StyledPopupMessageProps {
+  isSuccess:boolean
+}

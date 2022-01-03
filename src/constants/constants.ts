@@ -1,5 +1,7 @@
 export const FETCH_USERS_LIMIT = 100
 export const FETCH_USERS_OFFSET = 0
+export const RESOLUTIONS_LIMIT = 8
+
 
 export const DOCTOR_CABINET_SORT_OPTIONS = [
     {value: 'Date', label: 'Date'},

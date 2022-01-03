@@ -1,19 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, {css} from "styled-components";
 import {MEDIA_QUERY} from "../../constants/mediaQuery";
-
-interface TabProps  {
-  to: string
-  width?: number
-  height?: number
-  variant?: 'secondary' | 'primary' | 'disabled'
-  primary?: string
-  secondary?: string
-  isDisabled?: string
-  leftIcon?: string
-  rightIcon?: string
-
-}
+import { TabProps } from "./Tab.types";
 
 export const StyledTab = styled(Link)<TabProps>`
   font-weight: 600;
@@ -35,7 +23,6 @@ export const StyledTab = styled(Link)<TabProps>`
   }
 
   ${props => (props.primary || props.variant === 'primary') && css`
-
     color: white;
     background-color:#7297FF;
 

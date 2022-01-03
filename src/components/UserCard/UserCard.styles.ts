@@ -1,7 +1,6 @@
 import styled, {css} from "styled-components";
-interface StatusIconProps {
-  status: 'confirmed' | 'canceled' | 'waiting'
-}
+import { StatusIconProps } from "./UserCard.types";
+
 
 export const StyledUserCard = styled.div`
   display: flex;

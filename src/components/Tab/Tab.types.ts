@@ -1,4 +1,5 @@
-export type TabProps = {
+
+export interface TabProps  {
   to: string
   width?: number
   height?: number
@@ -8,4 +9,5 @@ export type TabProps = {
   isDisabled?: string
   leftIcon?: string
   rightIcon?: string
+
 }
