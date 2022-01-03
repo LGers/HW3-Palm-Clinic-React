@@ -44,9 +44,7 @@ export const UserCard: React.FC<UserCardProps> = ({appointment}) => {
           <UserInfo>
               <Image src={photo} alt={'avatar'} />
               <NameAndStatus>
-                  <Name>
-                      {first_name} {last_name}
-                  </Name>
+                  <Name>{first_name} {last_name}</Name>
                   {specialization_name
                     ?
                     <Specialization>

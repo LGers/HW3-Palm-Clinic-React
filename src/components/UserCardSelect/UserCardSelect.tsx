@@ -57,7 +57,6 @@ export const UserCardSelect: React.FC<UserCardSelectProps> = ({appointmentId}) =
         options={editCardOptions}
         placeholder=''
         isSearchable={false}
-        // onChange={(option) => handleChange((option as OptionType), appointmentId)}
         onChange={(option) => handleChange((option as OptionType), appointmentId, dispatch)}
         menuPlacement='auto'
       />

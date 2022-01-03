@@ -21,7 +21,7 @@ const TableRow: React.FC<ResolutionProps> = ({resolutionData}) => {
             <div>{resolution}</div>
             <div>{moment(visit_date).format('MM/DD/YY')}</div>
             <div>{moment(next_appointment_date).format('MM/DD/YY')}</div>
-          <Flex align={'flex-end'} padding={'0'}>
+          <Flex align={'center'} padding={'0'}>
             <ActionButton><MoreVertical/></ActionButton>
           </Flex>
         </StyledTableRow>)

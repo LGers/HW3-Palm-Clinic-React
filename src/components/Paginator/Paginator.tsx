@@ -38,7 +38,7 @@ const pages = (
 
 export const Paginator: React.FC<PaginatorProps> = ({total, onChange}) => {
   const lastPage = Math.ceil(total / RESOLUTIONS_LIMIT)
-  const [page, setPage] = useState(1) // todo
+  const [page, setPage] = useState(1)
   const firstResults = startItem(total, page)
   const lastResults = endItem(total, page)
 
