@@ -6,7 +6,7 @@ import { ChangeResolutionsType, GetResolutionsType } from './resolutions.types';
 
 export function* fetchResolutionsWorker(action: GetResolutionsType) {
     try {
-        const {data} = yield call(fetchUserResolutions, action.payload.userRole)
+        const {data} = yield call(fetchUserResolutions, action.payload.userRole, action.payload.offset)
         yield put(setUserResolutions(data))
     } catch (error: any) {
         yield errorMessage(error)

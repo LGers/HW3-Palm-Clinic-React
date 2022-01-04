@@ -43,7 +43,7 @@ export const Page = styled.button.attrs(props => ({
   `}
 
   ${props => (!props.disabled) && css`
-    cursor: default;
+    cursor: pointer;
 
     &:hover {
       color: #7297FF;

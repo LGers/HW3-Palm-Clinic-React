@@ -13,7 +13,7 @@ import {
     CABINET_APPOINTMENTS_PATH, CABINET_PROFILE_PATH,
     CABINET_RESOLUTION_PATH,
 } from "../../constants/path";
-import PatientResolutions from "./components/PatientResolutions/PatientResolutions";
+import Resolutions from "./components/Resolutions/Resolutions";
 import { Profile } from "./components/Profile/Profile";
 import { CabinetProps } from './Cabinet.types';
 
@@ -22,7 +22,7 @@ const content = (link: string) => {
         case CABINET_APPOINTMENTS_PATH:
             return <Appointments/>
         case CABINET_RESOLUTION_PATH:
-            return <PatientResolutions/>
+            return <Resolutions/>
         case CABINET_PROFILE_PATH:
             return <Profile/>
         default :

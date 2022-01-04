@@ -6,21 +6,21 @@ import { fetchResolutions } from "../../../../store/resolutions/resolutionsSlice
 import { TableResolutions } from "../../../../components/TableResolutions/TableResolutions";
 import { CabinetHeader } from "../CabinetHeader/CabinetHeader";
 import { Paginator } from '../../../../components/Paginator/Paginator';
+import { RESOLUTIONS_LIMIT } from '../../../../constants/constants';
 
-const PatientResolutions: React.FC = () => {
+const Resolutions: React.FC = () => {
     const dispatch = useDispatch()
     const authUser = useSelector((state: RootState) => state.authUser)
     const userRole = authUser.data.role_name
     const roleNameInRequest = authUser.roleNameInRequest
     useEffect(() => {
-        dispatch(fetchResolutions({userRole}))
+        dispatch(fetchResolutions({userRole, offset: 0}))
     }, [userRole])
 
     const {resolutions, total, isFetching} = useSelector((state: RootState) => state.resolutions)
 
     const handleChangePage = (page: number) => {
-        // dispatch(fetchResolutions({userRole}))//todo with page
-        console.log('handleChangePage page', page) // todo log
+        dispatch(fetchResolutions({userRole, offset: (page-1)*RESOLUTIONS_LIMIT}))
     }
 
     return (
@@ -39,4 +39,4 @@ const PatientResolutions: React.FC = () => {
     );
 };
 
-export default PatientResolutions
+export default Resolutions

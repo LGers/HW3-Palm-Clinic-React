@@ -37,10 +37,12 @@ export const customStyles: StylesConfig = {
         width: '40',
         height: '40',
         borderRadius: '6px',
+        color: '#DCE0EC',
 
         '&:hover': {
-            color:' #7297FF',
+            color: ' #7297FF',
             backgroundColor: '#F9FAFF',
+            transition: '0.3s ease-out',
         }
     }),
 
