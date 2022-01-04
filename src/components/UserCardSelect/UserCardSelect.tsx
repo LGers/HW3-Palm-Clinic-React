@@ -8,6 +8,7 @@ import { customStyles } from './UserCardSelect.styles';
 import { EDIT_CARD_OPTION } from '../../constants/appointment.dictionary';
 import { Dispatch } from '@reduxjs/toolkit';
 import { OptionType, UserCardSelectProps } from './UserCardSelect.types';
+import { StyledUserCardSelect } from '../UserCard/UserCard.styles';
 
 const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props: DropdownIndicatorProps) => {
     return (
@@ -47,18 +48,20 @@ export const UserCardSelect: React.FC<UserCardSelectProps> = ({appointmentId}) =
     const dispatch = useDispatch()
 
     return (
-      <Select
-        value={''}
-        components={{
-            DropdownIndicator,
-            IndicatorSeparator: null
-        }}
-        styles={customStyles}
-        options={editCardOptions}
-        placeholder=''
-        isSearchable={false}
-        onChange={(option) => handleChange((option as OptionType), appointmentId, dispatch)}
-        menuPlacement='auto'
-      />
+      <StyledUserCardSelect>
+          <Select
+            value={''}
+            components={{
+                DropdownIndicator,
+                IndicatorSeparator: null
+            }}
+            styles={customStyles}
+            options={editCardOptions}
+            placeholder=''
+            isSearchable={false}
+            onChange={(option) => handleChange((option as OptionType), appointmentId, dispatch)}
+            menuPlacement='auto'
+          />
+      </StyledUserCardSelect>
     )
 };

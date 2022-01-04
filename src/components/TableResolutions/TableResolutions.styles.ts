@@ -63,6 +63,7 @@ export const ActionButton = styled.button`
   
   &:hover {
     background: #F9FAFF;
+    background:black;
     border-radius: 6px;
     color: #7297FF;
   }

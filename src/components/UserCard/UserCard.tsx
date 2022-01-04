@@ -8,7 +8,7 @@ import {
     Name, NameAndStatus,
     Resolutions,
     Specialization, Status, StatusIcon,
-    StyledUserCard,
+    StyledUserCard, StyledUserCardSelect,
     Time,
     UserInfo
 } from "./UserCard.styles";
@@ -56,9 +56,7 @@ export const UserCard: React.FC<UserCardProps> = ({appointment}) => {
                     </Status>
                   }
               </NameAndStatus>
-
-              {role_name === 'doctor' && <UserCardSelect appointmentId={id} />}
-
+                  {role_name === 'doctor' && <UserCardSelect appointmentId={id} />}
           </UserInfo>
           <Resolutions>
               <Time><Icon><Clock /></Icon> {appointmentDate} {appointmentTime}</Time>

@@ -10,6 +10,17 @@ export const StyledUserCard = styled.div`
   border-radius: 12px;
   max-width: 100%;
 `
+
+export const StyledUserCardSelect = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+  &:hover{
+    color: #7297FF;
+  }
+`
+
 export const UserInfo = styled.div`
   padding: 19px 0 16px 24px;
   border-bottom: 1px solid rgba(220, 224, 236, 0.5);

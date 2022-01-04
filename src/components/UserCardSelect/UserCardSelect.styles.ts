@@ -5,8 +5,9 @@ export const customStyles: StylesConfig = {
     menu: () => ({
         position: "absolute",
         right: '16px',
-        width: '272px'
+        width: '272px',
     }),
+
     option: (provided, state: FormikValues) => ({
         ...provided,
         background: 'white',
@@ -20,10 +21,27 @@ export const customStyles: StylesConfig = {
             : {
                 cursor: 'not-allowed',
             },
-
     }),
 
     control: () => ({
+    }),
+
+    valueContainer: () => ({
+        display: 'none',
+    }),
+
+    dropdownIndicator: () => ({
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '40',
+        height: '40',
+        borderRadius: '6px',
+
+        '&:hover': {
+            color:' #7297FF',
+            backgroundColor: '#F9FAFF',
+        }
     }),
 
     singleValue: (provided, state: FormikValues) => {
