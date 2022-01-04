@@ -11,23 +11,36 @@ import {
     TextArea
 } from './CreateResolutionModalWindow.styles';
 import { CreateResolutionModalWindowProps } from './CreateResolutionModalWindow.types';
+import { useDispatch } from 'react-redux';
+import { createResolution } from '../../store/appointments/appointmentsSlice';
 
 export const CreateResolutionModalWindow: React.FC<CreateResolutionModalWindowProps> =
   ({name, ...props}) => {
-      return (
-        <StyledCreateResolutionModalWindow {...props}>
-            <Content>
-                <Resolution>
-                    <Title>Create a Resolution</Title>
-                    <Name><User color={'#DCE0EC'} /><span>{name} Mila Western</span></Name>
-                    <p>Resolution</p>
-                    <TextArea />
-                </Resolution>
-                <Buttons>
-                    <Button secondary leftIcon><X />Cancel</Button>
-                    <Button primary leftIcon><Clipboard /> Create</Button>
-                </Buttons>
-            </Content>
-        </StyledCreateResolutionModalWindow>
-      )
-};
+    const dispatch = useDispatch()
+
+    const handleCancel = () => {
+      return dispatch(createResolution(''))
+    }
+
+    const handleSave = () => {
+      return dispatch(createResolution(''))
+    }
+
+
+    return (
+      <StyledCreateResolutionModalWindow {...props}>
+        <Content>
+          <Resolution>
+            <Title>Create a Resolution</Title>
+            <Name><User color={'#DCE0EC'} /><span>{name}</span></Name>
+            <p>Resolution</p>
+            <TextArea />
+          </Resolution>
+          <Buttons>
+            <Button secondary leftIcon onClick={handleCancel}><X />Cancel</Button>
+            <Button primary leftIcon onClick={handleSave}><Clipboard /> Create</Button>
+          </Buttons>
+        </Content>
+      </StyledCreateResolutionModalWindow>
+    )
+  };

@@ -30,6 +30,7 @@ export function* rootSagas() {
         userAppointmentsWatcher(),
         changeAppointmentWatcher(),
         createAppointmentWatcher(),
+        // createResolutionWatcher(),
 
         userResolutionsWatcher(),
         changeResolutionWatcher(),

@@ -16,6 +16,7 @@ import {
 import Resolutions from "./components/Resolutions/Resolutions";
 import { Profile } from "./components/Profile/Profile";
 import { CabinetProps } from './Cabinet.types';
+import { CreateResolutionModalWindow } from '../../components/CreateResolutionModalWindow/CreateResolutionModalWindow';
 
 const content = (link: string) => {
     switch (link) {
@@ -43,23 +44,27 @@ const Cabinet: React.FC<CabinetProps> = ({link}) => {
         popupMessageText
     } = useSelector((state: RootState) => state.authUser.popupMessage)
 
+    const {isCreateResolution, patientName} = useSelector((state: RootState) => state.appointments)
     return (
-        <RootWrapper>
-            <Wrapper>
-                <Header/>
-                <MainContent>
-                    <NavigationTabs/>
-                    {content(link)}
-                </MainContent>
-                {showPopupMessage &&
-                <PopupMessage
+      <>
+          <RootWrapper>
+              <Wrapper>
+                  <Header/>
+                  <MainContent>
+                      <NavigationTabs/>
+                      {content(link)}
+                  </MainContent>
+                  {showPopupMessage &&
+                  <PopupMessage
                     title={popupMessageTitle}
                     message={popupMessageText}
                     isSuccess={isSuccess}
                     onClose={handleCloseMessage}
-                />}
-            </Wrapper>
-        </RootWrapper>
+                  />}
+                  {isCreateResolution && <CreateResolutionModalWindow name={patientName} />}
+              </Wrapper>
+          </RootWrapper>
+      </>
     );
 }
 

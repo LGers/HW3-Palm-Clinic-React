@@ -5,7 +5,9 @@ import { Appointments } from './appointments.types';
 const initialState: Appointments = {
     appointments: [],
     total: null,
-    isFetching: false
+    isFetching: false,
+    isCreateResolution: false,
+    patientName: '',
 }
 
 const appointmentsSlice = createSlice({
@@ -31,11 +33,20 @@ const appointmentsSlice = createSlice({
                         appointment.status = action.payload.status
                     }
                 }
-            }
+            },
+            createResolution(state, action) {
+                state.isCreateResolution = !state.isCreateResolution
+                state.patientName = action.payload.patientName
+            },
         }
     }
 )
 
-export const {setUserAppointments, fetchAppointments, changeAppointment} = appointmentsSlice.actions
+export const {
+    setUserAppointments,
+    fetchAppointments,
+    changeAppointment,
+    createResolution
+} = appointmentsSlice.actions
 
 export default appointmentsSlice.reducer

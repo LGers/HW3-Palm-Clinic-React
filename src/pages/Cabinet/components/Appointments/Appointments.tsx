@@ -7,6 +7,7 @@ import { UserCardPreloaded } from "../../../../components/UserCardPreloaded/User
 import { RootState } from "../../../../store";
 import { fetchAppointments } from "../../../../store/appointments/appointmentsSlice";
 import { CabinetHeader } from "../CabinetHeader/CabinetHeader";
+import { CreateResolutionModalWindow } from '../../../../components/CreateResolutionModalWindow/CreateResolutionModalWindow';
 
 
 const PreloadedCards = () => {
@@ -17,13 +18,19 @@ const PreloadedCards = () => {
 
 const Appointments: React.FC = () => {
     const dispatch = useDispatch()
-    const userRole = useSelector((state: RootState) => state.authUser.data).role_name
+    const role_name1 = useSelector((state: RootState) => state.authUser.data).role_name
+    const {role_name, first_name, last_name} = useSelector((state: RootState) => state.authUser.data)
 
     useEffect(() => {
-        dispatch(fetchAppointments({userRole: userRole}))
-    }, [userRole])
+        dispatch(fetchAppointments({userRole: role_name}))
+    }, [role_name])
 
-    const {appointments, total, isFetching} = useSelector((state: RootState) => state.appointments)
+    const {
+        appointments,
+        total,
+        isFetching,
+        isCreateResolution
+    } = useSelector((state: RootState) => state.appointments)
 
     const users = appointments.map(appointment =>
         <UserCard key={appointment.id} appointment={appointment}/>)

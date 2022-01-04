@@ -1,5 +1,6 @@
 export type UserCardSelectProps = {
   appointmentId: string
+  patientName: string
 }
 
 export type OptionType = {

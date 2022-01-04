@@ -3,14 +3,8 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 import { Clipboard, Clock, Heart } from "react-feather";
 import {
-    Description,
-    Icon,
-    Name, NameAndStatus,
-    Resolutions,
-    Specialization, Status, StatusIcon,
-    StyledUserCard, StyledUserCardSelect,
-    Time,
-    UserInfo
+    Description, Icon, Name, NameAndStatus, Resolutions, Specialization,
+    Status, StatusIcon, StyledUserCard, Time, UserInfo
 } from "./UserCard.styles";
 import { UserCardSelect } from "../UserCardSelect/UserCardSelect";
 import { RootState } from '../../store';
@@ -36,7 +30,8 @@ export const UserCard: React.FC<UserCardProps> = ({appointment}) => {
     const {photo, specialization_name, last_name, first_name} = isDoctor ? patient : doctor
     const momentDate = moment(visit_date)
     const appointmentDate = momentDate.format('ddd DD MMM, YYYY')
-    const appointmentTime = momentDate.format('h a') + ' - ' + momentDate.add(1, 'hour').format('h a')
+    const appointmentTime = momentDate
+      .format('h a') + ' - ' + momentDate.add(1, 'hour').format('h a')
     const IconDescription = role_name === 'doctor' ? <Clipboard /> : <Heart />
 
     return (
@@ -56,7 +51,8 @@ export const UserCard: React.FC<UserCardProps> = ({appointment}) => {
                     </Status>
                   }
               </NameAndStatus>
-                  {role_name === 'doctor' && <UserCardSelect appointmentId={id} />}
+              {role_name === 'doctor' &&
+              <UserCardSelect appointmentId={id} patientName={first_name + ' ' + last_name} />}
           </UserInfo>
           <Resolutions>
               <Time><Icon><Clock /></Icon> {appointmentDate} {appointmentTime}</Time>

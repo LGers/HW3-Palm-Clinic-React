@@ -1,5 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { changeAppointment, fetchAppointments, setUserAppointments } from "./appointmentsSlice";
+import {
+    changeAppointment,
+    createResolution,
+    fetchAppointments,
+    setUserAppointments
+} from "./appointmentsSlice";
 import { fetchUpdateAppointment, fetchUserAppointments } from "../../api/appointments";
 import { errorMessage } from "../commonSaga";
 import { AppointmentsType, ChangeAppointmentsType } from './appointments.types';
@@ -37,3 +42,19 @@ export function* changeAppointmentWatcher() {
     // @ts-ignore //todo @ts-ignore
     yield takeEvery(changeAppointment.type, changeAppointmentWorker)
 }
+
+/*
+export function* createResolutionWorker() {
+    // eslint-disable-next-line no-debugger
+    debugger
+    try {
+        yield put(createResolution())
+    } catch (error: any) {
+        yield errorMessage(error)
+    }
+}
+
+export function* createResolutionWatcher() {
+    yield takeEvery(createResolution.type, createResolutionWorker)
+}
+*/

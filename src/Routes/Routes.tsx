@@ -34,7 +34,9 @@ export const Routes: React.FC = () => {
             }
         } else {
             if (history.location.pathname === SIGN_IN_PATH || history.location.pathname === MAIN_PAGE_PATH) {
-                history.push(CABINET_APPOINTMENTS_PATH)
+                userData.role_name === 'doctor'
+                  ? history.push(CABINET_PATIENTS_PATH)
+                  : history.push(CABINET_APPOINTMENTS_PATH)
             }
         }
     })

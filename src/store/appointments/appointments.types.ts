@@ -41,4 +41,6 @@ export interface Appointments {
     appointments: AppointmentType[]
     total: number | null
     isFetching: boolean
+    isCreateResolution: boolean
+    patientName: string
 }

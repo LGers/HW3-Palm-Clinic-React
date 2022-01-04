@@ -57,4 +57,8 @@ export const TextArea = styled.textarea`
   max-width: 100%;
   max-height: 160px;
   min-height: 160px;
+  resize: none;
+  border-radius: 8px;
+  box-shadow: rgb(218 228 255 / 16%) 0px 4px 32px;
+  border: 1px solid #DCE0EC;
 `

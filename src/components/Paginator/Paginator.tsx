@@ -49,7 +49,7 @@ export const Paginator: React.FC<PaginatorProps> = ({total, onChange}) => {
         disabled={page === 1}
         onClick={() => {
           setPage(page - 1)
-          onChange(page)
+          onChange(page-1)
         }}
       >
         <ChevronLeft />
@@ -59,7 +59,7 @@ export const Paginator: React.FC<PaginatorProps> = ({total, onChange}) => {
         disabled={page === lastPage}
         onClick={() => {
           setPage(page + 1)
-          onChange(page)
+          onChange(page+1)
         }}
       >
         <ChevronRight />
